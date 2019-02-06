@@ -14,7 +14,7 @@ public class Site {
 
 
     //Contructor w/ param 
-    public Site (aSiteID, aReadingType, aReadingVal, aReadingDate){
+    public Site (String aSiteID, String aReadingType, int aReadingVal, String aReadingDate){
         siteID = aSiteID;
         rdgType = aReadingType;
         rdgVal = aReadingVal;
@@ -22,20 +22,35 @@ public class Site {
 
     }
 
-    public getSiteId() {
+    public String getSiteId() {
         return siteID;
     }
 
-    public getRdgType() {
+    public String getRdgType() {
         return rdgType;
     }
 
-    public getRdgDate() {
+    public String getRdgDate() {
         return rdgDate;
     }
 
-    public getRdgVal() {
+    public int getRdgVal() {
         return rdgVal;
     }
+   public void setSiteID(String aNewID) {
+       siteID = aNewID;
+   }
+
+   public void setRdgType(String aNewType) {
+    rdgType = aNewType;
+   }
+
+   public void setRdgVal(int aNewVal) {
+    rdgVal = aNewVal;
+   }
+
+   public void setRdgDate(String aNewDate) {
+    rdgDate = aNewDate;
+   }
 
 }
