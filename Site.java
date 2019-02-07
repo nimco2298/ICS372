@@ -1,3 +1,4 @@
+package edu.metrostate.ics372;
 
 public class Site {
 
