@@ -1,3 +1,5 @@
+
+package edu.metrostate.ics372;
 /* Class that describes the behavior of a Site
 *@Author: Nimco
 *@Date: Feb 7th, 2019
@@ -90,3 +92,5 @@ public class Site {
    }
 
 }
+
+
