@@ -4,3 +4,5 @@ Classes:
   Site
   SiteGSON
   SiteReading
+  
+  Package to use: siteCollection
