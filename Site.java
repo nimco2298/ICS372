@@ -1,5 +1,5 @@
 
-package edu.metrostate.ics372;
+package siteCollection;
 /* Class that describes the behavior of a Site
 *@Author: Nimco
 *@Date: Feb 7th, 2019
