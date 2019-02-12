@@ -1,4 +1,4 @@
-package edu.metrostate.ics372;
+package siteCollection;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
