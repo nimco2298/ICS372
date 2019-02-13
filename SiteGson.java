@@ -13,7 +13,7 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
+// This is the main class that will read in JSON formatted objects and convert them to java objects.
 public class SiteGson {
 
 	public static void main(String[] args) throws IOException {
