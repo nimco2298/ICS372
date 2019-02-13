@@ -11,12 +11,12 @@ public class SiteLinkedBag {
 		this.head = null;
 		this.manyNodes = 0;
 	}
-	
+	// Add a node onto the list
 	public void add(SiteReading element) {
 		this.head = new SiteNode(element, head);
 		manyNodes++;
 	}
-	
+
 	public void add(int index, SiteReading element) {
 		
 		
@@ -26,7 +26,8 @@ public class SiteLinkedBag {
 			n.addNodeAfter(element);
 		}
 	}
-	
+	// This method will take in an instance object of SiteReading and count how many times it occurs in the code.
+	// This will be useful to determine how many reading inputs have been registered under one site.
 	public int countOccurances(SiteReading target){
 		int count = 0;
 		SiteNode cursor = head;
