@@ -13,7 +13,7 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
+// This is the main class that will read in JSON formatted objects and convert them to java objects.
 public class SiteGson {
 
 	public static void main(String[] args) throws IOException {
@@ -21,6 +21,7 @@ public class SiteGson {
 	
 		Gson gson = new Gson();
 		BufferedReader br = null;
+		SiteLinkedBag a = new SiteLinkedBag();
 		
 		try {
 		 br = new BufferedReader(new FileReader("example.json"));
@@ -28,8 +29,7 @@ public class SiteGson {
 		 
 		 	if(result != null) {
 		 		for(SiteReading t: result.getSiteReadings()) {
-		 			System.out.println(t.getSiteId() + " - " +t.getReadingType() + " - " + t.getReadingId() + " - "
-		 					+ t.getReadingValue() + " - " +t.getReadingDate());
+		 			a.add(t);
 		 		}
 		 	}
 		} catch (FileNotFoundException e) {
@@ -40,6 +40,7 @@ public class SiteGson {
 				br.close();
 			}
 		}
+			a.display();
 	}
 
 }
