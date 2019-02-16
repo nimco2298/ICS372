@@ -53,7 +53,7 @@ public class GUIDemo
 
 		//label1 Date
 		JLabel label1 = new JLabel();      
-		label1.setText("Date(DD/MM/YYYY):");
+		label1.setText("Date(MM/DD/YYYY):");
 		label1.setBounds(290, 15, 200, 100);
 		label1.setFont(new Font("Serif", Font.BOLD, 12));
 
