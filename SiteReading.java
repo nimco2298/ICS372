@@ -1,5 +1,9 @@
 package siteCollection;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 // import org.apache.commons.lang.builder.ToStringBuilder;
@@ -21,6 +25,7 @@ public class SiteReading {
 	@SerializedName("reading_date")
 	@Expose
 	private String rdgDate;
+	private String readableDate;
 
 	public String getSiteId() {
 		return siteId;
@@ -30,9 +35,9 @@ public class SiteReading {
 		this.siteId = siteId;
 	}
 
-	public String getReadingType() {
-		return rdgType;
-	}
+	   public String getReadingType()  {
+	        return rdgType;
+	    }
 
 	public void setReadingType(String rdgType) {
 		this.rdgType = rdgType;
@@ -54,14 +59,20 @@ public class SiteReading {
 		this.rdgVal = rdgVal;
 	}
 
-	public String getReadingDate() {
+	public String getReadingDate() throws ParseException {
+		unixToDate(rdgDate);
 		return rdgDate;
 	}
 
 	public void setReadingDate(String rdgDate) {
 		this.rdgDate = rdgDate;
 	}
+	//Updates Unix time to a readable format
+	public void unixToDate(String readableDate) throws ParseException {    
+	    long timestamp = Long.parseLong(readableDate);
 
+	    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/YYYY", Locale.US);
+	    rdgDate = sdf.format(timestamp);
 
- 
+	}
 }
