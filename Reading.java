@@ -1,22 +1,22 @@
-/* Class that describes the behavior of a Site
+/* Class that describes what a reading is comprised of 
 *@Author: Nimco
 *@Date: Feb 7th, 2019
 *
 */ 
-public class Site {
+public class Reading {
 
      
     /* A site has String  */
     private String siteID; 
-    /* A site has reading type  */
+    /* A reading has reading type  */
     private String rdgType;
-    /* A site has readig value */
+    /* A reading has reading value */
     private int rdgVal; 
-    /* A site has a reading date */
+    /* A reading has a reading date */
     private String rdgDate;
 
 
-    /*Constructor that creates a new Site object with parameters
+    /*Constructor that creates a new Reading object with parameters
     *
     *@param   String  a site ID
     *@param   String  a reading type
@@ -25,7 +25,7 @@ public class Site {
     *
     *@return   Site   a Site object
     */
-    public Site (String aSiteID, String aReadingType, int aReadingVal, String aReadingDate){
+    public Reading (String aSiteID, String aReadingType, int aReadingVal, String aReadingDate){
         siteID = aSiteID;
         rdgType = aReadingType;
         rdgVal = aReadingVal;
