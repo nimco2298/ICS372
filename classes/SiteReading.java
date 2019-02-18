@@ -115,11 +115,10 @@ public class SiteReading {
 	/* Prints all the information for a reading */
 	public String toString(){
 		System.out.println(" SiteID: \t " + getSiteID() +
-		" Reading type: \t " + getReadingType) +
+		" Reading type: \t " + getReadingType() +
 		" Reading ID: \t " + getReadingId() +
 		" Reading value: \t " + getReadingValue() +
-		" Reading date: \t " + getReadingDate() +
+		" Reading date: \t " + getReadingDate()); 
 		
-		)
 	} 
 }

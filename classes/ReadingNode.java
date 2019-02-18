@@ -35,4 +35,4 @@ public class ReadingNode {
 		this.data = data;
 	}
 
-
+}

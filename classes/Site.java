@@ -47,6 +47,6 @@ public boolean checkCollectStatus(){
 /*Turn off Site Collection
 */
 public void endCollect(){
-	canCollect == false;
+	canCollect = false;
 }
 }

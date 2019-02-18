@@ -59,7 +59,7 @@ public class GUIController {
 
     //}
 	/** Display a Menu */
-	public String displayMenu(){
+	public void displayMenu(){
 	System.out.println("To add a Reading, enter 1");
 	System.out.println("To start site collection for a site, enter 2");
 	System.out.println("To view list of all readings for a site, enter 3");
