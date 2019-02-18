@@ -23,6 +23,7 @@ public class GUIController {
 	//in this class is a linkedlist of all sites, in the site object is a linked list of readings
 	private AllSites sites; 
 
+	//public SiteGSON siteGson;
 	public GUIController guic;
 	
 
@@ -43,21 +44,21 @@ public class GUIController {
 
 	}
 
-	/**Validate user input and call the method to verify a site's collection status
+	/**Validate user input and call the method to verify a site's collection status, then call the appropiate method 
 	 * 
 	 * @param siteID
 	 */
 	public void startSiteColl(String siteID){
-		//verify that user entered a correct site id by
-		//
+		//verify that user entered a correct site id by using findSite method in AllSites
+		//refer to the MappingUILogic  document if needed
 	}
 
-	/* Take user input and prompt user to add in reading
+	/* Take user input and verify that the user has valid input, then call the appropiate method
     */
-    //public addAReading(){
+    public addAReading(String siteID, ){
+    //verify that user entered right input 
 
-
-    //}
+    }
 	/** Display a Menu */
 	public void displayMenu(){
 	System.out.println("To add a Reading, enter 1");

@@ -17,7 +17,7 @@ public class ReadingNode {
 	*@param  SiteReading  a new reading 
 	*@return void 
 	*/
-	public addReadingNode(SiteReading aReading){
+	public void addReadingNode(SiteReading aReading){
 		link = new ReadingNode(aReading, this.link);
 	}
 

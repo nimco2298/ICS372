@@ -9,8 +9,8 @@ public class SiteNode {
 	private SiteNode link;
 
 	/* Constructor for a node */
-	public ReadingNode(SiteReading info, ReadingNode nextNode){
-		this.data = info;
+	public SiteNode(Site aSite, SiteNode nextNode){
+		this.data = aSite;
 		this.link = nextNode;
 	}
 
@@ -18,22 +18,22 @@ public class SiteNode {
 	*@param  SiteReading  a new reading 
 	*@return void 
 	*/
-	public addReadingNode(SiteReading aReading){
-		link = new ReadingNode(aReading, this.link);
+	public addSiteNode(Site newSite){
+		link = new SiteNode(aReading, this.link);
 	}
 
 	/**Gets the data in the current node
 	 * @return SiteReading returns the value of the node
 	 */
-	public SiteReading getData() {
+	public Site getData() {
 		return this.data;
 	}
 
 	/**Sets the data in the current node
-	 * @param SiteReading a reading 
+	 * @param Site a reading 
 	 */
-	public void setData(SiteReading data) {
-		this.data = data;
+	public void setData(Site newData) {
+		this.data = newData;
 	}
 }
 

@@ -6,7 +6,7 @@ import java.util.Locale;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-// import org.apache.commons.lang.builder.ToStringBuilder;
+//import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class SiteReading {
     /* A site has String  */
@@ -114,7 +114,7 @@ public class SiteReading {
  
 	/* Prints all the information for a reading */
 	public String toString(){
-		System.out.println(" SiteID: \t " + getSiteID() +
+		System.out.println(" SiteID: \t " + this.getSiteId() +
 		" Reading type: \t " + getReadingType() +
 		" Reading ID: \t " + getReadingId() +
 		" Reading value: \t " + getReadingValue() +
