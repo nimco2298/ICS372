@@ -1,9 +1,10 @@
-
 package siteCollection;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 /* Class that describes the behavior of a Site
-*@Author: Nimco
-*@Date: Feb 7th, 2019
-*
 */ 
 public class Site {
 
@@ -12,10 +13,12 @@ public class Site {
     private String siteID; 
     /* A site has reading type  */
     private String rdgType;
-    /* A site has readig value */
+    /* A site has reading value */
     private int rdgVal; 
     /* A site has a reading date */
     private String rdgDate;
+    
+    private boolean canCollect = true;
 
 
     /*Constructor that creates a new Site object with parameters
@@ -52,7 +55,7 @@ public class Site {
     /*Getter for reading date
     *@return String the rdgDate
     */
-    public String getRdgDate() {
+    public String getRdgDate() throws ParseException {
         return rdgDate;
     }
 
@@ -90,13 +93,20 @@ public class Site {
    public void setRdgDate(String aNewDate) {
     rdgDate = aNewDate;
    }
-     
-     //need LinkedList for current and archive readings
+ 
+//need LinkedList for current and archive readings
 
 //   public void printAllReadings() {
 //	   System.out.println(*LinkedList for current and archive readings*.toString());
 //		}
-
-}
+//   
+//   	public void canCollect(String siteId) {
+//   		for (String s:*LinkedList*) {
+//   			if(s.contains(siteID)) {
+//   				canCollect = false;
+//   			}
+//   		}
+//   	}
+   }
 
 
