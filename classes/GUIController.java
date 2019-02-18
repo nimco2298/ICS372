@@ -6,16 +6,15 @@ import java.util.Locale;
 
 import java.io.*;
 import java.util.*; //collections
+import siteCollection.*;
+import classes.SiteGson;
 
-
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+//import com.google.gson.annotations.Expose;
+//mport com.google.gson.annotations.SerializedName;
 // import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class GUIController {
-    /* A list of all Sites */
-	@SerializedName("site_id")
-	@Expose
+   
 
 	/* Site with list of active readings */
 	//private Site site; 
@@ -24,7 +23,7 @@ public class GUIController {
 	//in this class is a linkedlist of all sites, in the site object is a linked list of readings
 	private AllSites sites; 
 
-	//public GUIController guic;
+	public GUIController guic;
 	
 
 
@@ -71,12 +70,12 @@ public class GUIController {
 	public static void main(String[] args) {
 		//Load JSON file with site readings and different sites
 		SiteGSON file = new SiteGSON();
-		guic = new GUIController();
+		GUIController guic = new GUIController();
 		System.out.println("Hello Welcome to the Site Management System. Please select an option");
 		guic.displayMenu();
 		Scanner sc = new Scanner(System.in);
-	    int option = sc.nextInt();
-	    String.valueOf(option);
+	    int input = sc.nextInt();
+	    String option =  String.valueOf(input);
         if(option == "1"){
 			System.out.println("---------------------------------------");
 			System.out.println("Please enter the following information ");
@@ -90,9 +89,9 @@ public class GUIController {
 			System.out.println("---------------------------------------");
 			System.out.println("Please enter a siteID to view all of its readings ");
 			Scanner stringSC = new Scanner(System.in);
-			int option1 =  stringSC.nextInt();
-			String.valueOf(option1);
-			guic.showReadings();
+			int input1 =  stringSC.nextInt();
+			String userSiteID = String.valueOf(input1);
+			guic.showReadings(userSiteID);
 		}
         else{
 		System.out.println("bye bye");

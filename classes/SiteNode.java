@@ -1,4 +1,5 @@
 package siteCollection;
+import siteCollection.*;
 
 public class SiteNode {
 	
@@ -34,5 +35,6 @@ public class SiteNode {
 	public void setData(SiteReading data) {
 		this.data = data;
 	}
+}
 
 
