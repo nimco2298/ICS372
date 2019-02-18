@@ -1,4 +1,4 @@
-package siteCollection;
+
 
 public class SiteNode {
 	
