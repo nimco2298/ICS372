@@ -24,7 +24,7 @@ public class GUIController {
 	//in this class is a linkedlist of all sites, in the site object is a linked list of readings
 	private AllSites sites; 
 
-	public GUIController guiC;
+	//public GUIController guic;
 	
 
 
@@ -36,7 +36,7 @@ public class GUIController {
 	//check if siteID is found in the list of AllSites by calling a method
 
 	if (sites.findSite(aSiteID) == null){
-     	return System.out.println("Sorry, the siteID you entered is not a valid siteID. Please enter a valid siteID.");
+     	System.out.println("Sorry, the siteID you entered is not a valid siteID. Please enter a valid siteID.");
 	}
 	else{
     	return sites.findSite(aSiteID);
@@ -55,7 +55,7 @@ public class GUIController {
 
 	/* Take user input and prompt user to add in reading
     */
-    public addAReading(String){
+    public addAReading(){
 
 
     }
@@ -68,15 +68,15 @@ public class GUIController {
 	System.out.println("To export a list of all site readings into a JSOn file, enter 5");
 	
 	}
-	public static void public static void main(String[] args) {
+	public static void main(String[] args) {
 		//Load JSON file with site readings and different sites
 		SiteGSON file = new SiteGSON();
 		guic = new GUIController();
 		System.out.println("Hello Welcome to the Site Management System. Please select an option");
-		displayMenu();
+		guic.displayMenu();
 		Scanner sc = new Scanner(System.in);
 	    int option = sc.nextInt();
-	    String.valueOf(int option);
+	    String.valueOf(option);
         if(option == "1"){
 			System.out.println("---------------------------------------");
 			System.out.println("Please enter the following information ");
