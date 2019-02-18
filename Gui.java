@@ -1,4 +1,3 @@
-package siteCollection;
 
 import javafx.application.Application;
 
@@ -303,6 +302,10 @@ public class Gui extends Application {
 		}
 		
 	// A listener to be called to begin site data collection
+	
+	/**	
+		This method is still under construction
+	**/
 	class AddCollectionListenerClass implements EventHandler<ActionEvent> {
 		@Override
 		public void handle(ActionEvent ae) {
@@ -311,7 +314,11 @@ public class Gui extends Application {
 	}
 	
 	// A listener to be called to end site data collection
-		class EndCollectionListenerClass implements EventHandler<ActionEvent> {
+	
+	/**	
+		This method is still under construction
+	**/
+	class EndCollectionListenerClass implements EventHandler<ActionEvent> {
 			@Override
 			public void handle(ActionEvent ae) {
 
@@ -319,7 +326,11 @@ public class Gui extends Application {
 		}
 		
 	// A listener to be called to end site data collection
-		class DataLogListenerClass implements EventHandler<ActionEvent> {
+	
+	/**	
+		This method is still under construction
+	**/
+	class DataLogListenerClass implements EventHandler<ActionEvent> {
 			@Override
 			public void handle(ActionEvent ae) {
 
