@@ -90,6 +90,12 @@ public class Site {
    public void setRdgDate(String aNewDate) {
     rdgDate = aNewDate;
    }
+     
+     //need LinkedList for current and archive readings
+
+//   public void printAllReadings() {
+//	   System.out.println(*LinkedList for current and archive readings*.toString());
+//		}
 
 }
 
