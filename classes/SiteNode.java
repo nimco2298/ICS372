@@ -1,5 +1,5 @@
-package siteCollection;
-import siteCollection.*;
+//package siteCollection;
+
 
 public class SiteNode {
 	

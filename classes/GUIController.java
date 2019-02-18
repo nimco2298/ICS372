@@ -1,4 +1,4 @@
-package siteCollection;
+
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -98,13 +98,6 @@ public class GUIController {
 		sc.close();
 		}
 		
-        
-
-
-		
-		
-
-
-		
+        	
 	}
 }

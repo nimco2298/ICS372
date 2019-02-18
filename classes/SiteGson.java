@@ -1,4 +1,4 @@
-package siteCollection;
+//package siteCollection;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
