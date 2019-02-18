@@ -1,112 +1,52 @@
+//package siteCollection;
+
+//import java.text.ParseException;
+//import java.text.SimpleDateFormat;
+//import java.util.Locale;
+
+import java.util.*; //Collections
+//import com.google.gson.annotations.Expose;
+//import com.google.gson.annotations.SerializedName;
+// import org.apache.commons.lang.builder.ToStringBuilder;
 
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
+public class Site{
+   
 
-/* Class that describes the behavior of a Site
-*/ 
-public class Site {
+	/* A boolean to check if readings can be collected for a given site */
+	private boolean canCollect = true;
 
-     
-    /* A site has String  */
-    private String siteID; 
-    /* A site has reading type  */
-    private String rdgType;
-    /* A site has reading value */
-    private int rdgVal; 
-    /* A site has a reading date */
-    private String rdgDate;
-    
-    private boolean canCollect = true;
+    /**List of All active readings */
+    private LinkedList<ReadingNode> readings = new LinkedList<ReadingNode>(); 
 
 
-    /*Constructor that creates a new Site object with parameters
-    *
-    *@param   String  a site ID
-    *@param   String  a reading type
-    *@param   int     a reading value
-    *@param   String  a reading date
-    *
-    *@return   Site   a Site object
+	/*Print all readings for an active site
+	*@param String the siteID of a site 
+	*@returns String  A list of all readings
     */
-    public Site (String aSiteID, String aReadingType, int aReadingVal, String aReadingDate){
-        siteID = aSiteID;
-        rdgType = aReadingType;
-        rdgVal = aReadingVal;
-        rdgDate = aReadingDate;
-
-    }
-    
-    /*Getter for siteID 
-    *@return String the siteID
-    */
-    public String getSiteId() {
-        return siteID;
-    }
-
-    /*Getter for reading type
-    *@return String the rdgType
-    */
-    public String getRdgType() {
-        return rdgType;
-    }
-
-    /*Getter for reading date
-    *@return String the rdgDate
-    */
-    public String getRdgDate() throws ParseException {
-        return rdgDate;
-    }
-
-    /*Getter for reading value
-    *@return  int   the rdgVal
-    */
-    public int getRdgVal() {
-        return rdgVal;
-    }
-
-    /*Setter for a new siteID
-    *@param   String a new ID
-    */
-   public void setSiteID(String aNewID) {
-       siteID = aNewID;
-   }
-
-   /*Setter for a new reading type
-    *@param   String  a new type
-    */
-   public void setRdgType(String aNewType) {
-    rdgType = aNewType;
-   }
-
-   /*Setter for a new value
-    *@param   int  a new value
-    */
-   public void setRdgVal(int aNewVal) {
-    rdgVal = aNewVal;
-   }
-
-   /*Setter for a new reading date
-    *@param   String  a new date
-    */
-   public void setRdgDate(String aNewDate) {
-    rdgDate = aNewDate;
-   }
- 
-//need LinkedList for current and archive readings
-
-//   public void printAllReadings() {
-//	   System.out.println(*LinkedList for current and archive readings*.toString());
-//		}
-//   
-//   	public void canCollect(String siteId) {
-//   		for (String s:*LinkedList*) {
-//   			if(s.contains(siteID)) {
-//   				canCollect = false;
-//   			}
-//   		}
-//   	}
-   }
+	public String printReadings(String siteID){
+	 //print all info 
+	for(ReadingNode r : readings){
+      if(r.getData().getSiteID() == siteID){
+         r.toString();
+	}
+	else{
+		System.out.println("Sorry, the siteID you entered doesnt have any readings");
+	    }
+	  }
+	}
 
 
+/* Check if a site can collect
+*@return boolean the status of the variable(T/F)
+*/
+public boolean checkCollectStatus(){
+ return canCollect;
+}
+
+/*Turn off Site Collection
+*/
+public void endCollect(){
+	canCollect = false;
+}
+}
