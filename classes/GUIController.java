@@ -55,10 +55,10 @@ public class GUIController {
 
 	/* Take user input and prompt user to add in reading
     */
-    public addAReading(){
+    //public addAReading(){
 
 
-    }
+    //}
 	/** Display a Menu */
 	public String displayMenu(){
 	System.out.println("To add a Reading, enter 1");
