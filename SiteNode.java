@@ -1,95 +1,38 @@
+//package siteCollection;
 
 
 public class SiteNode {
 	
-	private SiteReading data;
+	/* value stored in node  */
+	private Site data;
+	/* Link to next node */
 	private SiteNode link;
-	
-	public SiteNode(SiteReading data, SiteNode link) {
-		this.data = data;
-		this.link = link;
+
+	/* Constructor for a node */
+	public SiteNode(Site aSite, SiteNode nextNode){
+		this.data = aSite;
+		this.link = nextNode;
 	}
-	
-	/**
-	 * 
-	 * @return Grabs the node from the list and returns the data values
+
+	/*Add a reading as a node 
+	*@param  SiteReading  a new reading 
+	*@return void 
+	*/
+	public addSiteNode(Site newSite){
+		link = new SiteNode(aReading, this.link);
+	}
+
+	/**Gets the data in the current node
+	 * @return SiteReading returns the value of the node
 	 */
-	public SiteReading getData() {
+	public Site getData() {
 		return this.data;
 	}
 
-	public void setData(SiteReading data) {
-		this.data = data;
-	}
-
-	public SiteNode getLink() {
-		return this.link;
-	}
-
-	public void setLink(SiteNode link) {
-		this.link = link;
-	}
-	
-	public void addNodeAfter(SiteReading element) {
-
-		link = new SiteNode(element, this.link);
-	}
-
-	public void removeNodeAfter() {
-		this.link = this.link.link;
-	}
-	
-	/**
-	 * 
-	 * @param given list, the method will display the entire linked list
+	/**Sets the data in the current node
+	 * @param Site a reading 
 	 */
-	public static void display(SiteNode list){
-		
-		SiteNode cursor = list;
-		
-		while (cursor != null){
-			System.out.print(cursor.data+",");
-			cursor = cursor.link;
-		}
-		System.out.println("\n");
+	public void setData(Site newData) {
+		this.data = newData;
 	}
-	
-	/**	
-	 * 
-	 * This method has not been tested yet. 
-	 */
-	public static SiteNode listSearch(SiteNode head, SiteReading target){
-		
-		SiteNode cursor = head;
-	
-		while (cursor != null){
-			if (cursor.getData() == target)
-				return cursor;
-			cursor = cursor.getLink();
-		}
-		
-		return null;
-	}
-	
-	/**
-	 * 
-	 * @param head is the starting node of the list
-	 * @param position is the index position we are looking for
-	 * @return the appropriate node
-	 */
-	public static SiteNode listPosition(SiteNode head, int position){
-		
-		SiteNode cursor = head;
-		int index = 1;
-		
-		while (cursor != null && index < position){
-			index++;
-			cursor = cursor.getLink();
-		}
-		
-		return cursor;
-		
-	}
-	
-
 }
