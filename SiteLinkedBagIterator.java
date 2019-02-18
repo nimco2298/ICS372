@@ -1,4 +1,4 @@
-package siteCollection;
+
 
 import java.util.Iterator;
 // This is the iterator class which allows us to loop through linkedlist nodes 
