@@ -49,15 +49,19 @@ public class GUIController {
 	 * @param siteID
 	 */
 	public void startSiteColl(String siteID){
-		//verify that user entered a correct site id by using findSite method in AllSites
-		//refer to the MappingUILogic  document if needed
+		//verify that user entered a correct site id by using findSite method in AllSites		
+		if(findSite(siteID)){
+			site.checkCollectStatus() = true;
+		}
 	}
 
 	/* Take user input and verify that the user has valid input, then call the appropiate method
     */
-    public addAReading(String siteID, ){
+    public boolean addAReading(String siteID){
     //verify that user entered right input 
-
+    	boolean output = false;
+    	if(findSite(siteID)){output = true;}
+    	return output;
     }
 	/** Display a Menu */
 	public void displayMenu(){
@@ -102,3 +106,4 @@ public class GUIController {
         	
 	}
 }
+
