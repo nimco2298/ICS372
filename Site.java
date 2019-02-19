@@ -22,8 +22,9 @@
 	 * 
 	 * Problem in the following method
 	 * 
-	 * 
+	 * This is causing null pointer exception errors.
 	 * */
+	 /*
 	public Boolean statusCheck(String siteId) {
 		
 		int result = activeSites.checkSite(newSite.getSiteId());
@@ -33,7 +34,7 @@
 		}
 		
 		return canCollect;
-	}  
+	} */  
 	
 	
  
