@@ -264,6 +264,11 @@ public class Gui extends Application {
 		log_SiteIdSubmit.setOnAction(dataListenerClass);
 		// adding insert pane to insert scene
 		dataLogScene = new Scene(dataLogPane, 300, 300);
+		
+		//Exporting file section
+		DataExportListenerClass dataExportListenerClass = new DataExportListenerClass();
+		exportFile.setOnAction(dataExportListenerClass);
+			
 
 	}
 	//Exporting file section
@@ -296,8 +301,8 @@ public class Gui extends Application {
 			double readingVal = Double.parseDouble(readingValue);
 
 			SiteReading newReading = new SiteReading(siteId, readingType, readingId, readingVal, readingDate);
-
-			Boolean val = activeStatus.statusCheck(siteId);
+			list.add(newReading);
+			/* Boolean val = activeStatus.statusCheck(siteId);
 
 			if (val) {
 				list.add(newReading);
@@ -306,6 +311,7 @@ public class Gui extends Application {
 
 			}
 			reading_result.setText("The site hasn't been registered. Please go back and add it to the collection");
+			*/
 		}
 	}
 
@@ -341,5 +347,15 @@ public class Gui extends Application {
 
 		}
 	}
+	
+	// A listener to be called to export data
+		class DataExportListenerClass implements EventHandler<ActionEvent> {
+			@Override
+			public void handle(ActionEvent ae) {
+				
+				
+
+			}
+		}
 
 }
