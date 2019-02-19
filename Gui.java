@@ -271,13 +271,8 @@ public class Gui extends Application {
 			
 
 	}
-	//Exporting file section
-	DateExportListenerClass dataExportListenerClass = new DataExportListenerClass();
-	exportFile.setOnAction(dataExportListenerClass);
 	
-	dataLogScene = new Scene(dataLogPane, 400, 400);
 	
-
 	/**
 	 * 
 	 * Problem in the following method
