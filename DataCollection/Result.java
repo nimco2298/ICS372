@@ -1,8 +1,7 @@
 
-package siteCollection;
+
 
 import java.util.List; 
-import java.util.*; //Collections
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 // import org.apache.commons.lang.builder.ToStringBuilder;
@@ -13,10 +12,16 @@ public class Result {
 	@Expose
 	private List<SiteReading> siteReadings = null;
 
+	/**Method will get all the site readings
+	 * @return List<SiteReading>  the list of readings
+	 */
 	public List<SiteReading> getSiteReadings() {
 		return siteReadings;
 	}
 
+	/**Method will set all the site readings
+	 * @param List<SiteReading> the list of readings
+	 **/
 	public void setSiteReadings(List<SiteReading> siteReadings) {
 		this.siteReadings = siteReadings;
 	}

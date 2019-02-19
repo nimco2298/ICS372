@@ -114,7 +114,7 @@ public class SiteReading {
  
 	/* Prints all the information for a reading */
 	public String toString(){
-		System.out.println(" SiteID: \t " + this.getSiteId() +
+		return (" SiteID: \t " + this.getSiteId() +
 		" Reading type: \t " + getReadingType() +
 		" Reading ID: \t " + getReadingId() +
 		" Reading value: \t " + getReadingValue() +

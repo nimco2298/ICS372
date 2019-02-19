@@ -1,22 +1,48 @@
-package siteCollection;
+
 
 import java.util.Iterator;
 
 public class SiteLinkedBag {
-	
+	/* Current Head */
 	private SiteNode head;
+	/* number of siteNodes */
 	private int manyNodes;
 	
 	public SiteLinkedBag(){
 		this.head = null;
 		this.manyNodes = 0;
 	}
-	// Add a node onto the list
-	public void add(SiteReading element) {
+	
+	
+	public void addToCollection(SiteReading element) {
+		
+		if(checkStatus(element.getSiteId())) {
 		this.head = new SiteNode(element, head);
-		manyNodes++;
+		manyNodes++; 
+		}
+		
 	}
-
+	
+public void add(SiteReading element) {
+		
+		
+		this.head = new SiteNode(element, head);
+		manyNodes++; 
+		
+		
+	}
+	
+	public Boolean checkStatus(String id) {
+		
+		Site status = new Site();
+		
+		if(status.canCollectSite(id)) {
+			return true;
+		}
+		
+		return false;
+	}
+	
 	public void add(int index, SiteReading element) {
 		
 		
@@ -26,17 +52,44 @@ public class SiteLinkedBag {
 			n.addNodeAfter(element);
 		}
 	}
-	// This method will take in an instance object of SiteReading and count how many times it occurs in the code.
-	// This will be useful to determine how many reading inputs have been registered under one site.
-	public int countOccurances(SiteReading target){
-		int count = 0;
+	// Need to be modified
+	public int countOccurances(String target){
+		int counter = 0;
 		SiteNode cursor = head;
 		while (cursor != null){
-			if (cursor.getData() == target)
-				count++;
-			cursor = cursor.getLink();
+			
+			if(cursor.getData().getSiteId().equals(target))
+			
+				System.out.println(cursor.getData());
+				counter++;
+				cursor = cursor.getLink();
+		
 		}
-		return count;
+		
+		return counter;
+		
+	}
+	
+	/** 
+	 * 
+	 * Problem in the following method
+	 * 
+	 * 
+	 * */
+	public int checkSite(String target){
+		int counter = 0;
+		SiteNode cursor = head;
+		while (cursor != null){
+			
+			if(cursor.getData().getSiteId().equals(target))
+			System.out.println("Your site id: " + cursor.getData().getSiteId());
+				counter++;
+				cursor = cursor.getLink();
+		
+		}
+		
+		return counter;
+		
 	}
 	
 	public SiteReading get(int index) {
@@ -52,34 +105,6 @@ public class SiteLinkedBag {
 	}
 	
 
-	/**
-	 * 
-	 * @param Given target, the method will remove it out of the list
-	 * @return either true or false
-	 */
-	
-	public boolean remove(SiteReading target){
-		
-		SiteNode targetNode;
-		
-		targetNode = SiteNode.listSearch(this.head, target);
-		
-		if (targetNode == null)
-			return false;
-		else{
-			SiteReading headData = this.head.getData();
-			targetNode.setData(headData);
-			manyNodes--;
-			this.head = this.head.getLink();
-			return true;
-		}
-			
-	}
-	
-	public int size() {
-		 
-		return manyNodes;
-	}
 	
 	public void display() {
 		

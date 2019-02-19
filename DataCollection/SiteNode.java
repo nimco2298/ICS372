@@ -1,4 +1,4 @@
-package siteCollection;
+
 
 public class SiteNode {
 	
@@ -10,21 +10,26 @@ public class SiteNode {
 		this.link = link;
 	}
 	
-	/**
+	/**Method will return the data(reading info) of a SiteNode
 	 * 
-	 * @return Grabs the node from the list and returns the data values
+	 * @return SiteReading Grabs the node from the list and returns the data values
 	 */
 	public SiteReading getData() {
 		return this.data;
 	}
-
+   
 	public void setData(SiteReading data) {
 		this.data = data;
 	}
 
+	/**Method will return the link of a SiteNode
+	 * 
+	 * @return SiteNode Grabs the node from the list and returns the link
+	 */
 	public SiteNode getLink() {
 		return this.link;
 	}
+
 
 	public void setLink(SiteNode link) {
 		this.link = link;
@@ -50,9 +55,12 @@ public class SiteNode {
 		while (cursor != null){
 			System.out.print(cursor.data+",");
 			cursor = cursor.link;
+			System.out.println("\n");
 		}
 		System.out.println("\n");
 	}
+	
+	
 	
 	/**	
 	 * 
@@ -73,9 +81,9 @@ public class SiteNode {
 	
 	/**
 	 * 
-	 * @param head is the starting node of the list
-	 * @param position is the index position we are looking for
-	 * @return the appropriate node
+	 * @param SiteNode   head is the starting node of the list
+	 * @param int        position is the index position we are looking for
+	 * @return SiteNode  the appropriate node
 	 */
 	public static SiteNode listPosition(SiteNode head, int position){
 		

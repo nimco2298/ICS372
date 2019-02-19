@@ -1,14 +1,5 @@
-//package siteCollection;
-
-//import java.text.ParseException;
-//import java.text.SimpleDateFormat;
-//import java.util.Locale;
 
 import java.util.*; //Collections
-//import com.google.gson.annotations.Expose;
-//import com.google.gson.annotations.SerializedName;
-// import org.apache.commons.lang.builder.ToStringBuilder;
-
 
 public class Site{
    
@@ -27,7 +18,7 @@ public class Site{
 	public String printReadings(String siteID){
 	 //print all info 
 	for(ReadingNode r : readings){
-      if(r.getData().getSiteID() == siteID){
+      if(r.getData().getSiteId() == siteID){
          r.toString();
 	}
 	else{
