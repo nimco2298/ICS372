@@ -264,12 +264,7 @@ public class Gui extends Application {
 		log_SiteIdSubmit.setOnAction(dataListenerClass);
 		// adding insert pane to insert scene
 		dataLogScene = new Scene(dataLogPane, 300, 300);
-		
-		//Exporting file section
-		DataExportListenerClass dataExportListenerClass = new DataExportListenerClass();
-		exportFile.setOnAction(dataExportListenerClass);
-			
-
+				
 	}
 	
 	// A listener to be called to insert a reading in the collection
