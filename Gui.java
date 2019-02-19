@@ -16,6 +16,7 @@ public class Gui extends Application {
 	SiteLinkedBag list = new SiteLinkedBag();
 	Site activeStatus = new Site();
 	Stage window;
+	static String readings = "";
 
 	// Scenes
 
@@ -279,6 +280,8 @@ public class Gui extends Application {
 			String readingDate = insert_readingDate_TF.getText();
 
 			System.out.println(siteId + " " + readingType + " " + readingId + " " + readingValue + " " + readingDate);
+			readings += (siteId + " " + readingType + " " + readingId + " " + readingValue + " " + readingDate + "\r\n");
+			
 
 			double readingVal = Double.parseDouble(readingValue);
 
@@ -286,12 +289,9 @@ public class Gui extends Application {
 			list.add(newReading);
 			reading_result.setText("The reading has been added to the collection");
 			/* Boolean val = activeStatus.statusCheck(siteId);
-
 			if (val) {
 				list.add(newReading);
-
 			} else {
-
 			}
 			reading_result.setText("The site hasn't been registered. Please go back and add it to the collection");
 			*/
