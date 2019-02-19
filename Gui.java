@@ -161,7 +161,7 @@ public class Gui extends Application {
 		// creating visual items
 
 		Label siteId_Label = new Label("Site Id:");
-		Label readingType_Label = new Label("Reading Type:");
+		Label readingType_Label = new Label("Reading Type: Only: humidity/particulate/temp/bar_press");
 		Label readingId_Label = new Label("Reading Id:");
 		Label readingValue_Label = new Label("Reading Value:");
 		Label readingDate_Label = new Label("Reading Date:");
@@ -172,7 +172,7 @@ public class Gui extends Application {
 		// because the listeners need to read from and write to text fields
 
 		insert_siteId_TF = new TextField("Enter Site ID");
-		insert_readingType_TF = new TextField("Enter Reading Type (Only: humidity/particulate/temp/bar_press");
+		insert_readingType_TF = new TextField("Enter Reading Type");
 		insert_readingId_TF = new TextField("Enter Reading ID");
 		insert_readingValue_TF = new TextField("Enter Reading Value");
 		insert_readingDate_TF = new TextField("Enter Reading Date");
@@ -199,7 +199,7 @@ public class Gui extends Application {
 		InsertListenerClass readingInsertListener = new InsertListenerClass();
 		addReading.setOnAction(readingInsertListener);
 		// adding insert pane to insert scene
-		readingScene = new Scene(readingPane, 300, 300);
+		readingScene = new Scene(readingPane, 400, 400);
 
 		//////////////////////////////////////////////
 		// Add Data Collection Scene Design
@@ -221,7 +221,7 @@ public class Gui extends Application {
 		AddCollectionListenerClass addCollectionListenerClass = new AddCollectionListenerClass();
 		start_SiteIdSubmit.setOnAction(addCollectionListenerClass);
 		// adding insert pane to insert scene
-		addCollectionScene = new Scene(addCollectionPane, 300, 300);
+		addCollectionScene = new Scene(addCollectionPane, 400, 400);
 
 		//////////////////////////////////////////////
 		// Add End Data Collection Scene Design
@@ -242,7 +242,7 @@ public class Gui extends Application {
 		EndCollectionListenerClass endCollectionListenerClass = new EndCollectionListenerClass();
 		end_SiteIdSubmit.setOnAction(endCollectionListenerClass);
 		// adding insert pane to insert scene
-		endCollectionScene = new Scene(endCollectionPane, 300, 300);
+		endCollectionScene = new Scene(endCollectionPane, 400, 400);
 
 		//////////////////////////////////////////////
 		// Add Data Log Scene Design
@@ -263,7 +263,7 @@ public class Gui extends Application {
 		DataLogListenerClass dataListenerClass = new DataLogListenerClass();
 		log_SiteIdSubmit.setOnAction(dataListenerClass);
 		// adding insert pane to insert scene
-		dataLogScene = new Scene(dataLogPane, 300, 300);
+		dataLogScene = new Scene(dataLogPane, 400, 400);
 
 	}
 	
@@ -330,7 +330,7 @@ public class Gui extends Application {
 		@Override
 		public void handle(ActionEvent ae) {
 
-			String siteId = insert_siteId_TF.getText();
+			String siteId = log_siteId_TF.getText();
 
 			list.countOccurances(siteId);
 
