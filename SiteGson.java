@@ -15,6 +15,19 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 // This is the main class that will read in JSON formatted objects and convert them to java objects.
 public class SiteGson {
+	
+	public static void writeFile() throws IOException {
+	File projectDirectory = new File(new java.io.File("").getAbsolutePath());
+	projectDirectory.mkdirs();
+	File outputFile = new File(projectDirectory, "Results.json");
+	outputFile.createNewFile();
+	JOptionPane.showMessageDialog(null, "Please check your project directory folder for results", "Json Export",
+				JOptionPane.INFORMATION_MESSAGE);
+	try (PrintWriter pw = new PrintWriter(outputFile)) {
+		//this will determine what is printed to the file
+		pw.println(Site.activeSites);
+		}
+	}
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
