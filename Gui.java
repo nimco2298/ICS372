@@ -161,7 +161,7 @@ public class Gui extends Application {
 		// creating visual items
 
 		Label siteId_Label = new Label("Site Id:");
-		Label readingType_Label = new Label("Reading Type:");
+		Label readingType_Label = new Label("Reading Type: Only: humidity/particulate/temp/bar_press");
 		Label readingId_Label = new Label("Reading Id:");
 		Label readingValue_Label = new Label("Reading Value:");
 		Label readingDate_Label = new Label("Reading Date:");
@@ -172,7 +172,7 @@ public class Gui extends Application {
 		// because the listeners need to read from and write to text fields
 
 		insert_siteId_TF = new TextField("Enter Site ID");
-		insert_readingType_TF = new TextField("Enter Reading Type (Only: humidity/particulate/temp/bar_press");
+		insert_readingType_TF = new TextField("Enter Reading Type");
 		insert_readingId_TF = new TextField("Enter Reading ID");
 		insert_readingValue_TF = new TextField("Enter Reading Value");
 		insert_readingDate_TF = new TextField("Enter Reading Date");
