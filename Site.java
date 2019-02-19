@@ -5,7 +5,7 @@
 	// A boolean to check if readings can be collected for a given site 
 	private boolean canCollect = false;
 	
-	static SiteLinkedBag activeSites = new SiteLinkedBag();
+	SiteLinkedBag activeSites = new SiteLinkedBag();
 	SiteReading newSite;
 	
 	public Boolean canCollectSite(String siteId) {
