@@ -21,7 +21,7 @@ public class SiteGson {
 				JOptionPane.INFORMATION_MESSAGE);
 		try (PrintWriter pw = new PrintWriter(outputFile)) {
 			//this will determine what is printed to the file
-			pw.println(Site.activeSites);
+			pw.println(Gui.readings);
 		}
 	}
 
