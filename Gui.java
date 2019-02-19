@@ -272,14 +272,6 @@ public class Gui extends Application {
 
 	}
 	
-	
-	/**
-	 * 
-	 * Problem in the following method
-	 * 
-	 * 
-	 */
-
 	// A listener to be called to insert a reading in the collection
 	class InsertListenerClass implements EventHandler<ActionEvent> {
 		@Override
@@ -297,6 +289,7 @@ public class Gui extends Application {
 
 			SiteReading newReading = new SiteReading(siteId, readingType, readingId, readingVal, readingDate);
 			list.add(newReading);
+			reading_result.setText("The reading has been added to the collection");
 			/* Boolean val = activeStatus.statusCheck(siteId);
 
 			if (val) {
