@@ -1,12 +1,14 @@
 Classes: 
-  GUIDemo
-  ReadingNode
+  Gui
+  Result
   Site
   SiteGson
+  SiteLinkedBag
+  SiteLinkedBagIterator
   SiteNode
   SiteReading
   
-  Package to use: N/A
+Package to use: N/A
 
 It is necessary to import the GSON jar file that can be located at: https://mvnrepository.com/artifact/com.google.code.gson/gson/2.3.1
 
