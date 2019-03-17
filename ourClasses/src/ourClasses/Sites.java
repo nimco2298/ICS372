@@ -45,9 +45,9 @@ public class Sites {
 	 * 
 	 * precondition: collection status of Site must be true
 	 **/
-	public void addAReading(String id, String rdgType, String rdgID, double rdgValue, String rdgDate){
+	public void addAReading(String studyName, String studyId, String id, String rdgType, String rdgID, double rdgValue, String rdgDate){
 	 if(checkCollStatus() == true) {
-		 readings.add(new Reading(id,rdgType,rdgID,rdgValue,rdgDate));
+		 readings.add(new Reading(studyName,studyId,id,rdgType,rdgID,rdgValue,rdgDate));
 	 }
 	 else {
 		 System.out.println("Sorry, this site is not accepting data for collection");
@@ -61,16 +61,11 @@ public class Sites {
 	public String displayRdgs() {
 		String list = "";
 		for(Reading rdgs : readings)
-	        {
-	            //if(rdgs.getSiteId() == siteID) {//every site has same site id for each rdg
-	            	
-	            	
+	        {	            	
 	            	list = list + rdgs.toString();
-	            	
-	            //}
+	  
 	        }
 		
-	
 		return list;
 	}
 		
@@ -79,8 +74,8 @@ public class Sites {
 
         Sites s = new Sites("12345"); 
         //Sites s2 = new Sites("12555");
-        s.addAReading("12345","temprature","974",102.00,"1515354694451");
-        s.addAReading("12345","temprature","984",99.00,"1515354694489");
+        s.addAReading("Midwest USA Study", "450","12345","temprature","974",102.00,"1515354694451");
+        s.addAReading("Eastern USA Study", "400","12345","temprature","984",99.00,"1515354694489");
         
         System.out.println(s.displayRdgs());
 	        

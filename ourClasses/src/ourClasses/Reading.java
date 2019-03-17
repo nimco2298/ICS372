@@ -35,9 +35,20 @@ public class Reading {
 	    /* variable to format the date*/
 		private String readableDate;
 
+		/* A reading belongs to one study id    */
+		@SerializedName("study_id")
+		@Expose
+		private String studyID;
+		
+		/* A reading belongs to a study that has a name   */
+		@SerializedName("study_name")
+		@Expose
+		private String studyName;
 
 		/*Constructing a reading given all the input information */
-		public Reading(String aSiteID, String aReadingType, String aReadingId, double aReadingVal, String aReadingDate){
+		public Reading(String AStudyName, String AStudyID, String aSiteID, String aReadingType, String aReadingId, double aReadingVal, String aReadingDate){
+				studyName = AStudyName;
+				studyID= AStudyID;
 		        siteId = aSiteID;
 		        rdgType = aReadingType;
 		        rdgId = aReadingId;
@@ -46,8 +57,37 @@ public class Reading {
 
 		    }
 
+	
+		/**Getter method for studyID
+		 * @return String the studyID
+		 **/
+		public String getStudyId() {
+			return studyID;
+		}
+
+		/**Setter method for study ID
+		 * @param String the studyID
+		 */
+
+		public void setStudyID(String aStudyID) {
+			this.studyID = aStudyID;
+		}
+		
+		/**Getter method for study name
+		 * @return String the studyName
+		 **/
+		public String getStudyName() {
+			return studyName;
+		}
 		
 
+		/**Setter method for study name
+		 * @param String the new studyName
+		 **/
+		public void setStudyName(String newName) {
+			this.studyName = newName;
+		}
+		
 		/**Getter method for SiteID
 		 * @return String the siteID
 		 **/
@@ -55,9 +95,7 @@ public class Reading {
 			return siteId;
 		}
 
-		/*Setter for a new siteID
-	    *@param   String a new ID
-	    */
+	
 
 		/**Setter method for SiteID
 		 * @param String the siteID
@@ -68,10 +106,6 @@ public class Reading {
 		}
 
 		
-
-		/*Setter for a new reading type
-	    *@param   void  a new type
-	    */
 
 		/**Getter method for the reading type
 		 * @return String the reading type
@@ -148,11 +182,13 @@ public class Reading {
 			String output = "";
 			
 			try {
-				output = " SiteID: \t " + this.getSiteId() +
-				"\t"+ "Reading type: \t " + getReadingType() +
-				"\t" + "Reading ID: \t " + getReadingId() +
-				"\t" + " Reading Value: \t " + getReadingValue() +
-				"\t" + " Reading Date: \t " + getReadingDate() 
+				output = "\n" + "StudyName:  " + this.getStudyName() +
+				"\t"+ " StudyID: " + this.getStudyId() +
+				"\t"+ " SiteID: " + this.getSiteId() +
+				"\t"+ "Reading type: " + getReadingType() +
+				"\t" + "Reading ID:  " + getReadingId() +
+				"\t" + " Reading Value: " + getReadingValue() +
+				"\t" + " Reading Date: " + getReadingDate() 
 				+ "\n";
 			} catch (ParseException e) {
 			
@@ -163,5 +199,3 @@ public class Reading {
 		} 
 
 }
-
-
