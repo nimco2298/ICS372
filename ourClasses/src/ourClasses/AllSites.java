@@ -73,6 +73,11 @@ public class AllSites{
 		return site;
 	}
 	
+
+	
+	
+	
+	
 	public static void main(String[] args) {
 		
 		    AllSites a = new AllSites();
@@ -80,10 +85,10 @@ public class AllSites{
 		    
 	        a.activeSites.add(new Sites("12345"));
 	        //using our method 
-	        a.activeSites.get(0).addAReading("12345","humidity","900",78.00,"1515354694451");
+	        a.activeSites.get(0).addAReading("Midwest USA Study", "465","12345","humidity","900",78.00,"1515354694451");
 	        
 	        //using the long way 
-	        a.activeSites.get(0).readings.add(new Reading("12345","temperature","930",122.00,"1515354694451"));
+	        a.activeSites.get(0).readings.add(new Reading("Midwest USA Study", "465","12345","temperature","930",122.00,"1515354694451"));
 	        
 
 	     	        

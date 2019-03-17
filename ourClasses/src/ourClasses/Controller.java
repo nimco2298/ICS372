@@ -53,9 +53,9 @@ public class Controller {
 	}
 	
 	
-	public void addReading(String siteID, String readingType, String readingId, double readingVal, String readingDate) {
+	public void addReading(String studyName, String studyId, String siteID, String readingType, String readingId, double readingVal, String readingDate) {
 		s1 = sites.findSite(siteID);
-		s1.addAReading(siteID, readingType, readingId, readingVal, readingDate);
+		s1.addAReading(studyName, studyId,siteID, readingType, readingId, readingVal, readingDate);
 	}
 
 	
@@ -64,6 +64,8 @@ public class Controller {
 		//s1 = sites.findSite(siteID); // find Site object for that reading
 		System.out.println(s.displayRdgs());
 	}
+	
+
 	
 	
 	/**
@@ -81,8 +83,8 @@ public class Controller {
         
       
         //populate readings for these sites using ARRAYLIST
-        a.activeSites.get(0).addAReading("12345","humidity","900",78.00,"1515354694451");
-        a.activeSites.get(1).addAReading("12555","temperature","954",100.00,"1515354694451");
+        a.activeSites.get(0).addAReading("Midwest USA Study", "465","12345","humidity","900",78.00,"1515354694451");
+        a.activeSites.get(1).addAReading("Western USA Study", "490","12555","temperature","954",100.00,"1515354694451");
         
         //test start collection
         Sites a1 = a.findSite("12555");
@@ -96,7 +98,7 @@ public class Controller {
   
         //test rdgs
         a.activeSites.add(new Sites("12645")); //status is already true
-        a.activeSites.get(2).addAReading("12645","temperature","954",100.00,"1515354694451");
+        a.activeSites.get(2).addAReading("Western USA Study", "490","12645","temperature","954",100.00,"1515354694451");
         Sites a3 = a.findSite("12645");
         
        
@@ -107,5 +109,4 @@ public class Controller {
         	
         }
 
-	}	
-
+	}
