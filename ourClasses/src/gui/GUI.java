@@ -2,17 +2,23 @@ package gui;
 
 
 
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+import java.io.IOException;
+import java.sql.Driver;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import ourClasses.Controller;
+import ourClasses.SiteJson;
+import ourClasses.Sites;
 
 
 public class GUI extends Application {
@@ -21,7 +27,7 @@ public class GUI extends Application {
 	
 	//Scenes
 	
-	Driver d1 = new Driver();
+	Controller d1 = new Controller();
 	
 	Scene homeScene;
 	Scene readingScene;
@@ -352,6 +358,11 @@ public class GUI extends Application {
 		class DataExportListenerClass implements EventHandler<ActionEvent> {
 			@Override
 			public void handle(ActionEvent ae) {
+				try {
+					SiteJson.exportFile();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 				
 				
 
@@ -361,4 +372,3 @@ public class GUI extends Application {
 			
 
 		}
-
