@@ -46,6 +46,9 @@ public class SiteJson {
 
 		if (returnValue == JFileChooser.APPROVE_OPTION) {
 			java.io.File inputFile = jfc.getSelectedFile();
+			String fileType = inputFile.getName();
+			fileType = fileType.substring(fileType.length() - 3);
+			if (fileType.contains("son")) {
 			JSONParser parser = new JSONParser();
 
 			Object obj = parser.parse(new FileReader(inputFile));
@@ -56,11 +59,20 @@ public class SiteJson {
 			Iterator<?> i = site_reading.iterator();
 			//print file to console
 			while (i.hasNext()) {
-				System.out.println(i.next());
+				System.out.println(i.next());				
+			}
+			}
+			if (fileType.contains("xml")) {
+				//XML READER CODE
 			}
 		} else {
 			// Error message if the user closes JFileChooser without selecting anything
 			JOptionPane.showMessageDialog(null, "No File Selected", "ERROR", JOptionPane.INFORMATION_MESSAGE);
 		}
+		}
+	
+	
+	public static void main(String[] args) throws FileNotFoundException, IOException, ParseException {
+		importFile();
 	}
 }
