@@ -1,14 +1,13 @@
 package ourClasses;
 
-import java.io.File;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 
 import java.io.FileNotFoundException;
@@ -46,7 +45,8 @@ public class SiteReader {
 		}
 	}
 
-	public static void importFile() throws FileNotFoundException, IOException, ParseException {
+	public static void importFile() throws FileNotFoundException, IOException, ParseException, ParserConfigurationException, SAXException {
+
 
 		JFileChooser jfc = new JFileChooser();
 		// filter to only select .xml or .json files
@@ -112,7 +112,8 @@ public class SiteReader {
 	}
 	
 	
-	public static void main(String[] args) throws FileNotFoundException, IOException, ParseException {
+	public static void main(String[] args) throws FileNotFoundException, IOException, ParseException, ParserConfigurationException, SAXException {
+
 		
 		importFile();
 	}
@@ -124,4 +125,6 @@ public class SiteReader {
 	}
 	
 }
+
+=======
 

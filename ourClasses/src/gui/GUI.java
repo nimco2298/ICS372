@@ -17,7 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import ourClasses.Controller;
-import ourClasses.SiteJson;
+import ourClasses.SiteReader;
 import ourClasses.Sites;
 
 
@@ -359,7 +359,7 @@ public class GUI extends Application {
 			@Override
 			public void handle(ActionEvent ae) {
 				try {
-					SiteJson.exportFile();
+					SiteReader.exportFile();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
