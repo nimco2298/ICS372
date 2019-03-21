@@ -9,6 +9,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -45,6 +46,7 @@ public class SiteReader {
 	}
 
 	public static void importFile() throws FileNotFoundException, IOException, ParseException, ParserConfigurationException, SAXException {
+
 
 		JFileChooser jfc = new JFileChooser();
 		// filter to only select .xml or .json files
@@ -111,6 +113,7 @@ public class SiteReader {
 	
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException, ParseException, ParserConfigurationException, SAXException {
+
 		
 		importFile();
 	}
@@ -122,3 +125,6 @@ public class SiteReader {
 	}
 	
 }
+
+=======
+
