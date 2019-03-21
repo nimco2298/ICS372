@@ -11,8 +11,8 @@ import java.util.ArrayList;
  */
 public class AllSites{
 
-	public ArrayList<Sites> activeSites = new ArrayList<Sites>();
-	public ArrayList<Sites> nonActiveSites = new ArrayList<Sites>();
+	public static ArrayList<Sites> activeSites = new ArrayList<Sites>();
+	public static ArrayList<Sites> nonActiveSites = new ArrayList<Sites>();
 	
 	/**Method will take a SiteID and add it from nonactive to active
 	 * 
