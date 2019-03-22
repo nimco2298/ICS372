@@ -18,7 +18,7 @@ public class AllSites{
 	 * 
 	 * @param aSite
 	 **/
-	public void addToActive(Sites site) {
+	public static void addToActive(Sites site) {
 		
 		int i;
 		for(i = 0; i < activeSites.size(); i++) {
