@@ -11,14 +11,14 @@ import java.util.ArrayList;
  */
 public class AllSites{
 
-	public ArrayList<Sites> activeSites = new ArrayList<Sites>();
-	public ArrayList<Sites> nonActiveSites = new ArrayList<Sites>();
+	public static ArrayList<Sites> activeSites = new ArrayList<Sites>();
+	public static ArrayList<Sites> nonActiveSites = new ArrayList<Sites>();
 	
 	/**Method will take a SiteID and add it from nonactive to active
 	 * 
 	 * @param aSite
 	 **/
-	public void addToActive(Sites site) {
+	public static void addToActive(Sites site) {
 		
 		int i;
 		for(i = 0; i < activeSites.size(); i++) {

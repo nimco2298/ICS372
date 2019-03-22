@@ -4,8 +4,8 @@ import java.util.LinkedList;
 
 public class Sites {
 	
-	private boolean canCollect = true; 
-	public LinkedList<Reading> readings = new LinkedList<Reading>();
+	public static boolean canCollect = true; 
+	public static LinkedList<Reading> readings = new LinkedList<Reading>();
 	public LinkedList<String> ids = new LinkedList<String>();
 	
 	
@@ -20,7 +20,7 @@ public class Sites {
       * 
       * @return Boolean status of collection for a Site
       */
-	 public boolean checkCollStatus() {
+	 public static boolean checkCollStatus() {
 		 return canCollect;	 
 	 }
 	 
@@ -45,7 +45,7 @@ public class Sites {
 	 * 
 	 * precondition: collection status of Site must be true
 	 **/
-	public void addAReading(String studyName, String studyId, String id, String rdgType, String rdgID, double rdgValue, String rdgDate){
+	public static void addAReading(String studyName, String studyId, String id, String rdgType, String rdgID, double rdgValue, String rdgDate){
 	 if(checkCollStatus() == true) {
 		 readings.add(new Reading(studyName,studyId,id,rdgType,rdgID,rdgValue,rdgDate));
 	 }
@@ -58,7 +58,7 @@ public class Sites {
 	 * Method that displays all the readings for a given site
 	 * @return String the list of readings
 	 **/
-	public String displayRdgs() {
+	public static String displayRdgs() {
 		String list = "";
 		for(Reading rdgs : readings)
 	        {	            	
@@ -76,6 +76,7 @@ public class Sites {
         //Sites s2 = new Sites("12555");
         s.addAReading("Midwest USA Study", "450","12345","temprature","974",102.00,"1515354694451");
         s.addAReading("Eastern USA Study", "400","12345","temprature","984",99.00,"1515354694489");
+        
         
         System.out.println(s.displayRdgs());
 	        

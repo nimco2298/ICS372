@@ -1,17 +1,8 @@
-Classes: 
-  Gui
-  Result
-  Site
-  SiteGson
-  SiteLinkedBag
-  SiteLinkedBagIterator
-  SiteNode
-  SiteReading
+
   
-Package to use: N/A
+Packages to use: ourClasses, gui
 
-It is necessary to import the GSON jar file that can be located at: https://mvnrepository.com/artifact/com.google.code.gson/gson/2.3.1
+It is necessary to import the JSON jar file that can be located at: https://code.google.com/archive/p/json-simple/downloads
 
-Please be aware that any .json file that needs to be read in MUST be placed in the project directory folder (the same location that the exported .json will save). 
 
 IDE used: Eclipse
