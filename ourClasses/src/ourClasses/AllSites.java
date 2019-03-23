@@ -15,27 +15,30 @@ public class AllSites{
 	public static ArrayList<Sites> activeSites = new ArrayList<Sites>();
 	public static ArrayList<Sites> nonActiveSites = new ArrayList<Sites>();
 	
-	/**Method will take a SiteID and add it from nonactive to active
+	/**Method will take a Site and add it from nonactive to active
 	 * 
 	 * @param aSite
 	 **/
 	public  void addToActive(Sites site) {
 		
 		int i;
-		for(i = 0; i < activeSites.size(); i++) {
+		for(i = 0; i < nonActiveSites.size(); i++) {
 			
-			if(activeSites.get(i).equals(site)) {
+			if(nonActiveSites.get(i).equals(site) & site.checkCollStatus() == false) {
 
 				System.out.println("Yay we found the site to be added to active again");
-				activeSites.remove(site);
-				nonActiveSites.add(site);
+				nonActiveSites.remove(site);
+				activeSites.add(site);
 			
+			}
+			else {
+				System.out.println("Sorry! The site collection status of this site is false, and cannot be added to the active list.");
 			}
 		}
 			
 	}
 	
-	/**Method will take a SiteID and remove it from nonactive and add it to active
+	/**Method will take a Site and remove it from nonactive and add it to active
 	 * 
 	 * @param aSite
 	 **/
@@ -44,11 +47,11 @@ public class AllSites{
 		int i;
 		for(i = 0; i < activeSites.size(); i++) {
 			
-			if(activeSites.get(i).equals(site)) {
+			if(activeSites.get(i).equals(site) & site.checkCollStatus() == true) {
 
 				System.out.println("Yay we found the site to be removed from active");
-				nonActiveSites.remove(site);
-				activeSites.add(site);
+				activeSites.remove(site);
+				nonActiveSites.add(site);
 			
 			}
 		}
@@ -92,7 +95,7 @@ public class AllSites{
 	        AllSites.activeSites.get(0).addAReading("Midwest USA Study", "465","12345","temperature","930",122.00,"1515354694451");
 	        
 	        
-	        //PROPER WAY OF ADDING SITE 
+	        //PROPER WAY OF ADDING SITE to active list
 	        Sites s3 = new Sites("12009");
 	        AllSites.activeSites.add(s3);
 	        

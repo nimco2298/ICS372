@@ -18,7 +18,7 @@ public class SitesTest {
 	@Before
 	public void beginObject() {
 		site = new Sites("12335");
-	    //site.addAReading("Midwest USA Study", "450","12335","temprature","974",102.00,"1515354694451");
+	    site.addAReading("Midwest USA Study", "450","12335","temprature","974",102.00,"1515354694451");
         //site.addAReading("Eastern USA Study", "400","12335","temprature","984",99.00,"1515354694489");
 	}
 	
@@ -26,7 +26,7 @@ public class SitesTest {
 	@Test
 	 public void testAddAReading() {
 		site.addAReading("My Test Study", "studyID", "siteID", "rdgType", "rdgID", 70.0, "12348991");
-		assertEquals(1, Sites.readings.size());
+		assertEquals(1, site.readings.size());
 	
 	}
 	@Test
