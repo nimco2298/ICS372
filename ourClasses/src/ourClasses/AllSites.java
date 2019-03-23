@@ -5,12 +5,13 @@ package ourClasses;
 
 import java.util.ArrayList;
 
-/**
- * @author nimco
+/**AllSites is a class that stores active and nonactive sites, and can manipulate these lists
+ * 
  *
  */
 public class AllSites{
 
+	//needs to be static, since We just need one collection of activesites and nonactive sites
 	public static ArrayList<Sites> activeSites = new ArrayList<Sites>();
 	public static ArrayList<Sites> nonActiveSites = new ArrayList<Sites>();
 	
@@ -18,7 +19,7 @@ public class AllSites{
 	 * 
 	 * @param aSite
 	 **/
-	public static void addToActive(Sites site) {
+	public  void addToActive(Sites site) {
 		
 		int i;
 		for(i = 0; i < activeSites.size(); i++) {
@@ -60,13 +61,14 @@ public class AllSites{
 	 * @param  String aSite
 	 * @return Sites  the given Site for that siteID
 	 **/
-	public Sites findSite(String siteID) {
+	//@SuppressWarnings("static-access")
+	public static Sites findSite(String siteID) {
 	
 	Sites site = null;
 	int i;
 	for(i = 0; i < activeSites.size(); i++) {
 		
-		if(activeSites.get(i).readings.element().getSiteId() == siteID ) {
+		if(siteID.equals(activeSites.get(i).readings.element().getSiteId()) ) {
 			site = activeSites.get(i);
 		
 		}
@@ -77,25 +79,31 @@ public class AllSites{
 	
 	
 	
-	
 	public static void main(String[] args) {
 		
-		    AllSites a = new AllSites();
+		    //AllSites a = new AllSites();
 		    //add a new site to the list 
 		    
-	        a.activeSites.add(new Sites("12345"));
+	        AllSites.activeSites.add(new Sites("12345"));
 	        //using our method 
-	        a.activeSites.get(0).addAReading("Midwest USA Study", "465","12345","humidity","900",78.00,"1515354694451");
+	        AllSites.activeSites.get(0).addAReading("Midwest USA Study", "465","12345","humidity","900",78.00,"1515354694451");
 	        
 	        //using the long way 
-	        a.activeSites.get(0).readings.add(new Reading("Midwest USA Study", "465","12345","temperature","930",122.00,"1515354694451"));
+	        AllSites.activeSites.get(0).addAReading("Midwest USA Study", "465","12345","temperature","930",122.00,"1515354694451");
 	        
-
+	        
+	        //PROPER WAY OF ADDING SITE 
+	        Sites s3 = new Sites("12009");
+	        AllSites.activeSites.add(s3);
+	        
+	        /* FINDSITE NOT WORKING */
+            //s3 = AllSites.findSite("12009");
+            System.out.println("Site is added properly. Site status:" + s3.checkCollStatus() + "\n");
 	     	        
 	        //For every site in activeSites, display its readings
-	        for(Sites b : a.activeSites)
+	        for(Sites b : AllSites.activeSites)
 	        {
-	            System.out.println(b.readings.toString());
+	            System.out.println("List of readings for an active site : " + b.readings.toString());
 	        }
 		
 

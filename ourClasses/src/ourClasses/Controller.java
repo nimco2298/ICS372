@@ -21,13 +21,13 @@ public class Controller {
 	 */
 	void startCollection(Sites aSite) {
 
-		if(Sites.checkCollStatus() == true) {
-			System.out.println("Sorry, Site:" + Sites.readings.element().getSiteId()+ " is already available for data collection.");
+		if(aSite.checkCollStatus() == true) {
+			System.out.println("Sorry, Site:" + s1.readings.element().getSiteId()+ " is already available for data collection.");
 		}
 		else {
 			aSite.turnOnStatus();   
-			AllSites.addToActive(aSite);   //add the site to the active list
-			System.out.println("Success! Site:" + Sites.readings.element().getSiteId()+ " can start collecting data.");
+			sites.addToActive(aSite);   //add the site to the active list
+			System.out.println("Success! Site:" + s1.readings.element().getSiteId()+ " can start collecting data.");
 		}
 		
 		
@@ -55,7 +55,7 @@ public class Controller {
 	
 	
 	public void addReading(String studyName, String studyId, String siteID, String readingType, String readingId, double readingVal, String readingDate) {
-		s1 = sites.findSite(siteID);
+		s1 = AllSites.findSite(siteID);
 		s1.addAReading(studyName, studyId,siteID, readingType, readingId, readingVal, readingDate);
 	}
 
@@ -68,7 +68,7 @@ public class Controller {
 	
 	public void displayStudy(String studyID) {
 		//s1.displayRdgs(siteID);
-		//Sites site = sites.findSite(siteID); // find Site object for that reading
+		s1 = AllSites.findSite(studyID); // find Site object for that reading
 		System.out.println(s1.displayStdyRdgs(studyID));
 	}
 
@@ -79,8 +79,8 @@ public class Controller {
 	 */
 	public static void main(String[] args) {
         
-	    AllSites a = new AllSites();
-	    Controller c = new Controller();
+	   // AllSites a = new AllSites();
+	    //Controller c = new Controller();
 	    
 	    
 	    
@@ -95,8 +95,8 @@ public class Controller {
         
         //test start collection
         //Sites a1 = a.findSite("12555");
-        //a1.turnOffStatus();
-       // c.startCollection(a1); //NULL
+         // a1.turnOffStatus();
+         //c.startCollection(a1); //NULL
         
         //test end collection
         //Sites a2 = a.findSite("12345");
@@ -110,17 +110,15 @@ public class Controller {
         
        
         //testing controller's display method
-        // c.displayReading(a3);
+         //c.displayReading(a3);
          
          //testing display study reading process
          AllSites.activeSites.add(new Sites("12468"));
          AllSites.activeSites.get(0).addAReading("Midwest USA Study", "400","12468","humidity","910",30.00,"1515354694451");
          AllSites.activeSites.get(1).addAReading("Western USA Study", "490","12468","temperature","954",130.00,"1515354694451");
-         Sites s = a.findSite("12468");
-         s.displayStdyRdgs("490");
-         
-         
-         
+        // Sites s6 = AllSites.findSite("12468");
+        // s6.displayStdyRdgs("490");
+         System.out.println(AllSites.activeSites.get(0).displayStdyRdgs("400"));
        
         	
         }

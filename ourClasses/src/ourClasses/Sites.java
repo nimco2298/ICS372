@@ -10,7 +10,7 @@ import java.util.LinkedList;
 public class Sites {
 	
 	public static boolean canCollect = true; 
-	public static LinkedList<Reading> readings = new LinkedList<Reading>();
+	public LinkedList<Reading> readings = new LinkedList<Reading>();
 	public LinkedList<String> ids = new LinkedList<String>();
 	
 	
@@ -25,7 +25,7 @@ public class Sites {
       * 
       * @return Boolean status of collection for a Site
       */
-	 public static boolean checkCollStatus() {
+	 public boolean checkCollStatus() {
 		 return canCollect;	 
 	 }
 	 
