@@ -6,6 +6,12 @@ import java.text.ParseException;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Reading is the class that is comprised of various measurements.
+ * 
+ *
+ */
+
 public class Reading {
 
 	  /* A site has String  */

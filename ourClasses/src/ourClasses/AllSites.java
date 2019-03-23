@@ -61,18 +61,18 @@ public class AllSites{
 	 * @return Sites  the given Site for that siteID
 	 **/
 	public Sites findSite(String siteID) {
-		Sites site = null;
-		int i;
-		for(i = 0; i < activeSites.size(); i++) {
-			
-			if(activeSites.get(i).readings.element().getSiteId() == siteID ) {
-				site = activeSites.get(i);
-			
-			}
-		}
-		return site;
-	}
 	
+	Sites site = null;
+	int i;
+	for(i = 0; i < activeSites.size(); i++) {
+		
+		if(activeSites.get(i).readings.element().getSiteId() == siteID ) {
+			site = activeSites.get(i);
+		
+		}
+	}
+	   return site;
+   }
 
 	
 	

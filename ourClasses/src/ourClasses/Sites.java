@@ -2,6 +2,11 @@ package ourClasses;
 
 import java.util.LinkedList;
 
+/**
+ * Site is a class that holds a list of readings for a given site
+ * 
+ *
+ */
 public class Sites {
 	
 	public static boolean canCollect = true; 
@@ -45,7 +50,7 @@ public class Sites {
 	 * 
 	 * precondition: collection status of Site must be true
 	 **/
-	public static void addAReading(String studyName, String studyId, String id, String rdgType, String rdgID, double rdgValue, String rdgDate){
+	public void addAReading(String studyName, String studyId, String id, String rdgType, String rdgID, double rdgValue, String rdgDate){
 	 if(checkCollStatus() == true) {
 		 readings.add(new Reading(studyName,studyId,id,rdgType,rdgID,rdgValue,rdgDate));
 	 }
@@ -58,7 +63,7 @@ public class Sites {
 	 * Method that displays all the readings for a given site
 	 * @return String the list of readings
 	 **/
-	public static String displayRdgs() {
+	public String displayRdgs() {
 		String list = "";
 		for(Reading rdgs : readings)
 	        {	            	
@@ -70,15 +75,42 @@ public class Sites {
 	}
 		
 	
+	/**Method will loop through and display readings given a study ID and validate the study ID
+	 * 
+	 * @param studyID   the given study ID
+	 * @return list    list of all readings with that study ID
+	 */
+	public String displayStdyRdgs(String studyID){
+		//Loop through all readings and get studyID
+		//compare studyID with the parameter so they can match
+		//then call toString for that reading
+		String list = "";
+		for(Reading rdgs : readings)
+        {	     
+			if(rdgs.getStudyId() == studyID ) {
+				list = list + rdgs.toString();
+			}
+			else {
+			 list = "Sorry! The study ID you entered is not a valid study ID!";
+			}
+			
+        }
+		
+		return list;
+	}
+	
 	public static void main(String[] args) {
 
         Sites s = new Sites("12345"); 
-        //Sites s2 = new Sites("12555");
+        Sites s2 = new Sites("12555");
+        
         s.addAReading("Midwest USA Study", "450","12345","temprature","974",102.00,"1515354694451");
         s.addAReading("Eastern USA Study", "400","12345","temprature","984",99.00,"1515354694489");
+        s2.addAReading("Eastern USA Study", "400","12555","humidity","100",30.00,"1515784694489");
         
+        System.out.println(s.displayStdyRdgs("400"));
         
-        System.out.println(s.displayRdgs());
+      //  System.out.println(s.displayRdgs());
 	        
 		
 	}
