@@ -16,7 +16,11 @@ public class AllSitesTest {
 	public void testActiveSites() {
 		
 		 Sites myTest = new Sites("1234");
-		 AllSites.addToActive(myTest);
+		 AllSites a = new AllSites();
+		 AllSites.activeSites.add(myTest);   // must add a site to active list(default list)
+	  
+	     myTest.turnOffStatus();
+		 a.addToActive(myTest);
 		assertEquals(1, AllSites.activeSites.size());
 	}
 
