@@ -1,0 +1,32 @@
+package ICS_372_Project;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+class AllSitesTest {
+
+	private AllSites allSites;
+	private Sites sites;
+	@BeforeEach
+	void init() {
+		allSites = new AllSites();
+		sites = new Sites("011");
+	}
+	
+	@Test
+	void testAddToActive() {
+		
+		allSites.addToActive(sites);
+	}
+
+	@Test
+	void testRemoveFromActive() {
+		allSites.removeFromActive(sites);
+	}
+
+	@Test
+	void testFindSite() {
+		allSites.findSite("011");
+	}
+
+}
