@@ -87,11 +87,15 @@ public class Sites {
 		String list = "";
 		for(Reading rdgs : readings)
         {	     
-			if(rdgs.getStudyId() == studyID ) {
+			if(studyID == "") {
+			 System.out.println("Sorry! Please enter a valid studyID");	
+			}
+			else if(rdgs.getStudyId() == studyID ) {
 				list = list + rdgs.toString();
 			}
-			else {
-			 list = "Sorry! The study ID you entered is not a valid study ID!";
+			else if(rdgs.getStudyId() != studyID){
+			 list = "";
+			 System.out.println("Sorry! Study ID: " + rdgs.getStudyId() + " does not match the study ID you have entered");
 			}
 			
         }
@@ -106,11 +110,11 @@ public class Sites {
         
         s.addAReading("Midwest USA Study", "450","12345","temprature","974",102.00,"1515354694451");
         s.addAReading("Eastern USA Study", "400","12345","temprature","984",99.00,"1515354694489");
-        s2.addAReading("Eastern USA Study", "400","12555","humidity","100",30.00,"1515784694489");
+        s.addAReading("Eastern USA Study", "400","12345","humidity","100",30.00,"1515784694489");
         
         System.out.println(s.displayStdyRdgs("400"));
         
-      //  System.out.println(s.displayRdgs());
+        
 	        
 		
 	}
