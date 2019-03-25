@@ -5,7 +5,6 @@
 package ourClasses;
 
 
-
 public class Controller {
 	
 	AllSites sites = new AllSites();
@@ -22,14 +21,13 @@ public class Controller {
 	void startCollection(Sites aSite) {
 
 		if(aSite.checkCollStatus() == true) {
-			System.out.println("Sorry, Site:" + s1.readings.element().getSiteId()+ " is already available for data collection.");
+			System.out.println("Sorry, Site:" + aSite.readings.element().getSiteId()+ " is already available for data collection.");
 		}
 		else {
 			aSite.turnOnStatus();   
-			sites.addToActive(aSite);   //add the site to the active list
-			System.out.println("Success! Site:" + s1.readings.element().getSiteId()+ " can start collecting data.");
+			AllSites.addToActive(aSite);   //add the site to the active list
+			System.out.println("Success! Site:" + aSite.readings.element().getSiteId()+ " can start collecting data.");
 		}
-		
 		
 		
 	}
@@ -43,14 +41,15 @@ public class Controller {
 	 */
 	void endCollection(Sites aSite) {
 		if(aSite.checkCollStatus() == false) {
-			System.out.println("Sorry, Site:" + aSite.readings.element().getSiteId()+ " is not available for data collection.");
+			if(aSite.checkCollStatus() == false) {
+				System.out.println("Sorry, Site:" + aSite.readings.element().getSiteId()+ " is not available for data collection.");
+			}
+			else {
+				aSite.turnOffStatus();   
+				AllSites.removeFromActive(aSite);   //add the site to the active list
+				System.out.println("Success! Site:" + aSite.readings.element().getSiteId()+ " is not available anymore for data collection");
+			}
 		}
-		else {
-			aSite.turnOffStatus();   
-			sites.removeFromActive(aSite);   //add the site to the active list
-			System.out.println("Success! Site:" + aSite.readings.element().getSiteId()+ " is not available anymore for data collection");
-		}
-		
 	}
 	
 	
@@ -79,11 +78,8 @@ public class Controller {
 	 */
 	public static void main(String[] args) {
         
-	   // AllSites a = new AllSites();
-	    //Controller c = new Controller();
-	    
-	    
-	    
+        Controller c = new Controller();
+        
 	    //add new sites to the list 
         AllSites.activeSites.add(new Sites("12345"));
         AllSites.activeSites.add(new Sites("12555"));
@@ -94,34 +90,38 @@ public class Controller {
         AllSites.activeSites.get(1).addAReading("Western USA Study", "490","12555","temperature","954",100.00,"1515354694451");
         
         //test start collection
-        //Sites a1 = a.findSite("12555");
-         // a1.turnOffStatus();
-         //c.startCollection(a1); //NULL
+         Sites a1 = AllSites.findSite("12345");
+         a1.turnOffStatus();
+         c.startCollection(a1); //NULL
         
         //test end collection
-        //Sites a2 = a.findSite("12345");
-        //c.endCollection(a2);
+        Sites a2 = AllSites.findSite("12345");
+        c.endCollection(a2);
         
   
         //test display rdgs
-       // AllSites.activeSites.add(new Sites("12645")); //status is already true
-       // AllSites.activeSites.get(2).addAReading("Western USA Study", "490","12645","temperature","954",100.00,"1515354694451");
-        //Sites a3 = a.findSite("12645");
+         AllSites.activeSites.add(new Sites("12645")); //status is already true
+         AllSites.activeSites.get(2).addAReading("Western USA Study", "490","12645","temperature","954",100.00,"1515354694451");
+        // Sites a3 = AllSites.findSite("12645");
         
        
         //testing controller's display method
+         //System.out.println(a3.readings.element().getSiteId());
          //c.displayReading(a3);
          
          //testing display study reading process
          AllSites.activeSites.add(new Sites("12468"));
          AllSites.activeSites.get(0).addAReading("Midwest USA Study", "400","12468","humidity","910",30.00,"1515354694451");
          AllSites.activeSites.get(1).addAReading("Western USA Study", "490","12468","temperature","954",130.00,"1515354694451");
-        // Sites s6 = AllSites.findSite("12468");
-        // s6.displayStdyRdgs("490");
-         System.out.println(AllSites.activeSites.get(0).displayStdyRdgs("400"));
+         AllSites.activeSites.get(1).addAReading("Midwest USA Study", "400","12468","humidity","940",50.00,"1515354394451");
+         AllSites.activeSites.get(1).addAReading("Midwest USA Study", "400","12468","humidity","999",20.00,"1515354694451");
+        
+         Sites s2 = new Sites("12444");
+         AllSites.activeSites.add(s2);
+         AllSites.activeSites.get(0).addAReading("Midwest USA Study", "400","12444","temperture","998",80.00,"1515354694451");
+         System.out.println(AllSites.activeSites.get(0).displayStdyRdgs("098"));
        
-        	
-        }
-
+		}
+	
 	}	
 
