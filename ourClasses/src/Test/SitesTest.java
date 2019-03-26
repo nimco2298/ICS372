@@ -3,59 +3,39 @@ package Test;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.Test;
 import ourClasses.Sites;
 
 public class SitesTest {
-	
-	
-   // Create private Site object to refernce through each of the tests
+
+	// Create private Site object to reference through each of the tests
 	private Sites site;
-	
-	
-	//what ever you put in this Before section will run before every test. I am making a new object for each test
+
 	@Before
 	public void beginObject() {
 		site = new Sites("12335");
-	    site.addAReading("Midwest USA Study", "450","12335","temprature","974",102.00,"1515354694451");
-        //site.addAReading("Eastern USA Study", "400","12335","temprature","984",99.00,"1515354694489");
+		site.addAReading("Midwest USA Study", "450", "12335", "temperature", "974", 102.00, "1515354694451");
 	}
-	
-	
+
 	@Test
-	 public void testAddAReading() {
+	public void testAddAReading() {
 		site.addAReading("My Test Study", "studyID", "siteID", "rdgType", "rdgID", 70.0, "12348991");
-		assertEquals(1, site.readings.size());
-	
+		assertEquals(2, site.readings.size());
+
 	}
+
 	@Test
-	 public void testDisplayRdgs() {
+	public void testDisplayRdgs() {
 		assertEquals(
-				"StudyName:  My Test Study	 StudyID: studyID	 SiteID: siteID	Reading type: rdgType	Reading ID:  rdgID	 Reading Value: 70.0	 Reading Date: 12348991",
+				"StudyName:  Midwest USA Study	 StudyID: 450	 SiteID: 12335	Reading type: temperature	Reading ID:  974	 Reading Value: 102.0	 Reading Date: 1515354694451",
 				site.displayRdgs().trim());
 	}
-	
+
 	@Test
-	 public void testDisplayStdyRdgs() {
-		
-		/// assert to test if you can display reading given a study ID 
+	public void testdisplayStdyRdgs() {
+		assertEquals(
+				"StudyName:  Midwest USA Study	 StudyID: 450	 SiteID: 12335	Reading type: temperature	Reading ID:  974	 Reading Value: 102.0	 Reading Date: 1515354694451",
+				site.displayStdyRdgs("450").trim());
 	}
-	
-	
-	
-	@Test
-	 public void testTurnOnStatus() {
-		
-	
-	}
-	
-	@Test
-	 public void testTurnOffStatus() {
-		
-	
-	}
-	
-	
-	
+
 }
