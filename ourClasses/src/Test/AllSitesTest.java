@@ -1,9 +1,6 @@
 package Test;
 
 import static org.junit.Assert.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.ArrayList;
 
 import org.junit.Test;
 
@@ -12,16 +9,26 @@ import ourClasses.Sites;
 
 public class AllSitesTest {
 	
+	Sites myTest = new Sites("12340");
+	AllSites a = new AllSites();
+
+	@SuppressWarnings("static-access")
 	@Test
-	public void testActiveSites() {
-		
-		 Sites myTest = new Sites("1234");
-		 AllSites a = new AllSites();
-		 AllSites.activeSites.add(myTest);   // must add a site to active list(default list)
-	  
-	     myTest.turnOffStatus();
-		 a.addToActive(myTest);
+	public void testaddToActive() {
+
+		myTest.canCollect = false;
+		AllSites.nonActiveSites.add(myTest);
+		a.addToActive(myTest);
 		assertEquals(1, AllSites.activeSites.size());
 	}
 
+	@SuppressWarnings("static-access")
+	@Test
+	public void testremoveFromActive() {
+		myTest.canCollect = true;
+		AllSites.nonActiveSites.add(myTest);
+		a.addToActive(myTest);
+		a.removeFromActive(myTest);
+		assertEquals(1, AllSites.nonActiveSites.size());
+	}
 }
