@@ -7,7 +7,7 @@ import org.junit.Test;
 import ourClasses.AllSites;
 import ourClasses.Sites;
 
-public class AllSitesTest {
+public class AllSitesTest2 {
 	
 	Sites myTest = new Sites("12340");
 	AllSites a = new AllSites();
