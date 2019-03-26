@@ -1,7 +1,6 @@
 package gui;
 
 import java.io.IOException;
-import java.sql.Driver;
 import java.text.ParseException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -21,7 +20,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import ourClasses.Controller;
 import ourClasses.SiteReader;
-import ourClasses.Sites;
 
 public class GUI extends Application {
 
@@ -61,6 +59,8 @@ public class GUI extends Application {
 	Button homeBtnLog;
 
 	// Add Reading Scene items
+	TextField insert_studyName_TF;
+	TextField insert_studyID_TF;
 	TextField insert_siteId_TF;
 	TextField insert_readingType_TF;
 	TextField insert_readingId_TF;
@@ -168,6 +168,8 @@ public class GUI extends Application {
 
 		// creating visual items
 
+		Label studyName_Label = new Label("Study Name:");
+		Label studyId_Label = new Label("Study ID:");
 		Label siteId_Label = new Label("Site Id:");
 		Label readingType_Label = new Label("Reading Type:");
 		Label readingId_Label = new Label("Reading Id:");
@@ -179,6 +181,8 @@ public class GUI extends Application {
 		// Text fields are declared as instance variables not local variables
 		// because the listeners need to read from and write to text fields
 
+		insert_studyName_TF = new TextField("Enter Study Name");
+		insert_studyID_TF = new TextField("Enter Study ID");
 		insert_siteId_TF = new TextField("Enter Site ID");
 		insert_readingType_TF = new TextField("Enter Reading Type (Only: humidity/particulate/temp/bar_press");
 		insert_readingId_TF = new TextField("Enter Reading ID");
@@ -191,6 +195,10 @@ public class GUI extends Application {
 
 		readingPane = new VBox();
 		readingPane.getChildren().add(homeBtnReading);
+		readingPane.getChildren().add(studyName_Label);
+		readingPane.getChildren().add(insert_studyName_TF);
+		readingPane.getChildren().add(studyId_Label);
+		readingPane.getChildren().add(insert_studyID_TF);
 		readingPane.getChildren().add(siteId_Label);
 		readingPane.getChildren().add(insert_siteId_TF);
 		readingPane.getChildren().add(readingType_Label);
@@ -207,7 +215,7 @@ public class GUI extends Application {
 		InsertListenerClass readingInsertListener = new InsertListenerClass();
 		addReading.setOnAction(readingInsertListener);
 		// adding insert pane to insert scene
-		readingScene = new Scene(readingPane, 300, 300);
+		readingScene = new Scene(readingPane, 400, 400);
 
 		//////////////////////////////////////////////
 		// Add Data Collection Scene Design
@@ -295,17 +303,19 @@ public class GUI extends Application {
 		@Override
 		public void handle(ActionEvent ae) {
 
+			String studyName = insert_studyName_TF.getText();
+			String studyID = insert_studyID_TF.getText();
 			String siteId = insert_siteId_TF.getText();
 			String readingType = insert_readingType_TF.getText();
 			String readingId = insert_readingId_TF.getText();
 			String readingValue = insert_readingValue_TF.getText();
 			String readingDate = insert_readingDate_TF.getText();
 
-			System.out.println(siteId + " " + readingType + " " + readingId + " " + readingValue + " " + readingDate);
+			System.out.println(studyName + " " + studyID + " " + siteId + " " + readingType + " " + readingId + " " + readingValue + " " + readingDate);
 
 			double readingVal = Double.parseDouble(readingValue);
 
-			d1.addReading(siteId, readingType, readingId, readingVal, readingDate);
+			d1.addReading(studyName, studyID, siteId, readingType, readingId, readingVal, readingDate);
 
 			reading_result.setText("The reading has been added to the collection");
 
@@ -340,7 +350,7 @@ public class GUI extends Application {
 
 			String siteId = insert_siteId_TF.getText();
 
-			d1.displayReading(siteId);
+			d1.displayStudy(siteId);
 
 		}
 	}
