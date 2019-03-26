@@ -86,11 +86,11 @@ public class Sites {
 		//then call toString for that reading
 		String list = "";
 		for(Reading rdgs : readings)
-        {	     
-			if(studyID == "") {
+        {	  
+			if(studyID == null || studyID == "") {
 			 System.out.println("Sorry! Please enter a valid studyID");	
 			}
-			else if(rdgs.getStudyId() == studyID ) {
+			else if(studyID.equals(rdgs.getStudyId()) ) {
 				list = list + rdgs.toString();
 			}
 			else if(rdgs.getStudyId() != studyID){
