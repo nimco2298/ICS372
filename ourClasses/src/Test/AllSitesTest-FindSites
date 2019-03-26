@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import ourClasses.AllSites;
 import ourClasses.Sites;
 
-class AllSitesTest-FindSites {
+class AllSitesTest {
 
 	private AllSites allSites;
 	private Sites sites;
