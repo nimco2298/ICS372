@@ -1,12 +1,14 @@
-package ICS_372_Project;
+package Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class AllSitesTest {
+import ourClasses.AllSites;
+import ourClasses.Sites;
+
+class AllSitesTest-FindSites {
 
 	private AllSites allSites;
 	private Sites sites;
@@ -19,12 +21,14 @@ class AllSitesTest {
 	}
 	
 
+	@SuppressWarnings("static-access")
 	@Test
 	void testFindSiteIfNotFound() {
 		
 		assertEquals(null, allSites.findSite("0112"));
 		
 	}
+	@SuppressWarnings("static-access")
 	@Test
 	void testFindSiteIfFound() {
 		
