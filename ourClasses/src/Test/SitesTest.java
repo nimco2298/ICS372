@@ -37,5 +37,11 @@ public class SitesTest {
 				"StudyName:  Midwest USA Study	 StudyID: 450	 SiteID: 12335	Reading type: temperature	Reading ID:  974	 Reading Value: 102.0	 Reading Date: 1515354694451",
 				site.displayStdyRdgs("450").trim());
 	}
+	
+	@Test
+	public void testdisplayStdyRdgs2() {
+	// site 4501 does not existing, should return blank
+	assertEquals("", site.displayStdyRdgs("4501"));
+	}
 
 }
