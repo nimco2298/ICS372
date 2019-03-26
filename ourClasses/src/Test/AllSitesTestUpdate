@@ -1,0 +1,35 @@
+package ICS_372_Project;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+class AllSitesTest {
+
+	private AllSites allSites;
+	private Sites sites;
+	@BeforeEach
+	void init() {
+		allSites = new AllSites();
+		sites = new Sites("011");
+		sites.addAReading("My Test Study", "studyID", "011", "rdgType", "rdgID", 70.0, "12348991");
+		AllSites.activeSites.add(sites);
+	}
+	
+
+	@Test
+	void testFindSiteIfNotFound() {
+		
+		assertEquals(null, allSites.findSite("0112"));
+		
+	}
+	@Test
+	void testFindSiteIfFound() {
+		
+		assertEquals(1, allSites.findSite("011").readings.size());
+		
+	}
+
+}
