@@ -94,30 +94,7 @@ public class AllSites{
 	public String displayStdyRdgs(String studyID) {
 		// Loop through all the sites and get studyID
 		// compare studyID with the parameter so they can match
-		// then call toString for that reading
-/*		String list = "";
-		
-		//loop through each site in active list
-		for (Sites s : activeSites) {
-			
-			if (s.readings.element().getStudyId() == "") {
-				System.out.println("Sorry! Please enter a valid studyID");
-				
-			} else if (s.readings.element().getStudyId().equals(studyID)) {
-				list = list + s.readings.element().toString();
-				
-			} else if (!s.readings.element().getStudyId().equals(studyID)) {
-				list = "";
-				System.out.println(
-						"Sorry! Study ID: " + s.readings.element().getStudyId() + " does not match the study ID you have entered");
-			}
-
-		}
-
-		System.out.println(list);
-		return list;*/
-		
-		
+		// then call toString for that reading		
 		String list = "";
 		for (Reading rdgs : activeSites.element().readings) {
 			if (studyID == "") {
@@ -149,8 +126,8 @@ public class AllSites{
         AllSites.activeSites.get(0).addAReading("Midwest USA Study", "400","12345","humidity","980",7.00,"1515354694451");
         AllSites.activeSites.get(1).addAReading("Eastern USA Study", "400","12555","temperature","910",122.00,"1515354694451");
         AllSites.activeSites.get(2).addAReading("Midwest USA Study", "465","12549","temperature","930",122.00,"1515354694451");
-        
-        
+        AllSites.activeSites.get(2).addAReading("East Coast USA Study", "422","12549","temperature","930",122.00,"1515354694451");
+        AllSites.activeSites.get(2).addAReading("East Coast USA Study", "422","12549","temperature","930",122.00,"1515354694451");
         //test findSite method for working
          Sites s4 = AllSites.findSite("12555");
          System.out.println("Site status is: " + s4.checkCollStatus());
