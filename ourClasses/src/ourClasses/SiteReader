@@ -1,14 +1,11 @@
 package ourClasses;
 
-import java.awt.List;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Iterator;
-//import java.util.LinkedList;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -73,19 +70,19 @@ public class SiteReader {
 					JSONObject rec = (JSONObject) site_reading.get(j);
 					if (rec.get("site_id") == null || rec.get("reading_type") == null || rec.get("reading_id") == null
 							|| rec.get("reading_value") == null || rec.get("reading_date") == null) {
-						JOptionPane.showMessageDialog(null, "JSON File has invalid entry upon: " + j, "ERROR", JOptionPane.INFORMATION_MESSAGE);
-					}
-					else {
-					Sites myTest = new Sites(rec.get("site_id").toString());
-					AllSites.activeSites.add(myTest);
-					Reading myReading = new Reading(null, null, rec.get("site_id").toString(),
-							rec.get("reading_type").toString(), rec.get("reading_id").toString(),
-							Double.parseDouble(rec.get("reading_value").toString()), rec.get("reading_date").toString());
-					Sites.readings.add(myReading);
+						JOptionPane.showMessageDialog(null, "JSON File has invalid entry upon: " + j, "ERROR",
+								JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						Sites myTest = new Sites(rec.get("site_id").toString());
+						AllSites.activeSites.add(myTest);
+						Reading myReading = new Reading(null, null, rec.get("site_id").toString(),
+								rec.get("reading_type").toString(), rec.get("reading_id").toString(),
+								Double.parseDouble(rec.get("reading_value").toString()),
+								rec.get("reading_date").toString());
+						AllSites.activeSites.get(j).readings.add(myReading);
+
 					}
 				}
-				//testlog msg
-				System.out.println(Sites.readings.toString());
 
 			}
 			if (fileType.contains("xml")) {
@@ -130,6 +127,3 @@ public class SiteReader {
 	}
 
 }
-
-
-
