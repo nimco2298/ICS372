@@ -28,6 +28,8 @@ public class GUI extends Application {
 	// Scenes
 
 	Controller d1 = new Controller();
+	AllSites sites = new AllSites();
+	Sites s1;
 
 	Scene homeScene;
 	Scene readingScene;
@@ -328,8 +330,8 @@ public class GUI extends Application {
 		public void handle(ActionEvent ae) {
 			String siteId = start_siteId_TF.getText();
 
-			// activeStatus.canCollectSite(siteId);
-
+			
+			AllSites.activeSites.add(new Sites(siteId));
 			start_result.setText("The Site can now collect readings");
 
 		}
