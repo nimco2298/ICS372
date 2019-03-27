@@ -10,7 +10,7 @@ import java.util.LinkedList;
 public class Sites {
 
 	public static boolean canCollect = true;
-	public static LinkedList<Reading> readings = new LinkedList<Reading>();
+	public LinkedList<Reading> readings = new LinkedList<Reading>();
 	public LinkedList<String> ids = new LinkedList<String>();
 
 	// a Site should have a siteID and its list of readings
