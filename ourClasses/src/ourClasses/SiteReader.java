@@ -29,11 +29,18 @@ public class SiteReader {
 
 	static ArrayList<Object> site_IDs = new ArrayList<>();
 
+	//This method is not yet working - comment code out to test importFile
 	public static void exportFile() throws IOException {
+		JSONObject writeObj = new JSONObject();
+		JSONArray jList = new JSONArray();
+		//need to be able to see how long our reading list is
+		for (int j = 0; j < (Sites.readings).size(); j++) {
+			jList.add(AllSites.activeSites.get(j).readings);
+		}
+		writeObj.put("site_readings", jList);
 		// The name of the file that is produced
 		try (FileWriter file = new FileWriter("Site Collection Results.json")) {
-			// this needs to be our array list
-			file.write(AllSites.activeSites.toString());
+			file.write(writeObj.toJSONString());
 			file.flush();
 			// Message that appears once the data is saved to directory
 			JOptionPane.showMessageDialog(null, "Please check your project directory folder for results", "Json Export",
