@@ -59,10 +59,12 @@ public class Controller {
 	}
 
 	
-	public void displayReading(Sites s) {
-		//s1.displayRdgs(siteID);
-		//s1 = sites.findSite(siteID); // find Site object for that reading
-		System.out.println(s.displayRdgs());
+	public String displayReading(Sites s) {
+		
+		String list = s.displayRdgs();
+		
+		return list;
+		
 	}
 	
 	public void displayStudy(String studyID) {
