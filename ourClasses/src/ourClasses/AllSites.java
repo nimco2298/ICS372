@@ -62,24 +62,15 @@ public class AllSites{
 	 * @param  String aSite
 	 * @return Sites  the given Site for that siteID
 	 **/
-	//@SuppressWarnings("static-access")
-	public static Sites findSite(String siteID) {
 	
-		Sites site = null;	
-		for(Sites s : activeSites) {
-			if(siteID.equals(s.readings.element().getSiteId())) {
-				site = s;
-				System.out.println("Congrats!" + siteID + " was found");
-				//break;
-			
+	public Sites findSite(String siteId) {
+			for(Sites site: activeSites) {
+				if(siteId.equals(site.readings.element().getSiteId())) {
+					System.out.println("The site is found");
+					return site;
+				}
 			}
-			else {
-				//System.out.println("Sorry! The Site you are looking for doesnt have any readings and is non active");
-				
-				
-			}
-		}
-		  return site;
+			return null;
 	}
 
 	
