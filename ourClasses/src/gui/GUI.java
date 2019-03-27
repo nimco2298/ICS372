@@ -312,12 +312,13 @@ public class GUI extends Application {
 			String readingId = insert_readingId_TF.getText();
 			String readingValue = insert_readingValue_TF.getText();
 			String readingDate = insert_readingDate_TF.getText();
-
+			int num = 0;
 			System.out.println(studyName + " " + studyID + " " + siteId + " " + readingType + " " + readingId + " " + readingValue + " " + readingDate);
 
 			double readingVal = Double.parseDouble(readingValue);
 
-			d1.addReading(studyName, studyID, siteId, readingType, readingId, readingVal, readingDate);
+			AllSites.activeSites.get(num).addAReading(studyName, studyID, siteId, readingType, readingId, readingVal, readingDate);
+			num++;
 
 			reading_result.setText("The reading has been added to the collection");
 
@@ -332,6 +333,7 @@ public class GUI extends Application {
 
 			
 			AllSites.activeSites.add(new Sites(siteId));
+			System.out.println(siteId);
 			start_result.setText("The Site can now collect readings");
 
 		}
@@ -351,8 +353,11 @@ public class GUI extends Application {
 		public void handle(ActionEvent ae) {
 
 			String siteId = insert_siteId_TF.getText();
-
-			d1.displayStudy(siteId);
+			String value;
+			s1 = sites.findSite(siteId);
+		        value = d1.displayReading(s1);
+		  
+		        data_result.setText(value);
 
 		}
 	}
