@@ -40,6 +40,7 @@ public class Reading {
 		private String rdgDate;
 
 	    /* variable to format the date*/
+		@SuppressWarnings("unused")
 		private String readableDate;
 
 		/* A reading belongs to one study id    */
@@ -171,7 +172,8 @@ public class Reading {
 
 		//Updates Unix time to a readable format
 		public void unixToDate(String readableDate) throws ParseException {    
-		    long timestamp = Long.parseLong(readableDate); 
+		    @SuppressWarnings("unused")
+			long timestamp = Long.parseLong(readableDate); 
 		}
 
 		

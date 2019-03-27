@@ -68,13 +68,14 @@ public class AllSites{
 		Sites site = null;	
 		for(Sites s : activeSites) {
 			if(siteID.equals(s.readings.element().getSiteId())) {
-				site = s;
+				//site = s;
 				System.out.println("Congrats!" + siteID + " was found");
+				return s;
 				//break;
 			
 			}
 			else {
-				//System.out.println("Sorry! The Site you are looking for doesnt have any readings and is non active");
+				System.out.println("Sorry! The Site you are looking for doesnt have any readings and is non active");
 				
 				
 			}
@@ -83,10 +84,61 @@ public class AllSites{
 	}
 
 	
+	/**
+	 * Method will loop through and display readings given a study ID and validate
+	 * the study ID
+	 * 
+	 * @param studyID the given study ID
+	 * @return list list of all readings with that study ID
+	 */
+	public String displayStdyRdgs(String studyID) {
+		// Loop through all the sites and get studyID
+		// compare studyID with the parameter so they can match
+		// then call toString for that reading
+/*		String list = "";
+		
+		//loop through each site in active list
+		for (Sites s : activeSites) {
+			
+			if (s.readings.element().getStudyId() == "") {
+				System.out.println("Sorry! Please enter a valid studyID");
+				
+			} else if (s.readings.element().getStudyId().equals(studyID)) {
+				list = list + s.readings.element().toString();
+				
+			} else if (!s.readings.element().getStudyId().equals(studyID)) {
+				list = "";
+				System.out.println(
+						"Sorry! Study ID: " + s.readings.element().getStudyId() + " does not match the study ID you have entered");
+			}
+
+		}
+
+		System.out.println(list);
+		return list;*/
+		
+		
+		String list = "";
+		for (Reading rdgs : activeSites.element().readings) {
+			if (studyID == "") {
+				System.out.println("Sorry! Please enter a valid studyID");
+			} else if (rdgs.getStudyId() == studyID) {
+				list = list + rdgs.toString();
+			} else if (rdgs.getStudyId() != studyID) {
+				list = "";
+				System.out.println(
+						"Sorry! Study ID: " + rdgs.getStudyId() + " does not match the study ID you have entered");
+			}
+
+		}
+
+		return list;
+	}
 	
 	
 	public static void main(String[] args) {
 		
+		AllSites a = new AllSites();
 		 //Add a new site to the list 
         AllSites.activeSites.add(new Sites("12345"));
         AllSites.activeSites.add(new Sites("12555"));
@@ -94,21 +146,20 @@ public class AllSites{
         
         //Add readings to sites
         AllSites.activeSites.get(0).addAReading("Midwest USA Study", "465","12345","humidity","900",78.00,"1515354694451");
+        AllSites.activeSites.get(0).addAReading("Midwest USA Study", "400","12345","humidity","980",7.00,"1515354694451");
         AllSites.activeSites.get(1).addAReading("Eastern USA Study", "400","12555","temperature","910",122.00,"1515354694451");
         AllSites.activeSites.get(2).addAReading("Midwest USA Study", "465","12549","temperature","930",122.00,"1515354694451");
         
         
-        /* FINDSITE ONLY WORKS IN CONTROLLER, Where a reading can be added */
+        //test findSite method for working
          Sites s4 = AllSites.findSite("12555");
-        //s4.addAReading("Midwest USA Study", "465","12345","temperature","930",122.00,"1515354694451");
-        System.out.println("Site is added properly. Site status:" + s4.checkCollStatus() + "\n");
-        // System.out.println("Site readings :" + s4.displayRdgs() + "\n");
-     	        
-        //For every site in activeSites, display its readings
-        //for(Sites b : AllSites.activeSites)
-        //{
-           // System.out.println("List of readings for an active site : " + b.readings.toString());
-       // }
+         System.out.println("Site status is: " + s4.checkCollStatus());
+         
+         
+         
+         //Test that study display reading works
+         System.out.println(a.displayStdyRdgs("400"));
+
 
 	}
 

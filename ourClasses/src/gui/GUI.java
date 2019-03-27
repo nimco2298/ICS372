@@ -326,11 +326,12 @@ public class GUI extends Application {
 	class AddCollectionListenerClass implements EventHandler<ActionEvent> {
 		@Override
 		public void handle(ActionEvent ae) {
-			String siteId = start_siteId_TF.getText();
+			//@SuppressWarnings("unused")
+			String siteId =  start_siteId_TF.getText();
 
 			// activeStatus.canCollectSite(siteId);
 
-			start_result.setText("The Site can now collect readings");
+			start_result.setText("The Site can now collect readings" + siteId);
 
 		}
 	}
