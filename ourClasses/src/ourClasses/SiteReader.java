@@ -1,5 +1,6 @@
 package ourClasses;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -18,6 +19,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -29,13 +31,11 @@ public class SiteReader {
 
 	static ArrayList<Object> site_IDs = new ArrayList<>();
 
-	//This method is not yet working - comment code out to test importFile
+	@SuppressWarnings("unchecked")
 	public static void exportFile() throws IOException {
 		JSONObject writeObj = new JSONObject();
 		JSONArray jList = new JSONArray();
-		//need to be able to see how long our reading list is
-		
-		//PLEASE NOTE!!!!!!! Sites.readings cant be used, since readings cant be static
+
 		for (int j = 0; j < (AllSites.activeSites.get(j).readings).size(); j++) {
 			jList.add(AllSites.activeSites.get(j).readings);
 		}
@@ -95,44 +95,50 @@ public class SiteReader {
 
 			}
 			if (fileType.contains("xml")) {
-				DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-				DocumentBuilder builder = factory.newDocumentBuilder();
-				Document doc = builder.parse(inputFile);
-				parseWholeXML(doc.getDocumentElement());
+
+				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+				DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+				Document doc = dBuilder.parse(inputFile);
+				doc.getDocumentElement().normalize();
+
+				NodeList nList = doc.getElementsByTagName("Study");
+				NodeList mList = doc.getElementsByTagName("Reading");
+				NodeList oList = doc.getElementsByTagName("Value");
+				NodeList pList = doc.getElementsByTagName("Site");
+				for (int temp = 0; temp < nList.getLength(); temp++) {
+					Node nNode = nList.item(temp);
+					Node mNode = mList.item(temp);
+					Node oNode = oList.item(temp);
+					Node pNode = pList.item(temp);
+
+					if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+						Element eElement = (Element) nNode;
+						Element mElement = (Element) mNode;
+						Element oElement = (Element) oNode;
+						Element pElement = (Element) pNode;
+						System.out.println("Study id : " + eElement.getAttribute("id"));
+						System.out.println("Study Name: " + eElement.getTextContent());
+						System.out.println("Reading id: " + mElement.getAttribute("id"));
+						System.out.println("Type: " + mElement.getAttribute("type"));
+						System.out.println("Value Unit: " + oElement.getAttribute("unit"));
+						System.out.println("Value: " + oElement.getTextContent());
+						System.out.println("Site ID: " + pElement.getTextContent());
+
+					}
+				}
+
 			}
+
 		} else {
 			// Error message if the user closes JFileChooser without selecting anything
 			JOptionPane.showMessageDialog(null, "No File Selected", "ERROR", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 
-	private static void parseWholeXML(Node startingNode) {
-		NodeList childNodes = startingNode.getChildNodes();
-		for (int i = 0; i < childNodes.getLength(); i++) {
-			Node childNode = childNodes.item(i);
-			if (childNode.getNodeType() == Node.ELEMENT_NODE) {
-				parseWholeXML(childNode);
-			} else {
-				// trim() is used to ignore new lines and spaces elements.
-				if (!childNode.getTextContent().trim().isEmpty()) {
-					System.out.println(childNode.getTextContent());
-				}
-			}
-		}
-	}
-
-	private static void getRootElementXML(Document doc) {
-		System.out.println(doc.getDocumentElement().getNodeName());
-	}
-
 	public static void main(String[] args) throws FileNotFoundException, IOException, ParseException,
 			ParserConfigurationException, SAXException, org.json.simple.parser.ParseException {
 
 		importFile();
-	}
-
-	private static void getRootElement(Document doc) {
-		System.out.println(doc.getDocumentElement().getNodeName());
 	}
 
 }
