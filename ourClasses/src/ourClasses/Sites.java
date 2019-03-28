@@ -4,25 +4,28 @@ import java.util.LinkedList;
 
 /**
  * Site is a class that holds a list of readings for a given site
- * 
  *
  */
 public class Sites {
 
+	/* collection status of a Site  */
 	public static boolean canCollect = true;
+	
+	/* collection status of a Site  */
 	public LinkedList<Reading> readings = new LinkedList<Reading>();
+	
+	/* collection status of a Site  */
 	public LinkedList<String> ids = new LinkedList<String>();
 
 	// a Site should have a siteID and its list of readings
 	// Constructor
 	public Sites(String siteID) {
-		// readings = new LinkedList<Reading>(); //initialize empty Linkedlist of
 		// Reading objects
 		ids.add(siteID);
 	}
 
 	/**
-	 * Method return the status of a Site for collection
+	 * Method that returns the status of a Site for collection
 	 * 
 	 * @return Boolean status of collection for a Site
 	 */
@@ -49,11 +52,19 @@ public class Sites {
 		}
 	}
 
-	/**
-	 * Method that takes in parameters and adds it to its LinkedList of readings
+
+	/** Method that takes in parameters and adds it to its LinkedList of readings
 	 * 
 	 * precondition: collection status of Site must be true
-	 **/
+	 * 
+	 * @param studyName
+	 * @param studyId
+	 * @param id
+	 * @param rdgType
+	 * @param rdgID
+	 * @param rdgValue
+	 * @param rdgDate
+	 */
 	public void addAReading(String studyName, String studyId, String id, String rdgType, String rdgID, double rdgValue,
 			String rdgDate) {
 		if (checkCollStatus() == true) {

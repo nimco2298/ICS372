@@ -34,7 +34,9 @@ public class SiteReader {
 		JSONObject writeObj = new JSONObject();
 		JSONArray jList = new JSONArray();
 		//need to be able to see how long our reading list is
-		for (int j = 0; j < (Sites.readings).size(); j++) {
+		
+		//PLEASE NOTE!!!!!!! Sites.readings cant be used, since readings cant be static
+		for (int j = 0; j < (AllSites.activeSites.get(j).readings).size(); j++) {
 			jList.add(AllSites.activeSites.get(j).readings);
 		}
 		writeObj.put("site_readings", jList);
