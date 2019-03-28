@@ -20,6 +20,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import ourClasses.Controller;
 import ourClasses.SiteReader;
+import ourClasses.AllSites;
+import ourClasses.Sites;
 
 public class GUI extends Application {
 

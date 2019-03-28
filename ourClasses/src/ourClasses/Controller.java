@@ -46,7 +46,7 @@ public class Controller {
 			}
 			else {
 				aSite.turnOffStatus();   
-				AllSites.removeFromActive(aSite);   //add the site to the active list
+				AllSites.removeFromActive(aSite);   //remove site from active list
 				System.out.println("Success! Site:" + aSite.readings.element().getSiteId()+ " is not available anymore for data collection");
 			}
 		}
@@ -60,17 +60,19 @@ public class Controller {
 
 	
 	public String displayReading(Sites s) {
-		
+
 		String list = s.displayRdgs();
 		
 		return list;
 		
 	}
 	
+	/** Controller will take in a study ID and display all the readings
+	 * FIXXXX
+	 */
 	public void displayStudy(String studyID) {
-		//s1.displayRdgs(siteID);
-		s1 = AllSites.findSite(studyID); // find Site object for that reading
-		System.out.println(s1.displayStdyRdgs(studyID));
+		//loop through active list and get all readings for study
+		System.out.println(sites.displayStdyRdgs(studyID));
 	}
 
 	
@@ -101,27 +103,25 @@ public class Controller {
         c.endCollection(a2);
         
   
-        //test display rdgs
+        //test controller's display rdgs
          AllSites.activeSites.add(new Sites("12645")); //status is already true
          AllSites.activeSites.get(2).addAReading("Western USA Study", "490","12645","temperature","954",100.00,"1515354694451");
-        // Sites a3 = AllSites.findSite("12645");
-        
-       
-        //testing controller's display method
-         //System.out.println(a3.readings.element().getSiteId());
-         //c.displayReading(a3);
+         Sites a3 = AllSites.findSite("12345");
+         System.out.println(c.displayReading(a3));
+
          
-         //testing display study reading process
+         //testing display study reading process by first adding readings
          AllSites.activeSites.add(new Sites("12468"));
-         AllSites.activeSites.get(0).addAReading("Midwest USA Study", "400","12468","humidity","910",30.00,"1515354694451");
-         AllSites.activeSites.get(1).addAReading("Western USA Study", "490","12468","temperature","954",130.00,"1515354694451");
-         AllSites.activeSites.get(1).addAReading("Midwest USA Study", "400","12468","humidity","940",50.00,"1515354394451");
-         AllSites.activeSites.get(1).addAReading("Midwest USA Study", "400","12468","humidity","999",20.00,"1515354694451");
+         AllSites.activeSites.get(3).addAReading("Midwest USA Study", "400","12468","humidity","910",30.00,"1515354694451");
+         AllSites.activeSites.get(3).addAReading("Western USA Study", "490","12468","temperature","954",130.00,"1515354694451");
+         AllSites.activeSites.get(3).addAReading("Midwest USA Study", "400","12468","humidity","940",50.00,"1515354394451");
+         AllSites.activeSites.get(3).addAReading("Midwest USA Study", "400","12468","humidity","999",20.00,"1515354694451");
         
+         // call the controllers display study method method
          Sites s2 = new Sites("12444");
          AllSites.activeSites.add(s2);
-         AllSites.activeSites.get(0).addAReading("Midwest USA Study", "400","12444","temperture","998",80.00,"1515354694451");
-         System.out.println(AllSites.activeSites.get(0).displayStdyRdgs("098"));
+         AllSites.activeSites.get(4).addAReading("Midwest USA Study", "400","12444","temperture","998",80.00,"1515354694451");
+         c.displayStudy("400");
        
 		}
 	
