@@ -356,7 +356,7 @@ public class GUI extends Application {
 
 			String siteId = insert_siteId_TF.getText();
 			String value;
-			s1 = sites.findSite(siteId);
+			s1 = AllSites.findSite(siteId);
 		        value = d1.displayReading(s1);
 		  
 		        data_result.setText(value);

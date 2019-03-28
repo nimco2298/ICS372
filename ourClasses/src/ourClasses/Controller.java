@@ -4,7 +4,9 @@
  */
 package ourClasses;
 
-
+/*
+ * Controller class is responsible for calling appropiate methods on objects to carry out functions. 
+ */
 public class Controller {
 	
 	AllSites sites = new AllSites();
@@ -52,7 +54,16 @@ public class Controller {
 		}
 	}
 	
-	
+	/**Controller method that finds a site and calls appropiate reading method
+	 * 
+	 * @param studyName
+	 * @param studyId
+	 * @param siteID
+	 * @param readingType
+	 * @param readingId
+	 * @param readingVal
+	 * @param readingDate
+	 */
 	public void addReading(String studyName, String studyId, String siteID, String readingType, String readingId, double readingVal, String readingDate) {
 		s1 = AllSites.findSite(siteID);
 		s1.addAReading(studyName, studyId,siteID, readingType, readingId, readingVal, readingDate);
@@ -68,7 +79,7 @@ public class Controller {
 	}
 	
 	/** Controller will take in a study ID and display all the readings
-	 * FIXXXX
+	 * @param studyID 
 	 */
 	public void displayStudy(String studyID) {
 		//loop through active list and get all readings for study
@@ -77,9 +88,6 @@ public class Controller {
 
 	
 	
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
         
         Controller c = new Controller();

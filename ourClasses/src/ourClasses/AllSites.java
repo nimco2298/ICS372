@@ -15,7 +15,10 @@ import java.util.LinkedList;
 public class AllSites{
 
 	//needs to be static, since We just need one collection of activesites and nonactive sites
+	/* single list of active sites aka sites that have a collection status of true */
 	public static LinkedList<Sites> activeSites = new LinkedList<Sites>();
+	
+	/* single list of non active sitess */
 	public static LinkedList<Sites> nonActiveSites = new LinkedList<Sites>();
 	
 	/**Method will take a Site and add it from nonactive to active
@@ -23,7 +26,6 @@ public class AllSites{
 	 * @param aSite
 	 **/
 	public static void addToActive(Sites site) {
-		
 		for(Sites s : nonActiveSites) {
 			if(nonActiveSites.element().equals(s) &  s.checkCollStatus() == false) {
 				nonActiveSites.remove(site);
@@ -59,7 +61,7 @@ public class AllSites{
 	
 	/**Method will take a SiteID and traverse the active list to find it.
 	 * 
-	 * @param  String aSite
+	 * @param  siteID  a site ID
 	 * @return Sites  the given Site for that siteID
 	 **/
 	//@SuppressWarnings("static-access")
@@ -89,7 +91,7 @@ public class AllSites{
 	 * the study ID
 	 * 
 	 * @param studyID the given study ID
-	 * @return list list of all readings with that study ID
+	 * @return list   list of all readings with that study ID
 	 */
 	public String displayStdyRdgs(String studyID) {
 		// Loop through all the sites and get studyID
