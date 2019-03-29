@@ -15,55 +15,56 @@ import java.util.LinkedList;
 public class AllSites{
 
 	//needs to be static, since We just need one collection of activesites and nonactive sites
-	public static LinkedList<Sites> activeSites = new LinkedList<Sites>();
-	public static LinkedList<Sites> nonActiveSites = new LinkedList<Sites>();
-	
-	/**Method will take a Site and add it from nonactive to active
-	 * 
-	 * @param aSite
-	 **/
-	public static void addToActive(Sites site) {
+		public static LinkedList<Sites> activeSites = new LinkedList<Sites>();
+		public static LinkedList<Sites> nonActiveSites = new LinkedList<Sites>();
 		
-		for(Sites s : nonActiveSites) {
-			if(nonActiveSites.element().equals(s) &  s.checkCollStatus() == false) {
-				nonActiveSites.remove(site);
-				activeSites.add(site);
+		/**Method will take a Site and add it from nonactive to active
+		 * 
+		 * @param aSite
+		 **/
+		public static void addToActive(Sites site) {
 			
+			for(Sites s : nonActiveSites) {
+				if(nonActiveSites.element().equals(s) &  s.checkCollStatus() == false) {
+					nonActiveSites.remove(site);
+					activeSites.add(site);
+				
+				}
+				else {
+					System.out.println("Sorry! The site collection status of this site is false, and cannot be added to the active list.");
+				}
 			}
-			else {
-				System.out.println("Sorry! The site collection status of this site is false, and cannot be added to the active list.");
+				
+		}
+		
+		/**Method will take a Site and remove it from nonactive and add it to active
+		 * 
+		 * @param aSite
+		 **/
+		public static void removeFromActive(Sites site) {
+			
+			for(Sites s : activeSites) {
+				if(activeSites.element().equals(s) &  s.checkCollStatus() == true ) {
+					activeSites.remove(site);
+					nonActiveSites.add(site);
+				
+				}
+				else {
+					System.out.println("Sorry! The site collection status of this site is false, and cannot be added to the active list.");
+				}
 			}
 		}
-			
-	}
-	
-	/**Method will take a Site and remove it from nonactive and add it to active
-	 * 
-	 * @param aSite
-	 **/
-	public static void removeFromActive(Sites site) {
 		
-		for(Sites s : activeSites) {
-			if(activeSites.element().equals(s) &  s.checkCollStatus() == true ) {
-				activeSites.remove(site);
-				nonActiveSites.add(site);
-			
-			}
-			else {
-				System.out.println("Sorry! The site collection status of this site is false, and cannot be added to the active list.");
-			}
-		}
-	}
-	
-	
-	
-	/**Method will take a SiteID and traverse the active list to find it.
-	 * 
-	 * @param  String aSite
-	 * @return Sites  the given Site for that siteID
-	 **/
-	
-	public static Sites findSite(String siteId) {
+		
+		
+		/**Method will take a SiteID and traverse the active list to find it.
+		 * 
+		 * @param  String aSite
+		 * @return Sites  the given Site for that siteID
+		 **/
+		
+		
+		public Sites findSite(String siteId) {
 			for(Sites site: activeSites) {
 				if(siteId.equals(site.readings.element().getSiteId())) {
 					System.out.println("The site is found");
