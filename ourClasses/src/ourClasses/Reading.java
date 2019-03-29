@@ -165,16 +165,9 @@ public class Reading {
 	    *@return String the rdgDate
 	    **/
 		public String getReadingDate() throws ParseException {
-			unixToDate(rdgDate);
 			return rdgDate;
 		}
 
-
-		//Updates Unix time to a readable format
-		public void unixToDate(String readableDate) throws ParseException {    
-		    @SuppressWarnings("unused")
-			long timestamp = Long.parseLong(readableDate); 
-		}
 
 		
 
