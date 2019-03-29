@@ -79,6 +79,7 @@ public class AllSites{
 	
 	public static void main(String[] args) {
 		
+		AllSites a = new AllSites();
 		 //Add a new site to the list 
         AllSites.activeSites.add(new Sites("12345"));
         AllSites.activeSites.add(new Sites("12555"));
@@ -91,7 +92,7 @@ public class AllSites{
         
         
         /* FINDSITE ONLY WORKS IN CONTROLLER, Where a reading can be added */
-         Sites s4 = AllSites.findSite("12555");
+         Sites s4 = a.findSite("12555");
         //s4.addAReading("Midwest USA Study", "465","12345","temperature","930",122.00,"1515354694451");
         System.out.println("Site is added properly. Site status:" + s4.checkCollStatus() + "\n");
         // System.out.println("Site readings :" + s4.displayRdgs() + "\n");
