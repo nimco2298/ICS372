@@ -53,7 +53,7 @@ public class Controller {
 	
 	
 	public void addReading(String studyName, String studyId, String siteID, String readingType, String readingId, double readingVal, String readingDate) {
-		s1 = AllSites.findSite(siteID);
+		s1 = sites.findSite(siteID);
 		s1.addAReading(studyName, studyId,siteID, readingType, readingId, readingVal, readingDate);
 	}
 
@@ -68,7 +68,7 @@ public class Controller {
 	
 	public void displayStudy(String studyID) {
 		//s1.displayRdgs(siteID);
-		s1 = AllSites.findSite(studyID); // find Site object for that reading
+		s1 = sites.findSite(studyID); // find Site object for that reading
 		System.out.println(s1.displayStdyRdgs(studyID));
 	}
 
@@ -79,6 +79,7 @@ public class Controller {
 	 */
 	public static void main(String[] args) {
         
+		AllSites a = new AllSites();
         Controller c = new Controller();
         
 	    //add new sites to the list 
@@ -91,12 +92,12 @@ public class Controller {
         AllSites.activeSites.get(1).addAReading("Western USA Study", "490","12555","temperature","954",100.00,"1515354694451");
         
         //test start collection
-         Sites a1 = AllSites.findSite("12345");
+         Sites a1 = a.findSite("12345");
          a1.turnOffStatus();
          c.startCollection(a1); //NULL
         
         //test end collection
-        Sites a2 = AllSites.findSite("12345");
+        Sites a2 = a.findSite("12345");
         c.endCollection(a2);
         
   
