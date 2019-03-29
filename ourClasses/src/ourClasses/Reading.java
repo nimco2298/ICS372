@@ -4,6 +4,7 @@ import java.text.ParseException;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import org.json.simple.JSONObject;
 
 /**
  * Reading is the class that is comprised of various measurements.
@@ -176,10 +177,11 @@ public class Reading {
 			this.rdgDate = rdgDate;
 		}
 		
+		
 		/* Prints all the information for a reading */
 		@Override
 		public String toString(){
-			String output = "";
+			/*String output = "";
 			
 			try {
 				output = "\n" + "StudyName:  " + this.getStudyName() +
@@ -193,9 +195,28 @@ public class Reading {
 			} catch (ParseException e) {
 			
 				e.printStackTrace();
-			} 
-		
-			return output;
+			} */
+			JSONObject obj = new JSONObject();
+			try {
+		        obj.put("studyName", this.getStudyName());
+		        obj.put("studyID", this.getStudyId());
+		        obj.put("siteId", this.getSiteId());
+		        obj.put("rdgType", getReadingType());
+		        obj.put("rdgId", getReadingId());
+		        obj.put("rdgVal", getReadingValue());
+		        obj.put("rdgDate", getReadingDate());
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			/*try (FileWriter file = new FileWriter("testFile.json",true)) {
+
+	            file.write(obj.toJSONString());
+	            file.close();
+
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }*/	
+			return obj.toJSONString();
 		} 
 
 }
