@@ -82,6 +82,23 @@ public static boolean canCollect = true;
 		
 		return list;
 	}
+	
+	/**
+	 * Method that displays all the readings for a given site
+	 * @return String containing JSon of the list of readings
+	 **/
+	public String toString() {
+		String list = "";
+		for(Reading rdgs : readings)
+	        {	            	
+	            	list = list + rdgs.toString();
+	        }
+		if (list.length()>0) {
+			return list;
+		}else {
+			return "{Site with no readings}";
+		}
+	}
 		
 	
 	/**Method will loop through and display readings given a study ID and validate the study ID
