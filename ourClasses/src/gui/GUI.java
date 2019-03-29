@@ -18,9 +18,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import ourClasses.AllSites;
 import ourClasses.Controller;
 import ourClasses.SiteReader;
-import ourClasses.AllSites;
 import ourClasses.Sites;
 
 public class GUI extends Application {
@@ -356,7 +356,7 @@ public class GUI extends Application {
 
 			String siteId = insert_siteId_TF.getText();
 			String value;
-			s1 = AllSites.findSite(siteId);
+			s1 = sites.findSite(siteId);
 		        value = d1.displayReading(s1);
 		  
 		        data_result.setText(value);
