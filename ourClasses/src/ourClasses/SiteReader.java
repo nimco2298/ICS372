@@ -67,7 +67,7 @@ public class SiteReader {
 			java.io.File inputFile = jfc.getSelectedFile();
 			String fileType = inputFile.getName();
 			fileType = fileType.substring(fileType.length() - 3);
-			//will use this if the file is json
+			// will use this if the file is json
 			if (fileType.contains("son")) {
 				JSONParser parser = new JSONParser();
 
@@ -89,7 +89,7 @@ public class SiteReader {
 				}
 
 			}
-			//will use this if the file is xml
+			// will use this if the file is xml
 			if (fileType.contains("xml")) {
 
 				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -115,55 +115,22 @@ public class SiteReader {
 						Element deltaElement = (Element) deltaNode;
 						Sites xmlSite = new Sites(deltaElement.getTextContent());
 						AllSites.activeSites.add(xmlSite);
-						Reading myOtherReading = new Reading(alphaElement.getTextContent(), alphaElement.getAttribute("id"),
-								deltaElement.getTextContent(), betaElement.getAttribute("type"), betaElement.getAttribute("id"),
+						Reading myOtherReading = new Reading(alphaElement.getTextContent(),
+								alphaElement.getAttribute("id"), deltaElement.getTextContent(),
+								betaElement.getAttribute("type"), betaElement.getAttribute("id"),
 								Double.parseDouble(gammaElement.getTextContent()), null);
+						
+						System.out.println("Study: " + alphaElement.getTextContent());
+						System.out.println("Study ID: " + alphaElement.getAttribute("id"));
+						System.out.println("Site ID: " + deltaElement.getTextContent());
+						System.out.println("Reading Type: " + betaElement.getAttribute("type"));
+						System.out.println("Reading ID: " + betaElement.getAttribute("id"));
+						System.out.println("Reading Value: " + gammaElement.getTextContent());
 
 						AllSites.activeSites.get(i).readings.add(myOtherReading);
-					}
-					if (betaNode.getNodeType() == Node.ELEMENT_NODE) {
-						Element alphaElement = (Element) alphaNode;
-						Element betaElement = (Element) betaNode;
-						Element gammaElement = (Element) gammaNode;
-						Element deltaElement = (Element) deltaNode;
-						Sites xmlSite = new Sites(deltaElement.getTextContent());
-						AllSites.activeSites.add(xmlSite);
-						Reading myOtherReading = new Reading(alphaElement.getTextContent(), alphaElement.getAttribute("id"),
-								deltaElement.getTextContent(), betaElement.getAttribute("type"), betaElement.getAttribute("id"),
-								Double.parseDouble(gammaElement.getTextContent()), null);
-
-						AllSites.activeSites.get(i).readings.add(myOtherReading);
-					}
-
-					if (gammaNode.getNodeType() == Node.ELEMENT_NODE) {
-						Element alphaElement = (Element) alphaNode;
-						Element betaElement = (Element) betaNode;
-						Element gammaElement = (Element) gammaNode;
-						Element deltaElement = (Element) deltaNode;
-						Sites xmlSite = new Sites(deltaElement.getTextContent());
-						AllSites.activeSites.add(xmlSite);
-						Reading myOtherReading = new Reading(alphaElement.getTextContent(), alphaElement.getAttribute("id"),
-								deltaElement.getTextContent(), betaElement.getAttribute("type"), betaElement.getAttribute("id"),
-								Double.parseDouble(gammaElement.getTextContent()), null);
-
-						AllSites.activeSites.get(i).readings.add(myOtherReading);
-					}
-
-					if (deltaNode.getNodeType() == Node.ELEMENT_NODE) {
-						Element alphaElement = (Element) alphaNode;
-						Element betaElement = (Element) betaNode;
-						Element gammaElement = (Element) gammaNode;
-						Element deltaElement = (Element) deltaNode;
-						Sites xmlSite = new Sites(deltaElement.getTextContent());
-						AllSites.activeSites.add(xmlSite);
-						Reading myOtherReading = new Reading(alphaElement.getTextContent(), alphaElement.getAttribute("id"),
-								deltaElement.getTextContent(), betaElement.getAttribute("type"), betaElement.getAttribute("id"),
-								Double.parseDouble(gammaElement.getTextContent()), null);
-
-						AllSites.activeSites.get(i).readings.add(myOtherReading);
+						System.out.println(AllSites.activeSites.get(i).readings);
 					}
 				}
-				System.out.println(AllSites.activeSites);
 
 			}
 
