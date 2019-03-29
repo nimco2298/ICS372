@@ -1,6 +1,5 @@
 package ourClasses;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -30,9 +29,10 @@ import org.xml.sax.SAXException;
 public class SiteReader {
 
 	static ArrayList<Object> site_IDs = new ArrayList<>();
-
+	
 	@SuppressWarnings("unchecked")
 	public static void exportFile() throws IOException {
+
 		JSONObject writeObj = new JSONObject();
 		JSONArray jList = new JSONArray();
 
@@ -48,9 +48,9 @@ public class SiteReader {
 			JOptionPane.showMessageDialog(null, "Please check your project directory folder for results", "Json Export",
 					JOptionPane.INFORMATION_MESSAGE);
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	public static void importFile() throws FileNotFoundException, IOException, ParseException,
@@ -79,8 +79,8 @@ public class SiteReader {
 					JSONObject rec = (JSONObject) site_reading.get(j);
 					if (rec.get("site_id") == null || rec.get("reading_type") == null || rec.get("reading_id") == null
 							|| rec.get("reading_value") == null || rec.get("reading_date") == null) {
-						JOptionPane.showMessageDialog(null, "JSON File has invalid entry upon: " + j, "ERROR",
-								JOptionPane.INFORMATION_MESSAGE);
+//						JOptionPane.showMessageDialog(null, "JSON File has invalid entry upon: " + j, "ERROR",
+//								JOptionPane.INFORMATION_MESSAGE);
 					} else {
 						Sites myTest = new Sites(rec.get("site_id").toString());
 						AllSites.activeSites.add(myTest);
@@ -100,11 +100,12 @@ public class SiteReader {
 				DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 				Document doc = dBuilder.parse(inputFile);
 				doc.getDocumentElement().normalize();
-
+				NodeList kList = doc.getElementsByTagName("ReadingSet");
 				NodeList nList = doc.getElementsByTagName("Study");
 				NodeList mList = doc.getElementsByTagName("Reading");
 				NodeList oList = doc.getElementsByTagName("Value");
 				NodeList pList = doc.getElementsByTagName("Site");
+				System.out.println(mList.getLength());
 				for (int temp = 0; temp < nList.getLength(); temp++) {
 					Node nNode = nList.item(temp);
 					Node mNode = mList.item(temp);
@@ -116,6 +117,8 @@ public class SiteReader {
 						Element mElement = (Element) mNode;
 						Element oElement = (Element) oNode;
 						Element pElement = (Element) pNode;
+						Sites myOtherTest = new Sites(pElement.getTextContent());
+						AllSites.activeSites.add(myOtherTest);
 						System.out.println("Study id : " + eElement.getAttribute("id"));
 						System.out.println("Study Name: " + eElement.getTextContent());
 						System.out.println("Reading id: " + mElement.getAttribute("id"));
@@ -123,7 +126,53 @@ public class SiteReader {
 						System.out.println("Value Unit: " + oElement.getAttribute("unit"));
 						System.out.println("Value: " + oElement.getTextContent());
 						System.out.println("Site ID: " + pElement.getTextContent());
-
+					}
+					if (mNode.getNodeType() == Node.ELEMENT_NODE) {
+						Element eElement = (Element) nNode;
+						Element mElement = (Element) mNode;
+						Element oElement = (Element) oNode;
+						Element pElement = (Element) pNode;
+						Sites myOtherTest = new Sites(pElement.getTextContent());
+						AllSites.activeSites.add(myOtherTest);
+						System.out.println("Study id : " + eElement.getAttribute("id"));
+						System.out.println("Study Name: " + eElement.getTextContent());
+						System.out.println("Reading id: " + mElement.getAttribute("id"));
+						System.out.println("Type: " + mElement.getAttribute("type"));
+						System.out.println("Value Unit: " + oElement.getAttribute("unit"));
+						System.out.println("Value: " + oElement.getTextContent());
+						System.out.println("Site ID: " + pElement.getTextContent());
+					}
+					
+					if (oNode.getNodeType() == Node.ELEMENT_NODE) {
+						Element eElement = (Element) nNode;
+						Element mElement = (Element) mNode;
+						Element oElement = (Element) oNode;
+						Element pElement = (Element) pNode;
+						Sites myOtherTest = new Sites(pElement.getTextContent());
+						AllSites.activeSites.add(myOtherTest);
+						System.out.println("Study id : " + eElement.getAttribute("id"));
+						System.out.println("Study Name: " + eElement.getTextContent());
+						System.out.println("Reading id: " + mElement.getAttribute("id"));
+						System.out.println("Type: " + mElement.getAttribute("type"));
+						System.out.println("Value Unit: " + oElement.getAttribute("unit"));
+						System.out.println("Value: " + oElement.getTextContent());
+						System.out.println("Site ID: " + pElement.getTextContent());
+					}
+					
+					if (pNode.getNodeType() == Node.ELEMENT_NODE) {
+						Element eElement = (Element) nNode;
+						Element mElement = (Element) mNode;
+						Element oElement = (Element) oNode;
+						Element pElement = (Element) pNode;
+						Sites myOtherTest = new Sites(pElement.getTextContent());
+						AllSites.activeSites.add(myOtherTest);
+						System.out.println("Study id : " + eElement.getAttribute("id"));
+						System.out.println("Study Name: " + eElement.getTextContent());
+						System.out.println("Reading id: " + mElement.getAttribute("id"));
+						System.out.println("Type: " + mElement.getAttribute("type"));
+						System.out.println("Value Unit: " + oElement.getAttribute("unit"));
+						System.out.println("Value: " + oElement.getTextContent());
+						System.out.println("Site ID: " + pElement.getTextContent());
 					}
 				}
 
