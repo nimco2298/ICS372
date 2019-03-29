@@ -345,7 +345,10 @@ public class GUI extends Application {
 	class EndCollectionListenerClass implements EventHandler<ActionEvent> {
 		@Override
 		public void handle(ActionEvent ae) {
-
+			String siteId = end_siteId_TF.getText();
+			s1 = sites.findSite(siteId);
+			AllSites.removeFromActive(s1);
+			end_result.setText("The Site has ended its collection and can no longer accept readings");
 		}
 	}
 
