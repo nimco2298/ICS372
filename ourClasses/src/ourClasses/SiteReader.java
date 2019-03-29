@@ -29,7 +29,7 @@ import org.xml.sax.SAXException;
 public class SiteReader {
 
 	static ArrayList<Object> site_IDs = new ArrayList<>();
-	
+
 	@SuppressWarnings("unchecked")
 	public static void exportFile() throws IOException {
 
@@ -48,9 +48,9 @@ public class SiteReader {
 			JOptionPane.showMessageDialog(null, "Please check your project directory folder for results", "Json Export",
 					JOptionPane.INFORMATION_MESSAGE);
 
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void importFile() throws FileNotFoundException, IOException, ParseException,
@@ -67,6 +67,7 @@ public class SiteReader {
 			java.io.File inputFile = jfc.getSelectedFile();
 			String fileType = inputFile.getName();
 			fileType = fileType.substring(fileType.length() - 3);
+			//will use this if the file is json
 			if (fileType.contains("son")) {
 				JSONParser parser = new JSONParser();
 
@@ -77,104 +78,92 @@ public class SiteReader {
 
 				for (int j = 0; j < (site_reading).size(); j++) {
 					JSONObject rec = (JSONObject) site_reading.get(j);
-					if (rec.get("site_id") == null || rec.get("reading_type") == null || rec.get("reading_id") == null
-							|| rec.get("reading_value") == null || rec.get("reading_date") == null) {
-//						JOptionPane.showMessageDialog(null, "JSON File has invalid entry upon: " + j, "ERROR",
-//								JOptionPane.INFORMATION_MESSAGE);
-					} else {
-						Sites myTest = new Sites(rec.get("site_id").toString());
-						AllSites.activeSites.add(myTest);
-						Reading myReading = new Reading(null, null, rec.get("site_id").toString(),
-								rec.get("reading_type").toString(), rec.get("reading_id").toString(),
-								Double.parseDouble(rec.get("reading_value").toString()),
-								rec.get("reading_date").toString());
-						AllSites.activeSites.get(j).readings.add(myReading);
+					Sites myTest = new Sites(rec.get("site_id").toString());
+					AllSites.activeSites.add(myTest);
+					Reading myReading = new Reading(null, null, rec.get("site_id").toString(),
+							rec.get("reading_type").toString(), rec.get("reading_id").toString(),
+							Double.parseDouble(rec.get("reading_value").toString()),
+							rec.get("reading_date").toString());
+					AllSites.activeSites.get(j).readings.add(myReading);
 
-					}
 				}
 
 			}
+			//will use this if the file is xml
 			if (fileType.contains("xml")) {
 
 				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 				DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 				Document doc = dBuilder.parse(inputFile);
 				doc.getDocumentElement().normalize();
-				NodeList kList = doc.getElementsByTagName("ReadingSet");
-				NodeList nList = doc.getElementsByTagName("Study");
-				NodeList mList = doc.getElementsByTagName("Reading");
-				NodeList oList = doc.getElementsByTagName("Value");
-				NodeList pList = doc.getElementsByTagName("Site");
-				System.out.println(mList.getLength());
-				for (int temp = 0; temp < nList.getLength(); temp++) {
-					Node nNode = nList.item(temp);
-					Node mNode = mList.item(temp);
-					Node oNode = oList.item(temp);
-					Node pNode = pList.item(temp);
+				NodeList readingSetList = doc.getElementsByTagName("ReadingSet");
+				NodeList studyList = doc.getElementsByTagName("Study");
+				NodeList readingList = doc.getElementsByTagName("Reading");
+				NodeList valueList = doc.getElementsByTagName("Value");
+				NodeList siteList = doc.getElementsByTagName("Site");
 
-					if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-						Element eElement = (Element) nNode;
-						Element mElement = (Element) mNode;
-						Element oElement = (Element) oNode;
-						Element pElement = (Element) pNode;
-						Sites myOtherTest = new Sites(pElement.getTextContent());
-						AllSites.activeSites.add(myOtherTest);
-						System.out.println("Study id : " + eElement.getAttribute("id"));
-						System.out.println("Study Name: " + eElement.getTextContent());
-						System.out.println("Reading id: " + mElement.getAttribute("id"));
-						System.out.println("Type: " + mElement.getAttribute("type"));
-						System.out.println("Value Unit: " + oElement.getAttribute("unit"));
-						System.out.println("Value: " + oElement.getTextContent());
-						System.out.println("Site ID: " + pElement.getTextContent());
+				for (int i = 0; i < readingSetList.getLength(); i++) {
+					Node alphaNode = studyList.item(i);
+					Node betaNode = readingList.item(i);
+					Node gammaNode = valueList.item(i);
+					Node deltaNode = siteList.item(i);
+
+					if (alphaNode.getNodeType() == Node.ELEMENT_NODE) {
+						Element alphaElement = (Element) alphaNode;
+						Element betaElement = (Element) betaNode;
+						Element gammaElement = (Element) gammaNode;
+						Element deltaElement = (Element) deltaNode;
+						Sites xmlSite = new Sites(deltaElement.getTextContent());
+						AllSites.activeSites.add(xmlSite);
+						Reading myOtherReading = new Reading(alphaElement.getTextContent(), alphaElement.getAttribute("id"),
+								deltaElement.getTextContent(), betaElement.getAttribute("type"), betaElement.getAttribute("id"),
+								Double.parseDouble(gammaElement.getTextContent()), null);
+
+						AllSites.activeSites.get(i).readings.add(myOtherReading);
 					}
-					if (mNode.getNodeType() == Node.ELEMENT_NODE) {
-						Element eElement = (Element) nNode;
-						Element mElement = (Element) mNode;
-						Element oElement = (Element) oNode;
-						Element pElement = (Element) pNode;
-						Sites myOtherTest = new Sites(pElement.getTextContent());
-						AllSites.activeSites.add(myOtherTest);
-						System.out.println("Study id : " + eElement.getAttribute("id"));
-						System.out.println("Study Name: " + eElement.getTextContent());
-						System.out.println("Reading id: " + mElement.getAttribute("id"));
-						System.out.println("Type: " + mElement.getAttribute("type"));
-						System.out.println("Value Unit: " + oElement.getAttribute("unit"));
-						System.out.println("Value: " + oElement.getTextContent());
-						System.out.println("Site ID: " + pElement.getTextContent());
+					if (betaNode.getNodeType() == Node.ELEMENT_NODE) {
+						Element alphaElement = (Element) alphaNode;
+						Element betaElement = (Element) betaNode;
+						Element gammaElement = (Element) gammaNode;
+						Element deltaElement = (Element) deltaNode;
+						Sites xmlSite = new Sites(deltaElement.getTextContent());
+						AllSites.activeSites.add(xmlSite);
+						Reading myOtherReading = new Reading(alphaElement.getTextContent(), alphaElement.getAttribute("id"),
+								deltaElement.getTextContent(), betaElement.getAttribute("type"), betaElement.getAttribute("id"),
+								Double.parseDouble(gammaElement.getTextContent()), null);
+
+						AllSites.activeSites.get(i).readings.add(myOtherReading);
 					}
-					
-					if (oNode.getNodeType() == Node.ELEMENT_NODE) {
-						Element eElement = (Element) nNode;
-						Element mElement = (Element) mNode;
-						Element oElement = (Element) oNode;
-						Element pElement = (Element) pNode;
-						Sites myOtherTest = new Sites(pElement.getTextContent());
-						AllSites.activeSites.add(myOtherTest);
-						System.out.println("Study id : " + eElement.getAttribute("id"));
-						System.out.println("Study Name: " + eElement.getTextContent());
-						System.out.println("Reading id: " + mElement.getAttribute("id"));
-						System.out.println("Type: " + mElement.getAttribute("type"));
-						System.out.println("Value Unit: " + oElement.getAttribute("unit"));
-						System.out.println("Value: " + oElement.getTextContent());
-						System.out.println("Site ID: " + pElement.getTextContent());
+
+					if (gammaNode.getNodeType() == Node.ELEMENT_NODE) {
+						Element alphaElement = (Element) alphaNode;
+						Element betaElement = (Element) betaNode;
+						Element gammaElement = (Element) gammaNode;
+						Element deltaElement = (Element) deltaNode;
+						Sites xmlSite = new Sites(deltaElement.getTextContent());
+						AllSites.activeSites.add(xmlSite);
+						Reading myOtherReading = new Reading(alphaElement.getTextContent(), alphaElement.getAttribute("id"),
+								deltaElement.getTextContent(), betaElement.getAttribute("type"), betaElement.getAttribute("id"),
+								Double.parseDouble(gammaElement.getTextContent()), null);
+
+						AllSites.activeSites.get(i).readings.add(myOtherReading);
 					}
-					
-					if (pNode.getNodeType() == Node.ELEMENT_NODE) {
-						Element eElement = (Element) nNode;
-						Element mElement = (Element) mNode;
-						Element oElement = (Element) oNode;
-						Element pElement = (Element) pNode;
-						Sites myOtherTest = new Sites(pElement.getTextContent());
-						AllSites.activeSites.add(myOtherTest);
-						System.out.println("Study id : " + eElement.getAttribute("id"));
-						System.out.println("Study Name: " + eElement.getTextContent());
-						System.out.println("Reading id: " + mElement.getAttribute("id"));
-						System.out.println("Type: " + mElement.getAttribute("type"));
-						System.out.println("Value Unit: " + oElement.getAttribute("unit"));
-						System.out.println("Value: " + oElement.getTextContent());
-						System.out.println("Site ID: " + pElement.getTextContent());
+
+					if (deltaNode.getNodeType() == Node.ELEMENT_NODE) {
+						Element alphaElement = (Element) alphaNode;
+						Element betaElement = (Element) betaNode;
+						Element gammaElement = (Element) gammaNode;
+						Element deltaElement = (Element) deltaNode;
+						Sites xmlSite = new Sites(deltaElement.getTextContent());
+						AllSites.activeSites.add(xmlSite);
+						Reading myOtherReading = new Reading(alphaElement.getTextContent(), alphaElement.getAttribute("id"),
+								deltaElement.getTextContent(), betaElement.getAttribute("type"), betaElement.getAttribute("id"),
+								Double.parseDouble(gammaElement.getTextContent()), null);
+
+						AllSites.activeSites.get(i).readings.add(myOtherReading);
 					}
 				}
+				System.out.println(AllSites.activeSites);
 
 			}
 
