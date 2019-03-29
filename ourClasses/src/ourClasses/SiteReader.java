@@ -37,7 +37,7 @@ public class SiteReader {
 		try (FileWriter file = new FileWriter("Site Collection Results.json")) {
 			// this needs to be our array list
 			file.write(AllSites.activeSites.toString());
-			//file.flush();
+			 file.flush();
 			// Message that appears once the data is saved to directory
 			JOptionPane.showMessageDialog(null, "Please check your project directory folder for results", "Json Export",
 					JOptionPane.INFORMATION_MESSAGE);
@@ -74,12 +74,25 @@ public class SiteReader {
 					JSONObject rec = (JSONObject) site_reading.get(j);
 					Sites myTest = new Sites(rec.get("site_id").toString());
 					AllSites.activeSites.add(myTest);
-					Reading myReading = new Reading(null, null, rec.get("site_id").toString(),
-							rec.get("reading_type").toString(), rec.get("reading_id").toString(),
-							Double.parseDouble(rec.get("reading_value").toString()),
-							rec.get("reading_date").toString());
-					AllSites.activeSites.get(j).readings.add(myReading);
+					if (rec.get("study_id") != null && rec.get("study") != null) {
+						String study_id = rec.get("study_id").toString();
+						String study = rec.get("study_id").toString();
 
+						Reading myReading = new Reading(study_id, study, rec.get("site_id").toString(),
+								rec.get("reading_type").toString(), rec.get("reading_id").toString(),
+								Double.parseDouble(rec.get("reading_value").toString()),
+								rec.get("reading_date").toString());
+						AllSites.activeSites.get(j).readings.add(myReading);
+						System.out.println(AllSites.activeSites.get(j).readings);
+
+					} else {
+						Reading myReading = new Reading(null, null, rec.get("site_id").toString(),
+								rec.get("reading_type").toString(), rec.get("reading_id").toString(),
+								Double.parseDouble(rec.get("reading_value").toString()),
+								rec.get("reading_date").toString());
+						AllSites.activeSites.get(j).readings.add(myReading);
+						System.out.println(AllSites.activeSites.get(j).readings);
+					}
 				}
 
 			}
@@ -113,7 +126,7 @@ public class SiteReader {
 								alphaElement.getAttribute("id"), deltaElement.getTextContent(),
 								betaElement.getAttribute("type"), betaElement.getAttribute("id"),
 								Double.parseDouble(gammaElement.getTextContent()), null);
-						
+
 						System.out.println("Study: " + alphaElement.getTextContent());
 						System.out.println("Study ID: " + alphaElement.getAttribute("id"));
 						System.out.println("Site ID: " + deltaElement.getTextContent());
