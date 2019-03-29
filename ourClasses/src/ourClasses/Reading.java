@@ -1,10 +1,12 @@
 package ourClasses;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.ParseException;
 
+import org.json.simple.JSONObject;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.json.simple.JSONObject;
 
 /**
  * Reading is the class that is comprised of various measurements.
@@ -198,24 +200,22 @@ public class Reading {
 			} */
 			JSONObject obj = new JSONObject();
 			try {
-		        obj.put("studyName", this.getStudyName());
-		        obj.put("studyID", this.getStudyId());
-		        obj.put("siteId", this.getSiteId());
-		        obj.put("rdgType", getReadingType());
-		        obj.put("rdgId", getReadingId());
-		        obj.put("rdgVal", getReadingValue());
-		        obj.put("rdgDate", getReadingDate());
+		        obj.put("study", this.getStudyName());
+		        obj.put("study_id", this.getStudyId());
+		        obj.put("site_id", this.getSiteId());
+		        obj.put("reading_type", getReadingType());
+		        obj.put("reading_id", getReadingId());
+		        obj.put("reading_value", getReadingValue());
+		        obj.put("reading_date", getReadingDate());
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			/*try (FileWriter file = new FileWriter("testFile.json",true)) {
-
+			try (FileWriter file = new FileWriter("testFile.json",true)) {
 	            file.write(obj.toJSONString());
 	            file.close();
-
 	        } catch (IOException e) {
 	            e.printStackTrace();
-	        }*/	
+	        }	
 			return obj.toJSONString();
 		} 
 
