@@ -92,16 +92,17 @@ public class GUI extends Application {
 	TextArea data_result;
 
 
-	public static void main(String[] args) throws FileNotFoundException, IOException, ParseException, ParserConfigurationException, SAXException, org.json.simple.parser.ParseException {
-		
-		File myFile = new File("Save_State");
-		if (myFile.length() == 0) {
-			Application.launch(args);
-		}
-		SiteReader.importFromSave("Save_State.json");
-		Application.launch(args);
-
+	@Override
+	public void init() throws Exception {
+		SiteReader.importFile();
 	}
+	
+	
+	
+	public static void main(String[] args) {
+		Application.launch(args);
+	}
+
 	
 
 	// A method to switch to the appropriate scene when a button is clicked
