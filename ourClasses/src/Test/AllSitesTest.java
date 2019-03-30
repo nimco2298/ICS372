@@ -1,19 +1,18 @@
 package Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import org.junit.Before;
+import org.junit.Test;
 import ourClasses.AllSites;
 import ourClasses.Sites;
 
-class AllSitesTest {
+public class AllSitesTest {
 
 	private AllSites allSites;
 	private Sites sites;
-	@BeforeEach
-	void init() {
+	@Before
+	public void init() {
 		allSites = new AllSites();
 		sites = new Sites("011");
 		sites.addAReading("My Test Study", "studyID", "011", "rdgType", "rdgID", 70.0, "12348991");
@@ -23,14 +22,14 @@ class AllSitesTest {
 
 	@SuppressWarnings("static-access")
 	@Test
-	void testFindSiteIfNotFound() {
+	public void testFindSiteIfNotFound() {
 		
 		assertEquals(null, allSites.findSite("0112"));
 		
 	}
 	@SuppressWarnings("static-access")
 	@Test
-	void testFindSiteIfFound() {
+	public void testFindSiteIfFound() {
 		
 		assertEquals(1, allSites.findSite("011").readings.size());
 		
