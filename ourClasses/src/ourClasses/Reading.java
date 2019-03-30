@@ -195,15 +195,8 @@ public class Reading {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			try (FileWriter file = new FileWriter("testFile.json",true)) {
-	            file.write(obj.toJSONString());
-	            file.close();
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }	
+				
 			return obj.toJSONString();
 		} 
 
-		} 
-
-}
+} 
