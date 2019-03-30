@@ -31,19 +31,11 @@ public class SitesTest {
 				site.displayRdgs().trim());
 	}
 
-	//Test must be moved to ALLSITES CLASS TEST.
 	@Test
 	public void testdisplayStdyRdgs() {
-		//assertEquals(
-				//"StudyName:  Midwest USA Study	 StudyID: 450	 SiteID: 12335	Reading type: temperature	Reading ID:  974	 Reading Value: 102.0	 Reading Date: 1515354694451",
-				//site.displayStdyRdgs("450").trim());
-	}
-	
-	//Tests must be moved to ALLSITES CLASS TEST.
-	@Test
-	public void testdisplayStdyRdgs2() {
-	// site 4501 does not existing, should return blank
-	//assertEquals("", site.displayStdyRdgs("4501"));
+		assertEquals(
+				"StudyName:  Midwest USA Study	 StudyID: 450	 SiteID: 12335	Reading type: temperature	Reading ID:  974	 Reading Value: 102.0	 Reading Date: 1515354694451",
+				site.displayStdyRdgs("450").trim());
 	}
 
 }
