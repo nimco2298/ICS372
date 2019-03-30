@@ -1,16 +1,14 @@
 package gui;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.ParseException;
 
+import javax.swing.JOptionPane;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.xml.sax.SAXException;
 
 import javafx.application.Application;
@@ -23,6 +21,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Path;
 import javafx.stage.Stage;
 import ourClasses.AllSites;
 import ourClasses.Controller;
@@ -30,7 +29,6 @@ import ourClasses.SiteReader;
 import ourClasses.Sites;
 
 public class GUI extends Application {
-
 
 	Stage window;
 
@@ -91,19 +89,20 @@ public class GUI extends Application {
 	TextField log_siteId_TF;
 	TextArea data_result;
 
-
 	@Override
 	public void init() throws Exception {
-		SiteReader.importFile();
-	}
-	
-	
-	
-	public static void main(String[] args) {
-		Application.launch(args);
+		File tmpDir = new File("archive.json");
+		boolean exists = tmpDir.exists();
+		if (tmpDir.exists()) {
+			SiteReader.quietImportFromFile();
+		}
+		
 	}
 
-	
+	public static void main(String[] args) {
+		
+		Application.launch(args);
+	}
 
 	// A method to switch to the appropriate scene when a button is clicked
 	class ButtonListenerClass implements EventHandler<ActionEvent> {
@@ -181,7 +180,6 @@ public class GUI extends Application {
 		primaryStage.setTitle("Data Collection Interface");
 		primaryStage.setScene(homeScene);
 		primaryStage.show();
-		
 
 		//////////////////////////////////////////////
 		// Adding Reading Scene Design
@@ -331,17 +329,19 @@ public class GUI extends Application {
 			String readingValue = insert_readingValue_TF.getText();
 			String readingDate = insert_readingDate_TF.getText();
 			int num = 0;
-			System.out.println(studyName + " " + studyID + " " + siteId + " " + readingType + " " + readingId + " " + readingValue + " " + readingDate);
+			System.out.println(studyName + " " + studyID + " " + siteId + " " + readingType + " " + readingId + " "
+					+ readingValue + " " + readingDate);
 
 			double readingVal = Double.parseDouble(readingValue);
 
-			AllSites.activeSites.get(num).addAReading(studyName, studyID, siteId, readingType, readingId, readingVal, readingDate);
+			AllSites.activeSites.get(num).addAReading(studyName, studyID, siteId, readingType, readingId, readingVal,
+					readingDate);
 			num++;
 
 			reading_result.setText("The reading has been added to the collection");
 			try {
-			SiteReader.exportFileQuiet();
-			}catch (IOException e) {
+				SiteReader.exportFileQuiet();
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
@@ -353,7 +353,6 @@ public class GUI extends Application {
 		public void handle(ActionEvent ae) {
 			String siteId = start_siteId_TF.getText();
 
-			
 			AllSites.activeSites.add(new Sites(siteId));
 			System.out.println(siteId);
 			start_result.setText("The Site can now collect readings");
@@ -380,9 +379,9 @@ public class GUI extends Application {
 			String siteId = insert_siteId_TF.getText();
 			String value;
 			s1 = sites.findSite(siteId);
-		        value = d1.displayReading(s1);
-		  
-		        data_result.setText(value);
+			value = d1.displayReading(s1);
+
+			data_result.setText(value);
 
 		}
 	}
@@ -399,6 +398,7 @@ public class GUI extends Application {
 
 		}
 	}
+
 	class DataImportListenerClass implements EventHandler<ActionEvent> {
 		@Override
 		public void handle(ActionEvent ae) {
@@ -413,8 +413,8 @@ public class GUI extends Application {
 				e.printStackTrace();
 			}
 			try {
-			SiteReader.exportFileQuiet();
-			}catch (IOException e) {
+				SiteReader.exportFileQuiet();
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
