@@ -1,10 +1,16 @@
 package gui;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.xml.sax.SAXException;
 
 import javafx.application.Application;
@@ -24,6 +30,7 @@ import ourClasses.SiteReader;
 import ourClasses.Sites;
 
 public class GUI extends Application {
+
 
 	Stage window;
 
@@ -84,11 +91,18 @@ public class GUI extends Application {
 	TextField log_siteId_TF;
 	TextArea data_result;
 
-	public static void main(String[] args) {
 
+	public static void main(String[] args) throws FileNotFoundException, IOException, ParseException, ParserConfigurationException, SAXException, org.json.simple.parser.ParseException {
+		
+		File myFile = new File("Save_State");
+		if (myFile.length() == 0) {
+			Application.launch(args);
+		}
+		SiteReader.importFromSave("Save_State.json");
 		Application.launch(args);
 
 	}
+	
 
 	// A method to switch to the appropriate scene when a button is clicked
 	class ButtonListenerClass implements EventHandler<ActionEvent> {
@@ -166,6 +180,7 @@ public class GUI extends Application {
 		primaryStage.setTitle("Data Collection Interface");
 		primaryStage.setScene(homeScene);
 		primaryStage.show();
+		
 
 		//////////////////////////////////////////////
 		// Adding Reading Scene Design
@@ -379,7 +394,6 @@ public class GUI extends Application {
 
 		}
 	}
-
 	class DataImportListenerClass implements EventHandler<ActionEvent> {
 		@Override
 		public void handle(ActionEvent ae) {
