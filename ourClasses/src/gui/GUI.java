@@ -323,7 +323,11 @@ public class GUI extends Application {
 			num++;
 
 			reading_result.setText("The reading has been added to the collection");
-
+			try {
+			SiteReader.exportFileQuiet();
+			}catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -393,7 +397,11 @@ public class GUI extends Application {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
+			try {
+			SiteReader.exportFileQuiet();
+			}catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
