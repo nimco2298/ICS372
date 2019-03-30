@@ -183,7 +183,7 @@ public class Reading {
 		/* Prints all the information for a reading */
 		@Override
 		public String toString(){
-			/*String output = "";
+			String output = "";
 			
 			try {
 				output = "\n" + "StudyName:  " + this.getStudyName() +
@@ -197,26 +197,9 @@ public class Reading {
 			} catch (ParseException e) {
 			
 				e.printStackTrace();
-			} */
-			JSONObject obj = new JSONObject();
-			try {
-		        obj.put("study", this.getStudyName());
-		        obj.put("study_id", this.getStudyId());
-		        obj.put("site_id", this.getSiteId());
-		        obj.put("reading_type", getReadingType());
-		        obj.put("reading_id", getReadingId());
-		        obj.put("reading_value", getReadingValue());
-		        obj.put("reading_date", getReadingDate());
-			} catch (ParseException e) {
-				e.printStackTrace();
 			}
-			try (FileWriter file = new FileWriter("testFile.json",true)) {
-	            file.write(obj.toJSONString());
-	            file.close();
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }	
-			return obj.toJSONString();
+			return output;
+
 		} 
 
 }
