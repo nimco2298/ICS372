@@ -77,32 +77,32 @@ public class AllSites{
 	
 	
 	
-	public static void main(String[] args) {
-		
-		AllSites a = new AllSites();
-		 //Add a new site to the list 
-        AllSites.activeSites.add(new Sites("12345"));
-        AllSites.activeSites.add(new Sites("12555"));
-        AllSites.activeSites.add(new Sites("12549"));
-        
-        //Add readings to sites
-        AllSites.activeSites.get(0).addAReading("Midwest USA Study", "465","12345","humidity","900",78.00,"1515354694451");
-        AllSites.activeSites.get(1).addAReading("Eastern USA Study", "400","12555","temperature","910",122.00,"1515354694451");
-        AllSites.activeSites.get(2).addAReading("Midwest USA Study", "465","12549","temperature","930",122.00,"1515354694451");
-        
-        
-        /* FINDSITE ONLY WORKS IN CONTROLLER, Where a reading can be added */
-         Sites s4 = a.findSite("12555");
-        //s4.addAReading("Midwest USA Study", "465","12345","temperature","930",122.00,"1515354694451");
-        System.out.println("Site is added properly. Site status:" + s4.checkCollStatus() + "\n");
-        // System.out.println("Site readings :" + s4.displayRdgs() + "\n");
-     	        
-        //For every site in activeSites, display its readings
-        //for(Sites b : AllSites.activeSites)
-        //{
-           // System.out.println("List of readings for an active site : " + b.readings.toString());
-       // }
-
-	}
+//	public static void main(String[] args) {
+//		
+//		AllSites a = new AllSites();
+//		 //Add a new site to the list 
+//        AllSites.activeSites.add(new Sites("12345"));
+//        AllSites.activeSites.add(new Sites("12555"));
+//        AllSites.activeSites.add(new Sites("12549"));
+//        
+//        //Add readings to sites
+//        AllSites.activeSites.get(0).addAReading("Midwest USA Study", "465","12345","humidity","900",78.00,"1515354694451");
+//        AllSites.activeSites.get(1).addAReading("Eastern USA Study", "400","12555","temperature","910",122.00,"1515354694451");
+//        AllSites.activeSites.get(2).addAReading("Midwest USA Study", "465","12549","temperature","930",122.00,"1515354694451");
+//        
+//        
+//        /* FINDSITE ONLY WORKS IN CONTROLLER, Where a reading can be added */
+//         Sites s4 = a.findSite("12555");
+//        //s4.addAReading("Midwest USA Study", "465","12345","temperature","930",122.00,"1515354694451");
+//        System.out.println("Site is added properly. Site status:" + s4.checkCollStatus() + "\n");
+//        // System.out.println("Site readings :" + s4.displayRdgs() + "\n");
+//     	        
+//        //For every site in activeSites, display its readings
+//        //for(Sites b : AllSites.activeSites)
+//        //{
+//           // System.out.println("List of readings for an active site : " + b.readings.toString());
+//       // }
+//
+//	}
 
 }
