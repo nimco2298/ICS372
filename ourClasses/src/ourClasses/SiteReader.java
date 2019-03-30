@@ -50,6 +50,22 @@ public class SiteReader {
 			e.printStackTrace();
 		}
 	}
+	@SuppressWarnings("unchecked")
+	public static void exportFileQuiet() throws IOException {
+
+		// The name of the file that is produced
+		try (FileWriter file = new FileWriter("archive.json")) {
+			// this needs to be our array list
+			file.write("{\"site_readings\":"+AllSites.activeSites.toString()+"}");
+			//file.flush();
+			// Message that appears once the data is saved to directory
+			//JOptionPane.showMessageDialog(null, "Please check your project directory folder for results", "Json Export",
+					//JOptionPane.INFORMATION_MESSAGE);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public static void importFromSave(String savedFile)
 			throws FileNotFoundException, IOException, org.json.simple.parser.ParseException {
