@@ -31,4 +31,5 @@ public class AllSitesTest2 {
 		a.removeFromActive(myTest);
 		assertEquals(1, AllSites.nonActiveSites.size());
 	}
+
 }
