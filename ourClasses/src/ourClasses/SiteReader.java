@@ -1,5 +1,6 @@
 package ourClasses;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -23,6 +24,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import gui.GUI;
+import javafx.application.Application;
+
 /*
  * SiteReader handles importing and exporting of data to file.
  */
@@ -36,8 +40,8 @@ public class SiteReader {
 		// The name of the file that is produced
 		try (FileWriter file = new FileWriter("Site Collection Results.json")) {
 			// this needs to be our array list
-			file.write("{\"site_readings\":"+AllSites.activeSites.toString()+"}");
-			 file.flush();
+			file.write("{\"site_readings\":" + AllSites.activeSites.toString() + "}");
+			file.flush();
 			// Message that appears once the data is saved to directory
 			JOptionPane.showMessageDialog(null, "Please check your project directory folder for results", "Json Export",
 					JOptionPane.INFORMATION_MESSAGE);
@@ -45,6 +49,43 @@ public class SiteReader {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static void importFromSave(String savedFile)
+			throws FileNotFoundException, IOException, org.json.simple.parser.ParseException {
+		File myOtherTest = new File(savedFile);
+
+		if (myOtherTest.length() == 0) {
+		}
+		JSONParser parser = new JSONParser();
+		Object obj = parser.parse(new FileReader(savedFile));
+
+		JSONObject jsonObject = (JSONObject) obj;
+		JSONArray site_reading = (JSONArray) jsonObject.get("site_readings");
+
+		for (int j = 0; j < (site_reading).size(); j++) {
+			JSONObject rec = (JSONObject) site_reading.get(j);
+			Sites myTest = new Sites(rec.get("site_id").toString());
+			AllSites.activeSites.add(myTest);
+			if (rec.get("study_id") != null && rec.get("study") != null) {
+				String study_id = rec.get("study_id").toString();
+				String study = rec.get("study_id").toString();
+
+				Reading myReading = new Reading(study_id, study, rec.get("site_id").toString(),
+						rec.get("reading_type").toString(), rec.get("reading_id").toString(),
+						Double.parseDouble(rec.get("reading_value").toString()), rec.get("reading_date").toString());
+				AllSites.activeSites.get(j).readings.add(myReading);
+				System.out.println(AllSites.activeSites.get(j).readings);
+
+			} else {
+				Reading myReading = new Reading(null, null, rec.get("site_id").toString(),
+						rec.get("reading_type").toString(), rec.get("reading_id").toString(),
+						Double.parseDouble(rec.get("reading_value").toString()), rec.get("reading_date").toString());
+				AllSites.activeSites.get(j).readings.add(myReading);
+				System.out.println(AllSites.activeSites.get(j).readings);
+			}
+		}
+
 	}
 
 	public static void importFile() throws FileNotFoundException, IOException, ParseException,
