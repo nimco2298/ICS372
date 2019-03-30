@@ -36,7 +36,7 @@ public class SiteReader {
 		// The name of the file that is produced
 		try (FileWriter file = new FileWriter("Site Collection Results.json")) {
 			// this needs to be our array list
-			file.write(AllSites.activeSites.toString());
+			file.write("{\"site_readings\":"+AllSites.activeSites.toString()+"}");
 			 file.flush();
 			// Message that appears once the data is saved to directory
 			JOptionPane.showMessageDialog(null, "Please check your project directory folder for results", "Json Export",
