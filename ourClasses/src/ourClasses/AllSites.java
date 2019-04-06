@@ -15,16 +15,16 @@ import java.util.LinkedList;
 public class AllSites{
 
 	//needs to be static, since We just need one collection of activesites and nonactive sites
-		public static LinkedList<Sites> activeSites = new LinkedList<Sites>();
-		public static LinkedList<Sites> nonActiveSites = new LinkedList<Sites>();
+		public static LinkedList<Site> activeSites = new LinkedList<Site>();
+		public static LinkedList<Site> nonActiveSites = new LinkedList<Site>();
 		
 		/**Method will take a Site and add it from nonactive to active
 		 * 
 		 * @param aSite
 		 **/
-		public static void addToActive(Sites site) {
+		public static void addToActive(Site site) {
 			
-			for(Sites s : nonActiveSites) {
+			for(Site s : nonActiveSites) {
 				if(nonActiveSites.element().equals(s) &  s.checkCollStatus() == false) {
 					nonActiveSites.remove(site);
 					activeSites.add(site);
@@ -41,9 +41,9 @@ public class AllSites{
 		 * 
 		 * @param aSite
 		 **/
-		public static void removeFromActive(Sites site) {
+		public static void removeFromActive(Site site) {
 			
-			for(Sites s : activeSites) {
+			for(Site s : activeSites) {
 				if(activeSites.element().equals(s) &  s.checkCollStatus() == true ) {
 					activeSites.remove(site);
 					nonActiveSites.add(site);
@@ -64,8 +64,8 @@ public class AllSites{
 		 **/
 		
 		
-		public Sites findSite(String siteId) {
-			for(Sites site: activeSites) {
+		public Site findSite(String siteId) {
+			for(Site site: activeSites) {
 				if(siteId.equals(site.readings.element().getSiteId())) {
 					System.out.println("The site is found");
 					return site;
