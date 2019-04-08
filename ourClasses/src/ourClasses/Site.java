@@ -7,7 +7,7 @@ import java.util.LinkedList;
  * 
  *
  */
-public class Sites {
+public class Site {
 public static boolean canCollect = true; 
 	public LinkedList<Reading> readings = new LinkedList<Reading>();
 	public LinkedList<String> ids = new LinkedList<String>();
@@ -15,7 +15,7 @@ public static boolean canCollect = true;
 	
 	//a Site should have a siteID and its list of readings 
 	//Constructor
-	 public Sites(String siteID) {
+	 public Site(String siteID) {
 	 // readings = new LinkedList<Reading>(); //initalize empty Linkedlist of Reading objects
 	  ids.add(siteID);
 	}
@@ -131,14 +131,15 @@ public static boolean canCollect = true;
 
 	public static void main(String[] args) {
 
-		Sites s = new Sites("12345");
-		Sites s2 = new Sites("12555");
+		Site s = new Site("12345");
+		Site s2 = new Site("12555");
 
 		s.addAReading("Midwest USA Study", "450", "12345", "temprature", "974", 102.00, "1515354694451");
-		s.addAReading("Eastern USA Study", "400", "12345", "temprature", "984", 99.00, "1515354694489");
+		s2.addAReading("Eastern USA Study", "400", "12555", "temprature", "984", 99.00, "1515354694489");
+		s2.addAReading("Midwest USA Study", "450", "12555", "temprature", "984", 99.00, "1515354694489");
 		s.addAReading("Eastern USA Study", "400", "12345", "humidity", "100", 30.00, "1515784694489");
 
-		System.out.println(s.displayStdyRdgs("400"));
+		System.out.println(s2.displayStdyRdgs("450"));
 
 	}
 
