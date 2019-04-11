@@ -26,7 +26,7 @@ import javafx.stage.Stage;
 import ourClasses.AllSites;
 import ourClasses.Controller;
 import ourClasses.SiteReader;
-import ourClasses.Sites;
+import ourClasses.Site;
 
 public class GUI extends Application {
 
@@ -36,7 +36,7 @@ public class GUI extends Application {
 
 	Controller d1 = new Controller();
 	AllSites sites = new AllSites();
-	Sites s1;
+	Site s1;
 
 	Scene homeScene;
 	Scene readingScene;
@@ -353,7 +353,7 @@ public class GUI extends Application {
 		public void handle(ActionEvent ae) {
 			String siteId = start_siteId_TF.getText();
 
-			AllSites.activeSites.add(new Sites(siteId));
+			AllSites.activeSites.add(new Site(siteId));
 			System.out.println(siteId);
 			start_result.setText("The Site can now collect readings");
 

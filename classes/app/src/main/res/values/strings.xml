@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">FieldAgents</string>
+    <string name="action_settings">Settings</string>
+    <string name="site_id">Site ID:</string>
+    <string name="reading_type">Reading Type:</string>
+    <string name="reading_id">Reading ID:</string>
+    <string name="reading_value">Reading Value:</string>
+    <string name="reading_date">Reading Date:</string>
+    <string name="read_json">Read JSON</string>
+</resources>
