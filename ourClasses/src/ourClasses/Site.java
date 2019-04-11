@@ -13,6 +13,7 @@ public static boolean canCollect = true;
 	public LinkedList<String> ids = new LinkedList<String>();
 	
 	
+	
 	//a Site should have a siteID and its list of readings 
 	//Constructor
 	 public Site(String siteID) {
