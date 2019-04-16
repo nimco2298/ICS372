@@ -1,24 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     tools:context=".JSON">
 
     <Button
-        android:id="@+id/rdJson"
-        android:layout_width="0dp"
+        android:id="@+id/buttonReadJson"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="?attr/colorPrimary"
-        android:onClick="readJSON"
+        android:onClick="onClickReadJSON"
+        android:text="Read JSON Button" />
+
+    <Button
+        android:id="@+id/buttonReadJson1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="?attr/colorPrimary"
         android:text="@string/read_json" />
 
     <TextView
         android:id="@+id/txtJson"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:id="@+id/textShow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"/>
 </LinearLayout>
 <!--
 <RelativeLayout
