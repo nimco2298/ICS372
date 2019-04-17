@@ -1,4 +1,6 @@
-/gui/
-/ourClasses/
-/Test/
-/Not Used/
+/build.gradle
+/gradle/
+/gradlew
+/gradlew.bat
+/local.properties
+/src.iml

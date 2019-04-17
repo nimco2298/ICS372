@@ -12,6 +12,7 @@ import android.app.Activity;
 //import android.app.Bundle;
 
 
+import org.json.JSONException;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.json.JSONArray;
@@ -29,9 +30,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader.*;
 
 
-public class JSON  extends  Activity{
+public class JSON  {
 
-private static TextView txtJson;
+//private static TextView txtJson;
 private static Reading reading = new Reading("Midwest USA Climate 2017", "902","15566","particulate","1adf4",354.00,"1515354694451");
 
 /*
@@ -47,20 +48,19 @@ protected void onCreate(Bundle savedInstanceState){
 
 
   //Method will get a parse through JSON file
+
     public String readJSON(){
        String temp = "";
-         /**
-        this is a Context in order to use the obtainFile method
-          This
-          */
 
-        String jsonFile = ReaderWriter.obtainFile(this, "example.json"); //get the JSON file
+        //this is a Context in order to use the obtainFile method
+        String jsonFile = ReaderWriter.obtainFile("example.json"); //get the JSON file
 
         try{
             JSONArray siteRdgs = new JSONArray(jsonFile); //get the entire list of site readings
 
             //String temp  = "";
             for( int i = 0; i <siteRdgs.length(); i++){
+
 
                 JSONObject reading = siteRdgs.getJSONObject(i); //get each reading in this file
 
@@ -71,7 +71,7 @@ protected void onCreate(Bundle savedInstanceState){
                         +  "Reading Date:"  + reading.getString("reading_date") + "\n";
 
                     //txtJson.setText(temp); // display text to the phone screen!
-                //return temp;
+                return temp;
             }
         }
         catch(Exception e){
@@ -80,6 +80,49 @@ protected void onCreate(Bundle savedInstanceState){
         return temp;
     }
 
+    public static void quietImportFromFile() {
+        try {
+            java.io.File inputFile = new File("archive.json");
+
+            JSONParser parser = new JSONParser();
+
+            Object obj = parser.parse(new FileReader(inputFile));
+
+            JSONObject jsonObject = (JSONObject) obj;
+            JSONArray site_reading = (JSONArray) jsonObject.get("site_readings");
+
+            for (int j = 0; j < (site_reading).length(); j++) {
+                JSONObject rec = (JSONObject) site_reading.get(j);
+                Site myTest = new Site(rec.get("site_id").toString());
+                AllSites.activeSites.add(myTest);
+                if (rec.get("study_id") != null && rec.get("study") != null) {
+                    String study_id = rec.get("study_id").toString();
+                    String study = rec.get("study_id").toString();
+
+                    Reading myReading = new Reading(study_id, study, rec.get("site_id").toString(),
+                            rec.get("reading_type").toString(), rec.get("reading_id").toString(),
+                            Double.parseDouble(rec.get("reading_value").toString()), rec.get("reading_date").toString());
+                    AllSites.activeSites.get(j).readings.add(myReading);
+                    System.out.println(AllSites.activeSites.get(j).readings);
+
+                } else {
+                    Reading myReading = new Reading(null, null, rec.get("site_id").toString(),
+                            rec.get("reading_type").toString(), rec.get("reading_id").toString(),
+                            Double.parseDouble(rec.get("reading_value").toString()), rec.get("reading_date").toString());
+                    AllSites.activeSites.get(j).readings.add(myReading);
+
+                }
+            }
+        }
+        catch(JSONException j){
+
+        }catch(IOException ie){
+
+        }
+        catch(org.json.simple.parser.ParseException p){
+
+        }
+    }
 
 
     /*Method will open file a file from our assets folder, read through the entire JSON Array
