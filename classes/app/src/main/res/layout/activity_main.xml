@@ -12,16 +12,15 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="?attr/colorPrimary"
-        android:onClick="onClickReadJSON"
         android:text="Read JSON Button" />
 
     <Button
-        android:id="@+id/buttonReadJson1"
+        android:id="@+id/buttonImportJSON"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="?attr/colorPrimary"
-        android:text="@string/read_json" />
+        android:text="Import JSON" />
 
     <TextView
         android:id="@+id/txtJson"

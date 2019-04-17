@@ -12,20 +12,20 @@ public class ReaderWriter {
 
 
     //Will look through all Android  assets to find the selected file(.json, xml etc)
-    public static String obtainFile(Context c, String assetName) {
-        AssetManager a = c.getAssets();
-
-        try {
-            InputStream i = a.open(assetName);
-
-            String chosenFile = ReaderWriter.stringFromStream(i);
-            i.close();
-            return chosenFile;  //obtain the file
-
-        } catch (Exception e) {
-            e.printStackTrace();
-
-        }
+    public static String obtainFile(String assetName) {
+//        AssetManager a = c.getAssets();
+//
+//        try {
+//            InputStream i = a.open(assetName);
+//
+//            String chosenFile = ReaderWriter.stringFromStream(i);
+//            i.close();
+//            return chosenFile;  //obtain the file
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//
+//        }
         return null;  //return null if file cannot be found
     }
 
