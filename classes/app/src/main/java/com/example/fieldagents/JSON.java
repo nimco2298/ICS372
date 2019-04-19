@@ -1,16 +1,6 @@
 package com.example.fieldagents;
 import ourClasses.*;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.res.AssetManager;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.*;
-import android.content.Context;
-import android.app.Activity;
-//import android.app.Bundle;
-
 
 import org.json.JSONException;
 import org.json.simple.parser.JSONParser;
@@ -23,42 +13,28 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.*;
 import java.util.*; //length()
-
-import android.os.Bundle;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader.*;
 
 
 public class JSON  {
 
-//private static TextView txtJson;
 private static Reading reading = new Reading("Midwest USA Climate 2017", "902","15566","particulate","1adf4",354.00,"1515354694451");
-
-/*
-@Override
-protected void onCreate(Bundle savedInstanceState){
-
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-    txtJson = (TextView) findViewById(R.id.txtJson);
- }
-
-*/
 
 
   //Method will get a parse through JSON file
 
-    public String readJSON(){
+    public String readJSON(File jsonFile){
        String temp = "";
 
-        //this is a Context in order to use the obtainFile method
-        String jsonFile = ReaderWriter.obtainFile("example.json"); //get the JSON file
+        String fileInString = ReaderWriter.stringFromStream(jsonFile);
 
         try{
-            JSONArray siteRdgs = new JSONArray(jsonFile); //get the entire list of site readings
 
-            //String temp  = "";
+            JSONObject listRdgs = new JSONObject(fileInString); // create one giant object
+            JSONArray siteRdgs = listRdgs.getJSONArray("site_readings");
+
+
             for( int i = 0; i <siteRdgs.length(); i++){
 
 
@@ -66,16 +42,23 @@ protected void onCreate(Bundle savedInstanceState){
 
                 temp = temp +  "Site ID: "  + reading.getString("site_id") + "\n"
                         +   "Reading Type: " + reading.getString("reading_type") + "\n"
-                        +   "Reading ID: " + reading.getString("reading_ID") + "\n"
+                        +   "Reading ID: " + reading.getString("reading_id") + "\n"
                         +   "Reading Value: " + reading.getDouble("reading_value") + "\n"
-                        +  "Reading Date:"  + reading.getString("reading_date") + "\n";
+                        +  "Reading Date:"  + reading.getInt("reading_date") + "\n";
 
-                    //txtJson.setText(temp); // display text to the phone screen!
-                return temp;
+
+                //return temp;
             }
-        }
-        catch(Exception e){
 
+        }
+        catch(JSONException e){
+         e.printStackTrace();
+        }
+        catch(IndexOutOfBoundsException e){
+            e.printStackTrace();
+        }
+        catch(ClassCastException e){
+            e.printStackTrace();
         }
         return temp;
     }
@@ -123,6 +106,7 @@ protected void onCreate(Bundle savedInstanceState){
 
         }
     }
+
 
 
     /*Method will open file a file from our assets folder, read through the entire JSON Array
