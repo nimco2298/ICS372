@@ -2,6 +2,7 @@ package com.example.fieldagents;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -13,9 +14,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private JSON jsonInfo = new JSON();
+
+    //to display to screen
     TextView screen;
 
 
@@ -24,15 +28,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
 
+        //find the button
         Button buttonReadJson = findViewById(R.id.buttonReadJson);
+        //listen for clicks
         buttonReadJson.setOnClickListener(this);
+
         Button buttonImportJson = findViewById(R.id.buttonImportJSON);
         buttonImportJson.setOnClickListener(this);
 
-        screen = findViewById(R.id.txtJson); //display json thats read
+        screen = findViewById(R.id.textShow); //display json thats read
 
 
     }
@@ -86,28 +91,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()){
             case R.id.buttonReadJson:
 
-                /*
-                TextView screen = findViewById(R.id.txtJson); //display readings
 
-                String readingsList= jsonInfo.readJSON();
-                screen.setText(readingsList);
-
-                   */
-                String readingsList= jsonInfo.readJSON();
-                screen.setText(readingsList);
+                //String readingsList= jsonInfo.readJSON();
+                //screen.setText(readingsList);
                 //mini notiication on screen
                 Toast.makeText(getApplicationContext(), "Button Read JSON clicked!",
                         Toast.LENGTH_LONG).show();
                 break;
 
             case R.id.buttonImportJSON:
-               /*
-                TextView screen2 = findViewById(R.id.textShow);
-                jsonInfo.quietImportFromFile();
-                screen2.setText("Imported file can now be used");
-*/
+
+                    //get the file from android
+                    File fileDir = Environment.getExternalStorageDirectory();
+
+                    //json file is in sdcard
+                    File file = new File(fileDir + "/Download/json/example.json");
+                   // File file = new File(fileDir, "/sdcard/Downloads/json/example.json")
+
+                    String readings = jsonInfo.readJSON(file);
+                    screen.setText(readings); // display the output to the Android screen
+
+
+
                 //mini notiication on screen
-                Toast.makeText(getApplicationContext(), "Button Import JSON clicked!",
+                Toast.makeText(getApplicationContext(), "JSON Is imported!",
                         Toast.LENGTH_LONG).show();
                 break;
 
