@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#d9d9d9">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="*When entering a reading type, please use only the following acceptable reading types: humidity, particulate, temp, and bar press.*"
+        android:paddingBottom="35dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:textColor="#262626"/>
+
+
+    <EditText
+        android:id="@+id/editSiteID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:hint="Site Id"
+        android:inputType="text"
+        android:paddingBottom="15dp"
+        android:textColor="#1a1a1a"/>
+    <EditText
+        android:id="@+id/editReadingType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:hint="Reading Type"
+        android:inputType="text"
+        android:paddingBottom="15dp"
+        android:textColor="#1a1a1a"/>
+    <EditText
+        android:id="@+id/editReadingID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:hint="Reading ID"
+        android:inputType="text"
+        android:paddingBottom="15dp"
+        android:textColor="#1a1a1a"/>
+    <EditText
+        android:id="@+id/editReadingValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:hint="Reading Value"
+        android:inputType="text"
+        android:paddingBottom="15dp"
+        android:textColor="#1a1a1a"/>
+    <EditText
+        android:id="@+id/editReadingDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:hint="Reading Date"
+        android:inputType="date"
+        android:paddingBottom="15dp"
+        android:textColor="#1a1a1a"/>
+
+    <Button
+        android:id="@+id/buttonReading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="7dp"
+        android:background="@drawable/rounded_button_transparent"
+        android:text="Submit Reading"
+        android:textAllCaps="false"
+        android:textColor="#8090ff"/>
+    </LinearLayout>
+
+</RelativeLayout>
