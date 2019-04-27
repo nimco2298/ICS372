@@ -6,6 +6,7 @@ package ourClasses;
 /**
  *Study class keeps track of readings for studies.
  *There are three status for a study:
+ * A
  *
  *Active Sites :           Study of sites that can add or show readings
  *Site Collection Disable: Study of sites that cant add, but can show readings

@@ -66,7 +66,7 @@ public class AllSites{
 
     public Site findSite(String siteId) {
         for(Site site: activeSites) {
-            if(siteId.equals(site.readings.element().getSiteId())) {
+            if(siteId.equals(site.readings.element().getSiteID())) {
                 System.out.println("The site is found");
                 return site;
             }

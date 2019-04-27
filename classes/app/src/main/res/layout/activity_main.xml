@@ -7,20 +7,20 @@
     tools:context=".JSON">
 
     <Button
-        android:id="@+id/buttonReadJson"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="?attr/colorPrimary"
-        android:text="Read JSON Button" />
-
-    <Button
         android:id="@+id/buttonImportJSON"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="?attr/colorPrimary"
-        android:text="Import JSON" />
+        android:text="Import JSON Data" />
+
+    <Button
+        android:id="@+id/buttonReadJSON"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="?attr/colorPrimary"
+        android:text="Read JSON Data" />
 
     <TextView
         android:id="@+id/txtJson"

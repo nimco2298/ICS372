@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private JSON jsonInfo = new JSON();
 
     //to display to screen
-    TextView screen;
+    TextView screen, screen2;
 
 
 
@@ -30,76 +30,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         //find the button
-        Button buttonReadJson = findViewById(R.id.buttonReadJson);
-        //listen for clicks
-        buttonReadJson.setOnClickListener(this);
-
         Button buttonImportJson = findViewById(R.id.buttonImportJSON);
+        //listen for clicks
         buttonImportJson.setOnClickListener(this);
 
+        Button buttonReadJson = findViewById(R.id.buttonReadJSON);
+        buttonReadJson.setOnClickListener(this);
+
         screen = findViewById(R.id.textShow); //display json thats read
-
-
-    }
-/*
-    //when Read JSON button is clicked, it will launch code in JSON class
-    public void onClickReadJSON (View view){
-
-        TextView screen = findViewById(R.id.txtJson); //display readings
-
-        String readingsList= jsonInfo.readJSON();
-        screen.setText(readingsList);
+        screen2 = findViewById(R.id.txtJson); //display import json method
 
 
     }
 
-    public void onClickImportJSON(View view){
-        TextView screen2 = findViewById(R.id.textShow);
-        jsonInfo.quietImportFromFile();
-        screen2.setText("Imported file can now be used");
-    }
-
-*/
-    /*
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-//
-*/
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.buttonReadJson:
+            case R.id.buttonImportJSON:
 
+                File fileDir1 = Environment.getExternalStorageDirectory();
 
-                //String readingsList= jsonInfo.readJSON();
-                //screen.setText(readingsList);
+                //json file is in sdcard
+                File file1 = new File(fileDir1 + "/Download/json/example.json");
+                // File file = new File(fileDir, "/sdcard/Downloads/json/example.json")
+
+                String readings1 = jsonInfo.importFromFile(file1);
+                screen2.setText(readings1);
                 //mini notiication on screen
-                Toast.makeText(getApplicationContext(), "Button Read JSON clicked!",
+                Toast.makeText(getApplicationContext(), "JSON Data is imported!",
                         Toast.LENGTH_LONG).show();
                 break;
 
-            case R.id.buttonImportJSON:
+            case R.id.buttonReadJSON:
 
                     //get the file from android
                     File fileDir = Environment.getExternalStorageDirectory();
@@ -108,13 +71,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     File file = new File(fileDir + "/Download/json/example.json");
                    // File file = new File(fileDir, "/sdcard/Downloads/json/example.json")
 
-                    String readings = jsonInfo.readJSON(file);
-                    screen.setText(readings); // display the output to the Android screen
+                    String readings2 = jsonInfo.readJSON(file);
+                    screen.setText(readings2); // display the output to the Android screen
 
 
 
                 //mini notiication on screen
-                Toast.makeText(getApplicationContext(), "JSON Is imported!",
+                Toast.makeText(getApplicationContext(), "JSON Is Read!",
                         Toast.LENGTH_LONG).show();
                 break;
 

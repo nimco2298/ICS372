@@ -117,12 +117,12 @@ public class Site {
             if(studyID == null || studyID == "") {
                 System.out.println("Sorry! Please enter a valid studyID");
             }
-            else if(studyID.equals(rdgs.getStudyId()) ) {
+            else if(studyID.equals(rdgs.getStudyID())) {
                 list = list + rdgs.toString();
             }
-            else if(rdgs.getStudyId() != studyID){
+            else if(rdgs.getStudyID() != studyID){
                 list = "";
-                System.out.println("Sorry! Study ID: " + rdgs.getStudyId() + " does not match the study ID you have entered");
+                System.out.println("Sorry! Study ID: " + rdgs.getStudyID() + " does not match the study ID you have entered");
             }
 
         }
