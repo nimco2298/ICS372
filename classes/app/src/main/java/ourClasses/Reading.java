@@ -8,6 +8,7 @@ import org.json.simple.JSONObject;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+
 /**
  * Reading is the class that is comprised of various measurements.
  *
@@ -19,7 +20,7 @@ public class Reading {
     /* A site has String  */
     @SerializedName("site_id")
     @Expose
-    private String siteId;
+    private String siteID;
 
     /* A reading has reading type  */
     @SerializedName("reading_type")
@@ -55,10 +56,10 @@ public class Reading {
     private String studyName;
 
     /*Constructing a reading given all the input information */
-    public Reading(String AStudyName, String AStudyID, String aSiteID, String aReadingType, String aReadingId, double aReadingVal, String aReadingDate){
+    public Reading(String AStudyName, String AStudyID, String asiteID, String aReadingType, String aReadingId, double aReadingVal, String aReadingDate){
         studyName = AStudyName;
         studyID= AStudyID;
-        siteId = aSiteID;
+        siteID = asiteID;
         rdgType = aReadingType;
         rdgId = aReadingId;
         rdgVal = aReadingVal;
@@ -70,7 +71,7 @@ public class Reading {
     /**Getter method for studyID
      * @return String the studyID
      **/
-    public String getStudyId() {
+    public String getStudyID() {
         return studyID;
     }
 
@@ -97,21 +98,21 @@ public class Reading {
         this.studyName = newName;
     }
 
-    /**Getter method for SiteID
+    /**Getter method for siteID
      * @return String the siteID
      **/
-    public String getSiteId() {
-        return siteId;
+    public String getSiteID() {
+        return siteID;
     }
 
 
 
-    /**Setter method for SiteID
+    /**Setter method for siteID
      * @param String the siteID
      */
 
-    public void setSiteId(String siteId) {
-        this.siteId = siteId;
+    public void setSiteID(String siteID) {
+        this.siteID = siteID;
     }
 
 
@@ -133,14 +134,14 @@ public class Reading {
     /**Getter method for the readingID
      * @return String the reading ID
      **/
-    public String getReadingId() {
+    public String getReadingID() {
         return rdgId;
     }
 
     /**Setter method for the readingID
      * @param String the reading ID to be set
      **/
-    public void setReadingId(String rdgId) {
+    public void setReadingID(String rdgId) {
         this.rdgId = rdgId;
     }
 
@@ -183,20 +184,40 @@ public class Reading {
     /* Prints all the information for a reading */
     @Override
     public String toString(){
+        /*
         JSONObject obj = new JSONObject();
         try {
             obj.put("study", this.getStudyName());
-            obj.put("study_id", this.getStudyId());
-            obj.put("site_id", this.getSiteId());
+            obj.put("study_id", this.getStudyID());
+            obj.put("site_id", this.getSiteID());
             obj.put("reading_type", getReadingType());
-            obj.put("reading_id", getReadingId());
+            obj.put("reading_id", getReadingID());
             obj.put("reading_value", getReadingValue());
             obj.put("reading_date", getReadingDate());
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        return obj.toJSONString();
+          */
+
+        String temp = "";
+        try{
+
+
+            temp = temp  + "\n" + "Study Name: " + this.getStudyName() + "\n"
+                    + "Study ID" + this.getStudyID() + "\n"
+                    + "Site ID: " + this.getSiteID() + "\n"
+                    + "Reading Type: " + getReadingType()+ "\n"
+                    + "Reading ID: " + getReadingID() + "\n"
+                    + "Reading Value: " + getReadingValue() + "\n"
+                    + "Reading Date:" + getReadingDate() + "\n";
+        }
+        catch(ParseException e){
+            e.printStackTrace();
+        }
+
+        return temp;
+
     }
 
 }

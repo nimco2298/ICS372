@@ -1,12 +1,18 @@
 package com.example.fieldagents;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,13 +20,18 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+
 import java.io.File;
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private JSON jsonInfo = new JSON();
 
     //to display to screen
     TextView screen;
+
+    private DrawerLayout drawer;
 
 
 
@@ -29,96 +40,87 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //find the button
-        Button buttonReadJson = findViewById(R.id.buttonReadJson);
-        //listen for clicks
-        buttonReadJson.setOnClickListener(this);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        Button buttonImportJson = findViewById(R.id.buttonImportJSON);
-        buttonImportJson.setOnClickListener(this);
+        drawer = findViewById(R.id.draw_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
-        screen = findViewById(R.id.textShow); //display json thats read
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
+        if(savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
 
+            navigationView.setCheckedItem(R.id.nav_home);
+        }
     }
-/*
-    //when Read JSON button is clicked, it will launch code in JSON class
-    public void onClickReadJSON (View view){
-
-        TextView screen = findViewById(R.id.txtJson); //display readings
-
-        String readingsList= jsonInfo.readJSON();
-        screen.setText(readingsList);
-
-
-    }
-
-    public void onClickImportJSON(View view){
-        TextView screen2 = findViewById(R.id.textShow);
-        jsonInfo.quietImportFromFile();
-        screen2.setText("Imported file can now be used");
-    }
-
-*/
-    /*
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+    public boolean onNavigationItemSelected(@NonNull MenuItem item){
+
+        switch(item.getItemId()){
+            case R.id.nav_home:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+
+                break;
+
+            case R.id.nav_addCollection:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AddCollectionFragment()).commit();
+
+                break;
+            case R.id.nav_addReading:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AddReadingFragment()).commit();
+
+                break;
+            case R.id.nav_dataLog:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DataLogFragment()).commit();
+
+                break;
+            case R.id.nav_endCollection:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EndCollectionFragment()).commit();
+
+                break;
+            case R.id.nav_invalidSite:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new InvalidSiteFragment()).commit();
+
+                break;
+            case R.id.nav_import:
+
+                //change to the activity layout to import
+                setContentView(R.layout.activity_json);
+
+                //Created intent to launch the new activity
+                Intent intent = new Intent(MainActivity.this, JSONActivity.class);
+                startActivity(intent);
+
+                Toast.makeText(this, "JSON has been imported!", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nav_export:
+                Toast.makeText(this, "Export", Toast.LENGTH_SHORT).show();
+                break;
+        }
+
+        drawer.closeDrawer(GravityCompat.START);
+
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    public void onBackPressed(){
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        if(drawer.isDrawerOpen(GravityCompat.START)){
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
 
-        return super.onOptionsItemSelected(item);
-    }
-//
-*/
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.buttonReadJson:
-
-
-                //String readingsList= jsonInfo.readJSON();
-                //screen.setText(readingsList);
-                //mini notiication on screen
-                Toast.makeText(getApplicationContext(), "Button Read JSON clicked!",
-                        Toast.LENGTH_LONG).show();
-                break;
-
-            case R.id.buttonImportJSON:
-
-                    //get the file from android
-                    File fileDir = Environment.getExternalStorageDirectory();
-
-                    //json file is in sdcard
-                    File file = new File(fileDir + "/Download/json/example.json");
-                   // File file = new File(fileDir, "/sdcard/Downloads/json/example.json")
-
-                    String readings = jsonInfo.readJSON(file);
-                    screen.setText(readings); // display the output to the Android screen
-
-
-
-                //mini notiication on screen
-                Toast.makeText(getApplicationContext(), "JSON Is imported!",
-                        Toast.LENGTH_LONG).show();
-                break;
-
+            super.onBackPressed();
         }
     }
+
+
+
 
 }
