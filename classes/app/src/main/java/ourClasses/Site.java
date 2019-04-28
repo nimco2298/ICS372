@@ -1,5 +1,10 @@
 package ourClasses;
 
+//import com.google.gson.JsonObject;
+
+import org.json.simple.JSONObject;
+
+import java.text.ParseException;
 import java.util.LinkedList;
 
 /**
@@ -9,7 +14,7 @@ import java.util.LinkedList;
  */
 public class Site {
     public static boolean canCollect = true;
-    public LinkedList<Reading> readings = new LinkedList<Reading>();
+    public static LinkedList<Reading> readings = new LinkedList<Reading>();
     public LinkedList<String> ids = new LinkedList<String>();
 
 
@@ -99,6 +104,17 @@ public class Site {
         }else {
             return "{Site with no readings}";
         }
+    }
+
+    public static JSONObject formatSiteForExport(){
+        JSONObject obj = new JSONObject();
+        JSONObject obj2 = new JSONObject();
+        for(Reading rdgs : readings)
+        {
+            obj2.put("reading" ,rdgs.formatReadingForExport());
+        }
+        obj.put("site_readings",obj2);
+        return obj;
     }
 
 

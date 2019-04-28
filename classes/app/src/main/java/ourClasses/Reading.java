@@ -219,4 +219,20 @@ public class Reading {
 
     }
 
+    public JSONObject formatReadingForExport(){
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("study", this.getStudyName());
+            obj.put("study_id", this.getStudyID());
+            obj.put("site_id", this.getSiteID());
+            obj.put("reading_type", getReadingType());
+            obj.put("reading_id", getReadingID());
+            obj.put("reading_value", getReadingValue());
+            obj.put("reading_date", getReadingDate());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return obj;
+    }
+
 }
