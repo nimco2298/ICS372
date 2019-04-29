@@ -88,7 +88,7 @@ public class Site {
      * Method that displays all the readings for a given site
      * @return String containing JSon of the list of readings
      **/
-    public String toString() {
+    public String displayReadings() {
         String list = "";
         for(Reading rdgs : readings)
         {
