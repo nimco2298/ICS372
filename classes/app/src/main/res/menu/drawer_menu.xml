@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    >
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="Home" />
+        <item android:id="@+id/nav_addCollection"
+                android:icon="@drawable/ic_add_circle_black_24dp"
+                android:title="Add Collection" />
+        <item android:id="@+id/nav_addReading"
+            android:icon="@drawable/ic_assignment_black_24dp"
+            android:title="Add Reading" />
+        <item android:id="@+id/nav_dataLog"
+            android:icon="@drawable/ic_find_in_page_black_24dp"
+            android:title="Data Log" />
+        <item android:id="@+id/nav_endCollection"
+            android:icon="@drawable/ic_block_black_24dp"
+            android:title="End Collection" />
+        <item android:id="@+id/nav_invalidSite"
+            android:icon="@drawable/ic_do_not_disturb_on_black_24dp"
+            android:title="Invalidate Site" />
+
+    </group>
+
+    <item android:title="Files">
+        <menu>
+            <item
+                android:id="@+id/nav_import"
+                android:icon="@drawable/ic_file_upload_black_24dp"
+                android:title="Import"
+               />
+            <item
+                android:id="@+id/nav_export"
+                android:icon="@drawable/ic_file_download_black_24dp"
+                android:title="Export"
+                />
+
+        </menu>
+
+    </item>
+
+
+</menu>

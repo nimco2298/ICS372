@@ -8,6 +8,7 @@ import org.json.simple.JSONObject;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+
 /**
  * Reading is the class that is comprised of various measurements.
  *
@@ -180,7 +181,10 @@ public class Reading {
     }
 
 
-    /* Prints all the information for a reading */
+    /**Overridden toString implementatio
+     *
+     * @return String a string containing all the Reading information
+     */
     @Override
     public String toString(){
         /*
@@ -203,13 +207,13 @@ public class Reading {
         try{
 
 
-        temp = temp  + "\n" + "Study Name: " + this.getStudyName() + "\n"
-                + "Study ID" + this.getStudyID() + "\n"
-                + "Site ID: " + this.getSiteID() + "\n"
-                + "Reading Type: " + getReadingType()+ "\n"
-                + "Reading ID: " + getReadingID() + "\n"
-                + "Reading Value: " + getReadingValue() + "\n"
-                + "Reading Date:" + getReadingDate() + "\n";
+            temp = temp  + "\n" + "Study Name: " + this.getStudyName() + "\n"
+                    + "Study ID" + this.getStudyID() + "\n"
+                    + "Site ID: " + this.getSiteID() + "\n"
+                    + "Reading Type: " + getReadingType()+ "\n"
+                    + "Reading ID: " + getReadingID() + "\n"
+                    + "Reading Value: " + getReadingValue() + "\n"
+                    + "Reading Date:" + getReadingDate() + "\n";
         }
         catch(ParseException e){
             e.printStackTrace();
@@ -217,6 +221,26 @@ public class Reading {
 
         return temp;
 
+    }
+
+    /**Method will reformat a reading so that it can be exported
+     *
+     * @return JSONObject The reading itself
+     */
+    public JSONObject formatReadingForExport(){
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("study", this.getStudyName());
+            obj.put("study_id", this.getStudyID());
+            obj.put("site_id", this.getSiteID());
+            obj.put("reading_type", getReadingType());
+            obj.put("reading_id", getReadingID());
+            obj.put("reading_value", getReadingValue());
+            obj.put("reading_date", getReadingDate());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return obj;
     }
 
 }

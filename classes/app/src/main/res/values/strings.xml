@@ -7,4 +7,7 @@
     <string name="reading_value">Reading Value:</string>
     <string name="reading_date">Reading Date:</string>
     <string name="read_json">Read JSON</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
 </resources>
