@@ -1,5 +1,12 @@
 package ourClasses;
 
+//import com.google.gson.JsonObject;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -9,7 +16,7 @@ import java.util.LinkedList;
  */
 public class Site {
     public static boolean canCollect = true;
-    public LinkedList<Reading> readings = new LinkedList<Reading>();
+    public static LinkedList<Reading> readings = new LinkedList<Reading>();
     public LinkedList<String> ids = new LinkedList<String>();
 
 
@@ -100,6 +107,29 @@ public class Site {
             return "{Site with no readings}";
         }
     }
+
+    public static JSONObject formatSiteForExport(){
+        JSONObject obj = new JSONObject();
+        JSONArray obj2 = new JSONArray();
+        for(Reading rdgs : readings)
+        {
+            obj2.add(rdgs.formatReadingForExport());
+        }
+        obj.put("site_readings",obj2);
+        return obj;
+    }
+    /*
+    public static JSONObject formatSiteForExport(){
+        JSONObject obj = new JSONObject();
+        ArrayList<String> obj2 = new ArrayList<String>();
+        for(Reading rdgs : readings)
+        {
+            obj2.add(String.valueOf(rdgs.formatReadingForExport()));
+        }
+        obj.put("site_readings",obj2);
+        return obj;
+    }
+    */
 
 
     /**Method will loop through and display readings given a study ID and validate the study ID

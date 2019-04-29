@@ -4,11 +4,18 @@ import android.content.res.AssetManager;
 import android.content.*;
 import android.util.Log;
 
+import org.json.simple.JSONObject;
+
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
+import static android.os.Environment.getExternalStorageDirectory;
 
 //class that acts like SiteReader for Android Studio
 public class ReaderWriter {
@@ -43,4 +50,18 @@ public class ReaderWriter {
 
         return null;
     }
+
+    public static void fileWriter(JSONObject content){
+        File fileDir5 = getExternalStorageDirectory();
+        File file5 = new File(fileDir5 + "/Download/json/example.json");
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file5));
+            bufferedWriter.write(content.toString());
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }
