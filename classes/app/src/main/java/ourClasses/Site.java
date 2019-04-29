@@ -2,9 +2,11 @@ package ourClasses;
 
 //import com.google.gson.JsonObject;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -108,14 +110,26 @@ public class Site {
 
     public static JSONObject formatSiteForExport(){
         JSONObject obj = new JSONObject();
-        JSONObject obj2 = new JSONObject();
+        JSONArray obj2 = new JSONArray();
         for(Reading rdgs : readings)
         {
-            obj2.put("reading" ,rdgs.formatReadingForExport());
+            obj2.add(rdgs.formatReadingForExport());
         }
         obj.put("site_readings",obj2);
         return obj;
     }
+    /*
+    public static JSONObject formatSiteForExport(){
+        JSONObject obj = new JSONObject();
+        ArrayList<String> obj2 = new ArrayList<String>();
+        for(Reading rdgs : readings)
+        {
+            obj2.add(String.valueOf(rdgs.formatReadingForExport()));
+        }
+        obj.put("site_readings",obj2);
+        return obj;
+    }
+    */
 
 
     /**Method will loop through and display readings given a study ID and validate the study ID

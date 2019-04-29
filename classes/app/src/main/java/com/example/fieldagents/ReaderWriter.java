@@ -53,7 +53,7 @@ public class ReaderWriter {
 
     public static void fileWriter(JSONObject content){
         File fileDir5 = getExternalStorageDirectory();
-        File file5 = new File(fileDir5 + "/Download/json/test.txt");
+        File file5 = new File(fileDir5 + "/Download/json/example.json");
         try {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file5));
             bufferedWriter.write(content.toString());

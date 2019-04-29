@@ -8,6 +8,7 @@ import org.json.simple.JSONObject;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+
 /**
  * Reading is the class that is comprised of various measurements.
  *
@@ -203,13 +204,13 @@ public class Reading {
         try{
 
 
-        temp = temp  + "\n" + "Study Name: " + this.getStudyName() + "\n"
-                + "Study ID" + this.getStudyID() + "\n"
-                + "Site ID: " + this.getSiteID() + "\n"
-                + "Reading Type: " + getReadingType()+ "\n"
-                + "Reading ID: " + getReadingID() + "\n"
-                + "Reading Value: " + getReadingValue() + "\n"
-                + "Reading Date:" + getReadingDate() + "\n";
+            temp = temp  + "\n" + "Study Name: " + this.getStudyName() + "\n"
+                    + "Study ID" + this.getStudyID() + "\n"
+                    + "Site ID: " + this.getSiteID() + "\n"
+                    + "Reading Type: " + getReadingType()+ "\n"
+                    + "Reading ID: " + getReadingID() + "\n"
+                    + "Reading Value: " + getReadingValue() + "\n"
+                    + "Reading Date:" + getReadingDate() + "\n";
         }
         catch(ParseException e){
             e.printStackTrace();
