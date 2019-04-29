@@ -51,6 +51,10 @@ public class ReaderWriter {
         return null;
     }
 
+    /**Method will write a JSON Object to a File
+     *
+     * @param content The JSON Object that will be serialized
+     */
     public static void fileWriter(JSONObject content){
         File fileDir5 = getExternalStorageDirectory();
         File file5 = new File(fileDir5 + "/Download/json/example.json");
