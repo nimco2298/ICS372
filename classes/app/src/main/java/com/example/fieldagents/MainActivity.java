@@ -24,6 +24,8 @@ import org.json.JSONArray;
 
 import java.io.File;
 
+import ourClasses.Site;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private JSON jsonInfo = new JSON();
@@ -97,9 +99,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent = new Intent(MainActivity.this, JSONActivity.class);
                 startActivity(intent);
 
-                Toast.makeText(this, "JSON has been imported!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "JSON has been imported!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_export:
+                ReaderWriter.fileWriter(Site.formatSiteForExport());
                 Toast.makeText(this, "Export", Toast.LENGTH_SHORT).show();
                 break;
         }
