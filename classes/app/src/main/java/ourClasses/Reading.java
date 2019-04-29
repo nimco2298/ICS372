@@ -181,7 +181,10 @@ public class Reading {
     }
 
 
-    /* Prints all the information for a reading */
+    /**Overridden toString implementatio
+     *
+     * @return String a string containing all the Reading information
+     */
     @Override
     public String toString(){
         /*
@@ -220,6 +223,10 @@ public class Reading {
 
     }
 
+    /**Method will reformat a reading so that it can be exported
+     *
+     * @return JSONObject The reading itself
+     */
     public JSONObject formatReadingForExport(){
         JSONObject obj = new JSONObject();
         try {
