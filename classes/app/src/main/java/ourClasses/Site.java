@@ -171,7 +171,7 @@ public class Site {
         return canAdd;
     }
 
-    /**
+    /**Method will check a Sites ability to be added to another Study aka state
      *
      */
     public void addPossible(){
@@ -180,7 +180,7 @@ public class Site {
         }
     }
 
-    /**
+    /**Method will change the status of a Site so it cant be added to a Study aka state
      *
      */
     public void addImpossible(){
