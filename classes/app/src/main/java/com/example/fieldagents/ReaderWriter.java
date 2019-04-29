@@ -17,7 +17,9 @@ import java.io.InputStreamReader;
 
 import static android.os.Environment.getExternalStorageDirectory;
 
-//class that acts like SiteReader for Android Studio
+/**ReaderWriter is responsible for FILE I/O for our Android project
+ * 
+ */
 public class ReaderWriter {
 
 

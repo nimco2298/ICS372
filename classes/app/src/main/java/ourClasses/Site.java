@@ -1,24 +1,37 @@
 package ourClasses;
 
-//import com.google.gson.JsonObject;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
- * Site is a class that holds a list of readings for a given site
+ * Site is a class that holds a list of readings, and has an associated Study
  *
  *
  */
 public class Site {
+
+    /** Collection Status  of a Site*/
     public static boolean canCollect = true;
+
+    /** List of readings for a Site */
     public static LinkedList<Reading> readings = new LinkedList<Reading>();
+
+    /** List of SiteIDs  that can be cross referneced with the list of readings   */
     public LinkedList<String> ids = new LinkedList<String>();
 
+    /**      */
+    public static boolean canAdd = true;
+
+    /**  */
+    private String siteID;
+    /**  */
+    private String siteName;
+    /**  */
+    private String state;
+    /**  */
+    private Study associatedStudy;
 
 
     //a Site should have a siteID and its list of readings
@@ -28,6 +41,118 @@ public class Site {
         ids.add(siteID);
     }
 
+
+    /**Getter for the Site's ID
+     *
+     * @return the Site ID
+     */
+    public String getSiteID(){
+        return siteID;
+    }
+
+    /**Setter for the Site's ID
+     *
+     * @param theSiteID
+     */
+    public void setSiteID( String theSiteID ){
+        theSiteID = siteID;
+    }
+
+    /**Getter for the Site's name
+     *
+     * @return Site name
+     */
+    public String getSiteName(){
+        return siteName;
+    }
+
+    /**Setter for the Site's name
+     *
+     * @param theSiteName
+     */
+    public void setSiteName( String theSiteName ){
+        theSiteName = siteName;
+    }
+
+    /**Getter for the state of a Site
+     *
+     * @return the state the Site is in
+     */
+    public String getState(){
+        return state;
+    }
+
+    /**Setter for the state of a Site
+     *
+     * @param theState the new state
+     */
+    public void setState( String theState ){
+        theState = state;
+    }
+
+    /**Getter of the new associated Study
+     *
+     * @return the Study this Site belongs to
+     */
+    public Study getAssociatedStudy(){
+        return associatedStudy;
+    }
+
+    /**Setter of the new associated Study
+     *
+     * @param theAssociatedStudy the new Study a Site will belong to
+     */
+    public void setAssociatedStudy( Study theAssociatedStudy ){
+        theAssociatedStudy = associatedStudy;
+    }
+
+
+    /**Method is will switch the status of a Site
+     *
+     * @param s1
+     */
+    public void makeState (Site s1){
+        // Invalid = 1 : Site cannot add readings, and all information about the site is deleted
+        // Complete = 2 : Site cannot add readings temporarily, but information remains
+        // Active = 3 : Site can add readings and display information
+        // Disabled = 4 : Site cannot add readings
+
+        int s1Num = 0;
+
+        if(s1.getState() == "Invalid"){
+            s1Num = 1;
+        }
+        if(s1.getState() == "Complete"){
+            s1Num = 2;
+        }
+        if(s1.getState() == "Active"){
+            s1Num = 3;
+        }
+        if(s1.getState() == "Disabled"){
+            s1Num = 4;
+        }
+
+        if(s1Num == 1){
+            s1.turnOffStatus();
+            s1.setSiteName(null);
+            s1.setSiteID(null);
+            s1.addImpossible();
+        }else if(s1Num == 2){
+            s1.turnOffStatus();
+        }else if(s1Num == 3){
+            s1.turnOnStatus();
+        }else if(s1Num == 4){
+            s1.turnOffStatus();
+            s1.addImpossible();
+        }
+
+    }
+
+    /**Method will check if a siteID is found within the list of SiteIDs
+     *
+     * @param siteId
+     * @return the T or F value
+     */
     public Boolean findSiteID(String siteId) {
         for(String site: ids) {
             if(site == siteId) {
@@ -37,6 +162,34 @@ public class Site {
         }
         return false;
     }
+
+    /**Method will check a Sites ability to
+     *
+     * @return the T or F value
+     */
+    public boolean checkAddStatus(){
+        return canAdd;
+    }
+
+    /**Method will check a Sites ability to be added to another Study aka state
+     *
+     */
+    public void addPossible(){
+        if (canAdd == false) {
+            canAdd = true;
+        }
+    }
+
+    /**Method will change the status of a Site so it cant be added to a Study aka state
+     *
+     */
+    public void addImpossible(){
+        if (canAdd == true) {
+            canAdd = false;
+        }
+    }
+
+
 
     /**Method return the status of a Site for collection
      *
@@ -76,20 +229,7 @@ public class Site {
         }
     }
 
-    /**
-     * Method that displays all the readings for a given site
-     * @return String the list of readings
-     **/
-    public String displayRdgs() {
-        String list = "";
-        for(Reading rdgs : readings)
-        {
-            list = list + rdgs.toString();
 
-        }
-
-        return list;
-    }
 
     /**
      * Method that displays all the readings for a given site
@@ -108,6 +248,10 @@ public class Site {
         }
     }
 
+    /**Method formats a Site and its readings for export
+     *
+     * @return JSONObject returns a Site objects and its readings for export
+     */
     public static JSONObject formatSiteForExport(){
         JSONObject obj = new JSONObject();
         JSONArray obj2 = new JSONArray();
@@ -118,60 +262,4 @@ public class Site {
         obj.put("site_readings",obj2);
         return obj;
     }
-    /*
-    public static JSONObject formatSiteForExport(){
-        JSONObject obj = new JSONObject();
-        ArrayList<String> obj2 = new ArrayList<String>();
-        for(Reading rdgs : readings)
-        {
-            obj2.add(String.valueOf(rdgs.formatReadingForExport()));
-        }
-        obj.put("site_readings",obj2);
-        return obj;
-    }
-    */
-
-
-    /**Method will loop through and display readings given a study ID and validate the study ID
-     *
-     * @param studyID   the given study ID
-     * @return list    list of all readings with that study ID
-     */
-    public String displayStdyRdgs(String studyID){
-        //Loop through all readings and get studyID
-        //compare studyID with the parameter so they can match
-        //then call toString for that reading
-        String list = "";
-        for(Reading rdgs : readings)
-        {
-            if(studyID == null || studyID == "") {
-                System.out.println("Sorry! Please enter a valid studyID");
-            }
-            else if(studyID.equals(rdgs.getStudyID())) {
-                list = list + rdgs.toString();
-            }
-            else if(rdgs.getStudyID() != studyID){
-                list = "";
-                System.out.println("Sorry! Study ID: " + rdgs.getStudyID() + " does not match the study ID you have entered");
-            }
-
-        }
-
-        return list;
-    }
-
-    public static void main(String[] args) {
-
-        Site s = new Site("12345");
-        Site s2 = new Site("12555");
-
-        s.addAReading("Midwest USA Study", "450", "12345", "temprature", "974", 102.00, "1515354694451");
-        s2.addAReading("Eastern USA Study", "400", "12555", "temprature", "984", 99.00, "1515354694489");
-        s2.addAReading("Midwest USA Study", "450", "12555", "temprature", "984", 99.00, "1515354694489");
-        s.addAReading("Eastern USA Study", "400", "12345", "humidity", "100", 30.00, "1515784694489");
-
-        System.out.println(s2.displayStdyRdgs("450"));
-
-    }
-
-}
+ }
