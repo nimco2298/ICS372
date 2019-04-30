@@ -24,7 +24,7 @@ public class JSONActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
 
 
-        setContentView(R.layout.activity_json);
+        setContentView(R.layout.activity_import);
 
 
         Button buttonImportJson = findViewById(R.id.buttonImportJSON);

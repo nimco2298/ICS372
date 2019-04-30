@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_import:
 
                 //change to the activity layout to import
-                setContentView(R.layout.activity_json);
+                setContentView(R.layout.activity_import);
 
                 //Created intent to launch the new activity
                 Intent intent = new Intent(MainActivity.this, JSONActivity.class);
